@@ -1,0 +1,30 @@
+﻿<#@ template language="C#" hostspecific="true" #>
+<#@ assembly name="$(SolutionDir)BrightLine.Common\$(OutDir)\BrightLine.Common.dll" #>
+<#@ assembly name="$(SolutionDir)BrightLine.Infrastructure\$(OutDir)\BrightLine.Infrastructure.dll" #>
+ 
+using System.Data.Entity;
+using BrightLine.Common.Models;
+using BrightLine.Common.Models.OLAP;
+using BrightLine.Common.Models.OLAP.Dimensions;
+using BrightLine.Common.Models.OLAP.Aggregations.Ad;
+using BrightLine.Common.Models.OLAP.Aggregations.App;
+using BrightLine.Common.Models.OLAP.Aggregations.Destination;
+
+namespace BrightLine.OLAP
+{
+    public partial class OLAPContext
+    {
+        
+<#
+    var props = BrightLine.Infrastructure.Build.T4HelpExtentions.GetOLAPDbContextRegistrations();
+    PushIndent("\t\t");
+    WriteLine("#region DbSets");
+    foreach (var prop in props)
+    {      
+        WriteLine(prop);
+    }
+    WriteLine("#endregion");
+    PopIndent();
+#>
+    }
+}

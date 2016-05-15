@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="expectedSchemaCondition1.Configuration" xml:space="preserve">
+    <value>Press to configure</value>
+  </metadata>
+  <data name="expectedSchemaCondition1.Schema" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJl
+        PW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAABNTeXN0ZW0uRGF0YS5E
+        YXRhU2V0AwAAABdEYXRhU2V0LlJlbW90aW5nVmVyc2lvbglYbWxTY2hlbWELWG1sRGlmZkdyYW0DAQEO
+        U3lzdGVtLlZlcnNpb24CAAAACQMAAAAGBAAAAIAsPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+        dXRmLTE2Ij8+DQo8eHM6c2NoZW1hIGlkPSJOZXdEYXRhU2V0IiB4bWxucz0iIiB4bWxuczp4cz0iaHR0
+        cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOm1zZGF0YT0idXJuOnNjaGVtYXMtbWlj
+        cm9zb2Z0LWNvbTp4bWwtbXNkYXRhIj4NCiAgPHhzOmVsZW1lbnQgbmFtZT0iTmV3RGF0YVNldCIgbXNk
+        YXRhOklzRGF0YVNldD0idHJ1ZSIgbXNkYXRhOkxvY2FsZT0iZW4tVVMiPg0KICAgIDx4czpjb21wbGV4
+        VHlwZT4NCiAgICAgIDx4czpjaG9pY2UgbWluT2NjdXJzPSIwIiBtYXhPY2N1cnM9InVuYm91bmRlZCI+
+        DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlIj4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5
+        cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5h
+        bWU9IkRhdGVUaW1lSWQiIHR5cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5P
+        Y2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IlBsYXRmb3JtSWQiIHR5
+        cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAg
+        ICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9Ik1ldHJpY1ZhbHVlIiB0eXBlPSJ4czpkb3VibGUiIG1z
+        ZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6
+        ZWxlbWVudCBuYW1lPSJNZXRyaWNJZCIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNl
+        PSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAgICAg
+        PC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8eHM6ZWxlbWVu
+        dCBuYW1lPSJUYWJsZTEiPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4
+        czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iRGF0ZVRpbWVJZCIgdHlw
+        ZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAg
+        ICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iUGxhdGZvcm1JZCIgdHlwZT0ieHM6aW50IiBtc2RhdGE6
+        dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1l
+        bnQgbmFtZT0iTWV0cmljVmFsdWUiIHR5cGU9InhzOmRvdWJsZSIgbXNkYXRhOnRhcmdldE5hbWVzcGFj
+        ZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9Ik1ldHJp
+        Y0lkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAv
+        Pg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBlPg0K
+        ICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlMiI+DQog
+        ICAgICAgICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAg
+        ICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJEYXRlVGltZUlkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0
+        YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVu
+        dCBuYW1lPSJQbGF0Zm9ybUlkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIg
+        bWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJNZXRyaWNWYWx1
+        ZSIgdHlwZT0ieHM6ZG91YmxlIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIg
+        Lz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTWV0cmljSWQiIHR5cGU9InhzOmludCIg
+        bXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8L3hz
+        OnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxlbWVu
+        dD4NCiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGUzIj4NCiAgICAgICAgICA8eHM6Y29tcGxl
+        eFR5cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50
+        IG5hbWU9IkRhdGVUaW1lSWQiIHR5cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBt
+        aW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IlBsYXRmb3JtSWQi
+        IHR5cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQog
+        ICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9Ik1ldHJpY1ZhbHVlIiB0eXBlPSJ4czpkb3VibGUi
+        IG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8
+        eHM6ZWxlbWVudCBuYW1lPSJNZXRyaWNJZCIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNw
+        YWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAg
+        ICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8eHM6ZWxl
+        bWVudCBuYW1lPSJUYWJsZTQiPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAg
+        IDx4czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iRGF0ZVRpbWVJZCIg
+        dHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAg
+        ICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iUGxhdGZvcm1JZCIgdHlwZT0ieHM6aW50IiBtc2Rh
+        dGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVs
+        ZW1lbnQgbmFtZT0iTWV0cmljVmFsdWUiIHR5cGU9InhzOmRvdWJsZSIgbXNkYXRhOnRhcmdldE5hbWVz
+        cGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9Ik1l
+        dHJpY0lkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIw
+        IiAvPg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBl
+        Pg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlNSI+
+        DQogICAgICAgICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAg
+        ICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJEYXRlVGltZUlkIiB0eXBlPSJ4czppbnQiIG1zZGF0
+        YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxl
+        bWVudCBuYW1lPSJQbGF0Zm9ybUlkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9
+        IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJNZXRyaWNW
+        YWx1ZSIgdHlwZT0ieHM6ZG91YmxlIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0i
+        MCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTWV0cmljSWQiIHR5cGU9InhzOmlu
+        dCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8
+        L3hzOnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxl
+        bWVudD4NCiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGU2Ij4NCiAgICAgICAgICA8eHM6Y29t
+        cGxleFR5cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVt
+        ZW50IG5hbWU9IkRhdGVUaW1lSWQiIHR5cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0i
+        IiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IlBsYXRmb3Jt
+        SWQiIHR5cGU9InhzOmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+
+        DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9Ik1ldHJpY1ZhbHVlIiB0eXBlPSJ4czpkb3Vi
+        bGUiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAg
+        ICA8eHM6ZWxlbWVudCBuYW1lPSJNZXRyaWNJZCIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFt
+        ZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAg
+        ICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8eHM6
+        ZWxlbWVudCBuYW1lPSJUYWJsZTciPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAg
+        ICAgIDx4czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iRGF0ZVRpbWVJ
+        ZCIgdHlwZT0ieHM6aW50IiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4N
+        CiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iUGxhdGZvcm1JZCIgdHlwZT0ieHM6aW50IiBt
+        c2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhz
+        OmVsZW1lbnQgbmFtZT0iTWV0cmljVmFsdWUiIHR5cGU9InhzOmRvdWJsZSIgbXNkYXRhOnRhcmdldE5h
+        bWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9
+        Ik1ldHJpY0lkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJz
+        PSIwIiAvPg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhU
+        eXBlPg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxl
+        OCI+DQogICAgICAgICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0K
+        ICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJEYXRlVGltZUlkIiB0eXBlPSJ4czppbnQiIG1z
+        ZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6
+        ZWxlbWVudCBuYW1lPSJQbGF0Zm9ybUlkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3Bh
+        Y2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJNZXRy
+        aWNWYWx1ZSIgdHlwZT0ieHM6ZG91YmxlIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vy
+        cz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iTWV0cmljSWQiIHR5cGU9Inhz
+        OmludCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAg
+        ICA8L3hzOnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6
+        ZWxlbWVudD4NCiAgICAgIDwveHM6Y2hvaWNlPg0KICAgIDwveHM6Y29tcGxleFR5cGU+DQogIDwveHM6
+        ZWxlbWVudD4NCjwveHM6c2NoZW1hPgYFAAAAgAE8ZGlmZmdyOmRpZmZncmFtIHhtbG5zOm1zZGF0YT0i
+        dXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp4bWwtbXNkYXRhIiB4bWxuczpkaWZmZ3I9InVybjpzY2hl
+        bWFzLW1pY3Jvc29mdC1jb206eG1sLWRpZmZncmFtLXYxIiAvPgQDAAAADlN5c3RlbS5WZXJzaW9uBAAA
+        AAZfTWFqb3IGX01pbm9yBl9CdWlsZAlfUmV2aXNpb24AAAAACAgICAIAAAAAAAAA//////////8L
+</value>
+  </data>
+  <metadata name="checksumCondition1.Configuration" xml:space="preserve">
+    <value>Press to configure</value>
+  </metadata>
+  <data name="dbo_Campaign_AnalyticsOverviewTest_TestAction.SqlScript" xml:space="preserve">
+    <value>-- database unit test for dbo.Campaign_AnalyticsOverview
+declare @campaignId int,
+	@beginDateTimeId int,
+	@endDateTimeId int,
+	@timeInterval int
+	
+
+-- campaign with no analytics
+select
+       @campaignId = -1,
+       @beginDateTimeId = null,
+       @endDateTimeId = null,
+       @timeInterval = 0;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- existing campaign hourly
+select
+       @campaignId = 219168,
+       @beginDateTimeId = null,
+       @endDateTimeId = null,
+       @timeInterval = 0;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- campaign daily
+select
+       @campaignId = 219168,
+       @beginDateTimeId = null,
+       @endDateTimeId = null,
+       @timeInterval = 2;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- campaign monthly
+select
+       @campaignId = 219168,
+       @beginDateTimeId = null,
+       @endDateTimeId = null,
+       @timeInterval = 4;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- campaign weekly
+select
+       @campaignId = 219168,
+       @beginDateTimeId = null,
+       @endDateTimeId = null,
+       @timeInterval = -2;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- specified time interval
+select
+       @campaignId = 219168,
+       @beginDateTimeId = 2015041300,
+       @endDateTimeId = 2015041400,
+       @timeInterval = 0;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- specified time interval
+select
+       @campaignId = 219168,
+       @beginDateTimeId = 2015041300,
+       @endDateTimeId = 2015041400,
+       @timeInterval = 2;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- specified time interval
+select
+       @campaignId = 219168,
+       @beginDateTimeId = 2015041800,
+       @endDateTimeId = 2015043000,
+       @timeInterval = 4;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;
+
+-- specified time interval
+select
+       @campaignId = 219168,
+       @beginDateTimeId = 2015041800,
+       @endDateTimeId = 2015043000,
+       @timeInterval = -2;
+exec [dbo].[Campaign_AnalyticsOverview] @campaignId, @beginDateTimeId, @endDateTimeId, @timeInterval;</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+</root>

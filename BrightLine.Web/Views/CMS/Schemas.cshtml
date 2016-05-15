@@ -1,0 +1,109 @@
+﻿@using BrightLine.Common.Utility.Authentication;
+
+
+@model BrightLine.Common.Models.Campaign
+@{
+    ViewBag.Title = string.Format("CMS - {0}", Model.Name);
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var isDeveloper = Auth.Service.IsDeveloper();
+    var canEdit = Auth.Service.IsUserInAnyRole(AuthConstants.Roles.Admin, AuthConstants.Roles.Developer, AuthConstants.Roles.CMSAdmin, AuthConstants.Roles.CMSEditor);
+    var canPublish = Auth.Service.IsUserInAnyRole(AuthConstants.Roles.Admin, AuthConstants.Roles.Developer, AuthConstants.Roles.CMSAdmin);
+
+}
+@section scripts {
+
+}
+
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container">
+        <div class="row cfww" style="margin-top: 20px">
+            <div class="">
+                <ul class="breadcrumb">
+                    <li><a href="/cms">CMS</a></li>
+                    <li>@Model.Name</li>
+                </ul>
+            </div>
+        </div>
+        @*<a style='margin-bottom: 10px;' data-toggle='modal' href='/cms/create' role='button' class='btn btn-success disabled'>New Bucket</a>*@
+        <div class="row cfww">
+            <div class="span12">
+                <div class="widget widget-table">
+                    <div class="widget-header">
+                        <span class="icon-list-alt"></span>
+                        <h3>Content Buckets</h3>
+                    </div>
+                    <!-- .widget-header -->
+                    <div class="widget-content" id='resourceDocs-widget'>
+                        <table id="cmsApps" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    @if (canEdit)
+                                    {
+                                        <th></th>
+                                    }
+                                    <th></th>
+                                    @if (canPublish)
+                                    {
+                                        <th>Publish</th>
+                                    }
+                                    <th>Models</th>
+                                    <th>Lookups</th>
+                                    <th>Date Modified</th>
+                                    <th>Last Published</th>
+                                    <th>Publish Details</th>
+                                    <th>Schema</th>
+                                    <th>Raw </th>
+                                    <th>JSON</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var schema in Model.CampaignContentSchemas)
+                                {
+                                    var dataSetId = schema.Id;
+
+                                    <tr id="entity_record_@dataSetId">
+                                        @if (canEdit)
+                                        {
+                                            <td class="action-icon action-edit">
+                                                <a href="/cms/edit/@dataSetId">&nbsp;</a>
+                                            </td>
+                                        }
+                                        <td><a href="/cms/models/@dataSetId">Edit</a></td>
+                                        @if (@schema.TotalModels > 0 && canPublish)
+                                        {
+                                            <td>
+                                                <a style="margin-right:20px" href=@string.Format("/cms/publish/{0}?env={1}", @dataSetId, "dev")>DEV</a>
+
+                                                <a style="margin-right:20px" href=@string.Format("/cms/publish/{0}?env={1}", @dataSetId, "uat")>UAT</a>
+
+                                                <a style="margin-right:20px" href=@string.Format("/cms/publish/{0}?env={1}", @dataSetId, "pro")>PRO</a>
+
+                                            </td>
+                                        }
+                                        else if (canPublish)
+                                        {
+                                            <th></th>
+                                        }
+                                        <td><a href="/cms/models/@dataSetId">@schema.TotalModels</a></td>
+                                        <td>@schema.TotalLookups</td>
+                                        <td>@(schema.DateUpdated.HasValue ? DateHelper.ToUserTimezone(schema.DateUpdated.Value).ToString("MM/dd/yyyy hh:mm tt") : "")</td>
+                                        <td>@(schema.LastPublishedDate.HasValue ? DateHelper.ToUserTimezone(schema.LastPublishedDate.Value).ToString("MM/dd/yyyy hh:mm tt") : "")</td>
+                                        <td>@schema.ChangeComment</td>
+                                        <td> <a href="/cms/schema/@dataSetId?type=json">View</a></td>
+                                        <td><a href="/cms/collectionraw/@dataSetId?type=json">View</a></td>
+                                        <td><a href="/cms/collectionpublished/@dataSetId?type=json">View</a></td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- .widget-content -->
+                </div>
+                <!-- /widget -->
+            </div>
+            <!-- /span12 -->
+        </div>
+    </div>
+</div>

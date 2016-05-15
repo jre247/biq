@@ -1,0 +1,399 @@
+// corresponds with a horizontal listing in campaigns summary
+.campaign-generic-listing{
+  // background: #fff
+  // padding: 0
+  // margin: 20px 0
+
+  .listing-nav {
+    // line-height: 30px
+    // border-bottom: 1px solid #cecece
+    // padding: 10px 0
+
+    vendor('user-select', none)
+
+    & > div{
+      //
+    }
+
+    .listing-nav-title{
+      // text-transform: uppercase
+      // font-weight: bold
+      max-width: 200px
+    }
+    .listing-nav-search-container{
+      .glyphicon, .fa{
+        border-left-width: 1px
+      }
+    }
+    .listing-nav-actions-container{
+      text-align: right
+      float: right
+
+      a.glyphicon{
+      }
+      a{
+        padding: 5px
+        margin: 0 5px
+      }
+    }
+  }
+
+  .listing-items-container{
+    padding: 0 0
+    position: relative
+
+
+
+
+    #destinations-items{
+    }
+
+    #creatives-items{
+    }
+  }
+
+}
+.input-group-addon{
+  background-color: transparent
+}
+
+
+//Overlay Item styling start
+.overlay-items{
+
+  .overlay-item{
+    width: 260px
+    height: 220px
+    padding: 0
+    margin: 30px 16px
+    overflow: hidden
+    position: relative
+    list-style: none
+    background: #fff
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.25)
+    float: left
+
+    // &.updated{
+    //   vendor('box-shadow', 1px 2px 20px rgba(15, 116, 15, 1))
+    // }
+
+    .overlay-item-body {
+      padding: 10px 10px 0
+      height: 170px
+      position: relative
+
+      .overlay-item-body-logo{
+        background: center center no-repeat
+        background-size: 100%
+        width: 100%
+        height: 100%
+        position: relative
+        z-index: 1
+        background-color: rgba(100, 105, 116, 0.05)
+      }
+
+      .overlay-item-body-overlay {
+        opacity: 0
+        width: 240px
+        height: 160px
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 2
+        margin: 10px 10px 0
+        padding: 10px
+        background: rgba(37,44,58,.88)
+        color: #fff
+        text-decoration: none
+
+          span{
+            display: block
+
+            &.overlay-featureTypes span {
+              padding-left: 20px
+            }
+          }
+      }
+
+    }//overlay-item-body
+
+    //overlay-item:hover
+    &:hover {
+      .overlay-item-body-overlay {
+        opacity: 1
+        transition: opacity .2s
+      }
+
+
+
+      .overlay-item-footer {
+        .overlay-item-footer-name {
+          display: none
+        }
+
+        .overlay-item-footer-tools {
+          //display: flex
+          display: block
+
+
+        }
+      }
+
+
+    }//overlay-item:hover
+
+
+    .overlay-item-footer {
+      background: #fff
+      padding: 10px
+      margin: 0
+      height: 50px
+
+      .overlay-item-footer-name{
+        line-height: 30px
+      }
+
+      .overlay-item-footer-tools {
+        display: none
+        // flex-direction: row
+        // justify-content: flex-end
+
+        > span {
+          width: 37px
+          height: 30px
+          line-height: 27px
+          // overflow: hidden
+          padding: 0px
+          border: 1px solid transparent
+          border-radius: 2px
+          cursor: pointer
+          float: right
+
+          a{
+            text-decoration: none
+            padding: 5px 10px
+
+            i.glyphicon {
+              font-size: 16px
+              text-align: center
+              line-height: 19px
+              cursor: pointer
+              top: 3px
+              margin-right: 5px
+              color: #428bca
+            }
+
+            i.glyphicon + i.glyphicon {
+              border-left: 1px solid #ddd
+            }
+            span{
+              //
+            }
+          }
+
+
+
+
+        }
+
+        > span:hover {
+          // border: 1px solid #428bca
+          color: #428bca
+          // width: initial
+
+          .glyphicon{
+            color: #428bca
+          }
+          > span {
+            //
+          }
+        }
+
+      }
+    }//overlay-item-footer
+  }
+}
+
+//Overlay Item Styling end
+
+.collection_empty {
+  position: relative
+  width: 100%
+  text-align: center
+  color: #778295
+  margin: 40px
+
+  .title{
+    font-size: 24px
+    font-weight: 400
+  }
+  .desc{
+    font-size: 15px
+  }
+}
+
+
+
+.gridlist-items{
+  clear: both
+
+  .gridlist-item{
+    &.gridlist-item-list{
+      width: 100%
+      float: left
+      padding: 10px
+      border-bottom: 1px solid #E0DEDE
+
+      &:last-child{
+        border-bottom: 0
+      }
+
+      &>div{
+        float: left
+        // line-height: 66px
+        margin: 0 0 0 20px
+
+        &.tooltip {
+          line-height: initial
+          .tooltip-inner {
+            padding: 10px
+          }
+        }
+      }
+
+      .col-thumb{
+        width: 94px
+        padding: 5px
+        margin-left: 20px
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.12)
+
+        .col-thumb-img{
+          width: 84px
+          height: 56px
+          background: center center no-repeat
+          background-repeat: no-repeat
+          background-size: 100%
+          background-color: rgba(100, 105, 116, 0.05)
+        }
+      }
+
+      .col-name{
+        font-weight: bold
+
+        width: 20%
+        padding: 23px 0 0
+      }
+
+      .col-ad-type{
+        width: 100px
+      }
+
+      .col-ad-platform{
+        width: 100px
+      }
+
+      .col-ad-placement{
+        width: 195px
+      }
+
+      .col-modified-on{
+        width: 130px
+      }
+
+      .col-features{
+        width: 240px
+      }
+
+      .col-advertiser-name{
+        width: 150px
+      }
+
+      .col-with-label{
+        line-height: initial
+        padding: 7px 0 0
+        
+        .label {
+          color: #BCBCBC
+          padding-left: 0
+        }
+        &.col-125{
+          width: 125px
+        }
+        &.col-100{
+          width: 100px
+        }        
+        &.col-110{
+          width: 110px
+        }
+        &.col-85{
+          width: 85px
+        }
+        &.col-date{
+          width: 70px
+        }
+      }
+
+      .col-actions{
+        display: none
+        margin: 20px 0 0 20px
+        float: right
+
+
+        > span {
+          // width: 37px
+          // height: 30px
+          line-height: 27px
+          // overflow: hidden
+          padding: 0px
+          // border: 1px solid transparent
+          // border-radius: 2px
+          cursor: pointer
+          float: right
+
+          a{
+            text-decoration: none
+            padding: 5px 10px
+
+            i.glyphicon {
+              font-size: 16px
+              text-align: center
+              line-height: 19px
+              cursor: pointer
+              top: 3px
+              // margin-right: 5px
+              color: #428bca
+            }
+
+            i.glyphicon + i.glyphicon {
+              border-left: 1px solid #ddd
+            }
+            span{
+              //
+            }
+          }
+        }
+
+        > span:hover {
+          // border: 1px solid #428bca
+          color: #428bca
+          // width: initial
+
+          .glyphicon{
+            color: #428bca
+          }
+          > span {
+            //
+          }
+        }
+      }
+
+      &:hover{
+        .col-actions{
+          display: inline-block
+        }
+      }
+
+
+    }
+  }
+}

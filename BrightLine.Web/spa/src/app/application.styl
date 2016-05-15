@@ -1,0 +1,450 @@
+// nib is a powerful lib for stylus that provides cross-browser css3 mixins.
+// No more vendor prefixes. http://visionmedia.github.com/nib/
+@import 'nib'
+
+vendor(name, args)
+  -webkit-{name} args
+  -moz-{name} args
+  -ie-{name} args
+  -o-{name} args
+  {name} args
+// Apply a natural box layout model to all elements.
+// http://paulirish.com/2012/box-sizing-border-box-ftw/
+*
+  box-sizing: border-box
+
+// TODO: Move
+#notifier
+  // display none
+
+// Analytics
+#navigation-buttons
+  width 100%
+  margin-bottom 20px
+
+#navigation-buttons > .btn
+  width 33.33%
+  font-size 11px
+
+.animated-item-view
+  opacity: 0
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1)
+  &-end
+    opacity: 1
+
+.admin-control {
+  display: none
+}
+.admin-controls-allowed .admin-control{
+  display: initial
+}
+
+
+.input-group-simple{
+  .glyphicon, .fa{
+    border-width: 0px
+    border-radius: 0
+    padding-right: 2px
+    color: #a2a2a2
+    
+    &.fa-times-circle{
+      cursor: pointer
+    }
+  }
+  input[type='text']{
+    border: 0
+    box-shadow: none
+    padding-left: 10px
+    background: transparent
+
+    &:focus{
+      border-color: transparent
+    }
+  }
+  button{
+    border:0
+    display: none
+  }
+
+  &:focus, &:active {
+    button{
+      //display: block
+    }
+  }
+}
+input[type='checkbox'], input[type='file'] {
+  cursor: pointer
+}
+
+// Component: Collapsable
+// <div class='collapsable-container'> //toggle class 'collapsed'
+//   <div class='collapsable-item'></div>
+.collapser {
+  vendor('user-select', none)
+}
+.collapsable-container.collapsed{
+  .collapsable-item{
+    display: none !important
+  }
+}
+
+
+.whitebox{
+  background: #fff
+  padding: 0
+  margin: 0 0 20px 0
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.07)
+
+  &.container-fluid, .container-fluid{
+    padding-left: 0
+    padding-right: 0
+
+    .row{
+      margin-left: 0
+      margin-right: 0
+    }
+  }
+
+  .nav{
+    line-height: 30px
+    border-bottom: 1px solid #cecece
+    padding: 10px 0
+
+    .title{
+      text-transform: uppercase
+      font-weight: bold
+    }
+  }
+}
+
+form.form-horizontal{
+
+  .form-group{
+    //left column
+    label.col-xs-2.control-label{
+
+    }
+
+    //right column
+    div.col-xs-6.form-field{
+      
+      //Backbone.forms container
+      & > div{
+
+        //hide these labels in general
+        & > label{
+          display: none
+        }
+
+        //Backbone.forms field comtainer
+        & > div{
+
+        }
+      }
+    }
+  }
+}
+
+input.form-control.error{
+  border: 1px solid #a94442
+}
+.fieldview .error {
+  label, .validation-error {
+    color: #a94442
+    font-weight: bold
+  }
+  input, select{
+    border: 1px solid #a94442
+  }
+  .Select{
+    .Select-control{
+      border: 1px solid #a94442
+    }
+    input {
+      border: none
+    }
+    
+    &.is-open{
+      .Select-control{
+        border: 1px solid #ccc
+      }
+    }
+  } 
+  ul.form-control{
+    list-style: none
+    border: 0
+    box-shadow: none
+
+    label{
+      margin-left: 10px
+      cursor: pointer
+    }
+  }
+  label[for*='_'] {
+    display: none;
+  }
+}
+.backbone-form {
+  .error{
+    label, [data-error] {
+      color: #a94442
+      font-weight: bold
+    }
+
+    input, select{
+      border: 1px solid #a94442
+    }
+  }
+
+  ul.form-control{
+    list-style: none
+    border: 0
+    box-shadow: none
+
+    label{
+      margin-left: 10px
+      cursor: pointer
+    }
+  }
+  label[for*='_'] {
+    display: none;
+  }
+}
+
+
+
+
+
+.bs-callout {
+  padding: 20px
+  margin: 20px 0
+  border: 1px solid #eee
+  border-left-width: 5px
+  border-radius: 3px
+
+  &.bs-callout-info {
+    border-left-color: #5bc0de
+  }
+
+  &.bs-callout-warning {
+    border-left-color: #f0ad4e
+  }
+
+  &.bs-callout-danger {
+    border-left-color: #d9534f
+  }
+}
+
+.updated{
+  vendor('box-shadow', 1px 2px 20px rgba(15, 116, 15, 1) !important)
+}
+
+
+
+
+#nav {
+  position: relative
+  // float: left
+  width: 100%
+  margin-bottom: 0
+}
+body{
+  overflow-y: auto
+}
+body > .container-fluid{
+  position: relative
+  // float: left
+  width: 100%
+  min-height: calc(100% - 92px)
+}
+
+#footer{
+  position: relative
+  float: left
+  width: 100%
+}
+
+#push{
+  display: none
+}
+
+#modal-confirmation-delete-item .modal-body{
+  text-align: center
+  padding: 20px 0 10px
+}
+
+.widget{
+  &.has-table .widget-content{
+    overflow-x: auto
+  }
+
+  &.no-header{
+    & > .widget-header{
+      // display: none
+      min-height: 0
+      padding: 0
+      border-bottom: 0
+    }
+    & > .widget-content{
+      // border-top: 1px solid #D5D5D5
+      // border-top-left-radius: 5px
+      // border-top-right-radius: 5px
+    }
+  }
+
+  &.empty-content > .widget-content {
+    border: 0 !important
+    padding: 0 !important
+  }
+}
+
+
+#performance-items{
+  display: block
+  //head
+  margin: 0 0 20px
+  //develop
+  //margin: 10px 0 20px
+  text-align: center
+  padding: 15px 0
+
+  .performance-item{
+    width: 210px
+    height: 60px
+    color: #615A5A
+    margin: 0 0px
+    padding: 0px 20px 0
+    border-radius: 3px
+    text-align: center
+    display: inline-table
+    //float: left;
+
+    &:not(:first-child){
+      border-left: 1px solid #CACACA
+    }
+
+    span{
+      position: relative
+      display: block
+      overflow: hidden
+    }
+
+    span.metric-value{
+      // text-transform: uppercase
+      font-size: 2.7em
+      font-weight: bold
+      line-height: 35px
+    }
+
+    span.metric-name{
+      // text-transform: uppercase
+      line-height: 16px
+      padding-top: 7px
+    }
+  }
+}
+
+.align-right{
+  text-align: right
+}
+.align-left{
+  text-align: left
+}
+.no-margin-top{
+  margin-top: 0
+}
+
+.cursor-default{
+  cursor: default
+}
+.cursor-pointer{
+  cursor: pointer
+}
+
+.fa {
+  font-size: 14px
+}
+
+.action-denied{
+  display: none !important
+}
+.ellipsis{
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  width: 100%
+  display: inline-block
+}
+
+.form-group{
+  .fieldAsSpan{
+    margin-top: 7px
+  }
+}
+
+.fieldAsSpan{
+  font-weight: bold
+  display: block
+  font-size: 14px
+}
+
+.chosen-container{
+  width: 100% !important
+
+  &>ul{
+    border-radius: 4px
+  }
+}
+
+.mode-view{
+
+}
+.mode-edit{
+  .modeItemView{
+    display: none !important
+  }
+  .modeItemEdit{
+
+  }
+}
+.mode-view{
+  .modeItemView{
+
+  }
+  .modeItemEdit{
+    display: none !important
+  }
+}
+
+
+.form-control{
+  box-shadow: none !important
+}
+
+
+.fa:hover, .glyphicon:hover{
+  text-decoration: none  
+}
+
+
+.validation-summary-errors{
+  width: 500px
+}
+
+
+
+.thumb-md{
+  width: 94px
+  padding: 5px
+  box-shadow: 1px 2px 5px rgba(0,0,0,.12)
+  vertical-align: middle
+  display: inline-block
+  
+  .img{
+    width: 84px
+    height: 56px
+    background: center center no-repeat
+    background-size: 100%
+    background-color: rgba(100,105,116,.05)
+  }
+}

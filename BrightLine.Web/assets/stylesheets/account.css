@@ -1,0 +1,319 @@
+﻿.account-container {
+  width: 380px;
+  display: block;
+  margin: 0 auto 0 auto;
+}
+
+.content {
+  padding: 16px 28px 23px;
+}
+
+.login-fields .field {
+  margin-bottom: 1.25em;
+}
+
+.login-fields label {
+  display: none;
+}
+
+.login-fields input {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  color: #8e8d8d;
+  padding: 9px 15px 9px 50px;
+  background-color: #fdfdfd;
+  width: 255px;
+  display: block;
+  margin: 0;
+  /*box-shadow: inset 2px 2px 4px #f1f1f1;*/
+}
+
+.username-field {
+  background: url(/content/img/bootstrap-3.1.1/signin/user.png) no-repeat;
+}
+
+.password-field {
+  background: url(/content/img/bootstrap-3.1.1/signin/password.png) no-repeat;
+}
+
+.login-actions {
+  float: left;
+  width: 100%;
+  margin-top: -1em;
+  margin-bottom: 1.25em;
+}
+
+.login-social {
+  float: left;
+  padding: 10px 0 15px;
+  border: 1px dotted #ccc;
+  border-right: none;
+  border-left: none;
+}
+
+span.login-checkbox {
+  float: left;
+  margin-top: 11px;
+}
+
+  span.login-checkbox > input[type='checkbox'] {
+    margin-right: 10px;
+    float: left;
+    width: 15px;
+  }
+
+    span.login-checkbox > input[type='checkbox'] + label {
+      clear: none;
+      height: 15px;
+      display: block;
+      padding: 0 0 0 22px;
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.2em;
+      background: url(/content/img/bootstrap-3.1.1/signin/check.png) no-repeat 0 0;
+      cursor: pointer;
+    }
+
+    span.login-checkbox > input[type='checkbox']:checked + label {
+      background-position: 0 -15px;
+    }
+
+.login-extra {
+  display: block;
+  width: 300px;
+  margin: 1.5em auto;
+  text-align: center;
+  line-height: 19px; /*text-shadow:1px 1px 0 white*/
+}
+
+.account-container h1 {
+  margin-bottom: 1.4em;
+  color: #08c;
+  text-align: center;
+}
+
+.twitter, .fb {
+  position: relative;
+  height: 32px;
+  width: 157px;
+  display: block;
+  background: url(/content/img/bootstrap-3.1.1/signin/twitter_btn.png) no-repeat;
+}
+
+.fb {
+  width: 162px;
+  background: url(/content/img/bootstrap-3.1.1/signin/fb_btn.png) no-repeat;
+}
+
+  .twitter:active, .fb:active {
+    top: 1px;
+  }
+
+  .twitter:hover, .fb:hover {
+    background-position: 0 -32px;
+  }
+
+  .twitter a, .fb a {
+    padding: 5px 0 0 35px;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.3);
+    color: #fff;
+    font-weight: bold;
+    font-size: 11px;
+    height: 32px;
+    display: block;
+  }
+
+  .fb a {
+    padding: 5px 0 0 31px;
+  }
+
+.twitter, .fb {
+  display: inline-block;
+}
+
+  .twitter a:hover, .fb a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+.register .login-social {
+  margin-bottom: 1em;
+}
+
+.register .login-actions {
+  margin-bottom: 0;
+}
+
+.register .login-fields input {
+  width: 299px;
+  padding-left: 6px;
+}
+
+.register h1 {
+  color: #444;
+}
+
+.register span.login-checkbox {
+  position: relative;
+  top: -6px;
+  width: 200px;
+}
+
+  .register span.login-checkbox > input[type="checkbox"] + label {
+    position: relative;
+    line-height: 1.3em;
+  }
+
+#modal-edit-data .modal-body {
+  overflow-y: visible;
+}
+
+@media(max-width:480px) {
+  .account-container {
+    width: 280px;
+    margin-top: 35px;
+  }
+
+  .login-fields input {
+    width: 160px;
+  }
+
+  .login-social {
+    width: 100%;
+  }
+
+  .twitter {
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  .register .login-fields input {
+    width: 204px;
+    padding-left: 6px;
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.affix {
+  position: fixed;
+}
+
+select {
+  width: auto;
+}
+
+
+.account-precontainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  visibility: hidden;
+}
+
+body {
+  background: #2F4050;
+  color: #C5CBD0;
+}
+
+a, a:hover {
+  color: #428bca;
+}
+.login-extra a, .login-extra a {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.account-container button, .account-container button:hover, .account-container button:focus {
+  background: #3276b1;
+  border-radius: 2px;
+  border: 0px;
+  height: 55px;
+  font-weight: bold;
+  font-size: 22px;
+  color: #fff;
+  margin-top: 55px;
+}
+
+input:-webkit-autofill {
+}
+
+.account-container .validation-summary-errors{
+  width: initial;
+}
+
+.account-container input.form-control {
+  border-radius: 0px;
+  line-height: 55px;
+  height: 55px;
+  color: #A8B1BA !important;
+  border-width: 0;
+  font-size: 20px;
+  width: calc(100% - 35px);
+  margin-left: 35px;
+  position: relative;
+  left: 0px;
+  background-color: #2F4050;
+  box-shadow: none;
+  -webkit-box-shadow: 0 0 0px 1000px #2F4050 inset;
+}
+
+.account-container input.form-control:focus{
+  -webkit-box-shadow: 0 0 0px 1000px #2F4050 inset;
+  -webkit-text-fill-color: #A8B1BA;
+}
+
+
+
+input:-webkit-autofill, input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #2F4050 inset;
+  -webkit-text-fill-color: #A8B1BA;
+}
+.form-group {
+  margin-bottom: 0;
+}
+.form-group label {
+  display: none;
+}
+
+.border-top{
+  border-top: 1px solid #75859C
+}
+.border-bottom{
+  border-bottom: 1px solid #75859C
+}
+i.fa {
+  position: absolute;
+  font-size: 21px;
+  margin: 17px;
+}
+
+.login-checkbox label{
+  display: block;
+  cursor: pointer;
+}
+
+#profile .form-group label {
+  display: initial;
+}

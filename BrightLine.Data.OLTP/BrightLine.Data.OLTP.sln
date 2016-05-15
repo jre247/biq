@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BrightLine.Data.OLTP", "BrightLine.Data.OLTP.sqlproj", "{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CI|Any CPU = CI|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		PRO|Any CPU = PRO|Any CPU
+		Release|Any CPU = Release|Any CPU
+		UAT|Any CPU = UAT|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.CI|Any CPU.ActiveCfg = CI|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.CI|Any CPU.Build.0 = CI|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.CI|Any CPU.Deploy.0 = CI|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.PRO|Any CPU.ActiveCfg = CI|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.PRO|Any CPU.Build.0 = CI|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.PRO|Any CPU.Deploy.0 = CI|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.UAT|Any CPU.ActiveCfg = UAT|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.UAT|Any CPU.Build.0 = UAT|Any CPU
+		{B809DDBA-201F-47EF-A277-7B21FC5A6E4E}.UAT|Any CPU.Deploy.0 = UAT|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

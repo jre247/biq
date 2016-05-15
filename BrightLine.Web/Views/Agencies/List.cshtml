@@ -1,0 +1,78 @@
+﻿@model List<BrightLine.Common.ViewModels.Entity.AgencyViewModel>
+@{
+	ViewBag.Title = "Agencies";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+
+	var title = "Agency";
+	
+	var maxId = Model.Any() ? Model.Max(m => m.Id) : 0;
+}
+
+
+@section styles {
+	<link href="~/assets/stylesheets/EntityList.css" rel="stylesheet">
+}
+@section scripts {
+	<script type="text/javascript" src="~/assets/javascripts/entityList.js"></script>
+}
+
+<div id="campaign" class="cfww">
+	<div id="campaign-content-container">
+		<div class="campaign-generic-listing container-fluid collapsable-container whitebox">
+			<div class="listing-nav-container container-fluid">
+				<div class="row listing-nav nav">
+					<div class="col-sm-3 listing-nav-title title">Agency Listing</div>
+					<div class="col-sm-5 listing-nav-search-container">
+						<div class="input-group input-group-simple component-searchbox is-empty">
+							<div class="input-group-addon glyphicon glyphicon-search" onclick="$(this).next().select();">
+								<img src="/content/img/icons/clear-circle.png" class="clear-search">
+							</div>
+							<input type="text" id="listing-filter" class="form-control" placeholder="Search Agencies..." data-target="listing">
+							<span class="input-group-btn">
+								<button class="btn btn-default creatives-filter-clear" type="button" onclick="utility.textbox.clear('#listing-filter'); $(this).parent().prev().select();">X</button>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-4 listing-nav-actions-container">
+						<a href="../agencies/create" title="Add a new @title" role="button" class="btn btn-success">New @title</a>
+					</div>
+				</div>
+			</div>
+			<div class="listing-items-container">
+				<div class='widget widget-table'>
+					<div class='widget-content' style='display: none;' id='listing-widget'>
+						<table id='listing' class='table table-striped'>
+							<colgroup>
+								<col style="width: 100px" />
+							</colgroup>
+							<thead>
+								<tr>
+									
+									<th style="width: 40%;">Name</th>
+									<th >&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var m in Model)
+								{
+									<tr data-id="@m.Id" title="@m.Display (@m.Id)">
+									
+									
+										<td style="width: 90%;">
+											@m.Name
+										</td>
+
+										<td class="glyphicon-action" style="white-space: nowrap">
+											<div class="glyphicon glyphicon-edit" data-href="../agencies/edit/@m.Id" title="Edit @m.Display"></div>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,117 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+	var formTitleAction = ViewBag.FormSubmitAction;
+	var pageTitleAction = ViewBag.PageTitleAction;
+	ViewBag.Title = pageTitleAction + " Media Partner";
+}
+
+@model BrightLine.Common.ViewModels.Entity.MediaPartnerViewModel
+@if (Model == null /* id not found, just display a message and bail. */)
+{
+	<div class="row">
+		<div class="col-md-4 col-md-push-4">
+			<div class="alert alert-info text-center">
+				<h1>Id not found!</h1>
+				<span>There is no data for this id.</span>
+				<br />
+				<br />
+				<button class="btn btn-default" onclick="javascript:window.history.go(-1);">
+					<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Go back
+				</button>
+			</div>
+		</div>
+	</div>
+	return;
+}
+
+<style>
+	.isNetwork {
+		margin-top: 12px;
+	}
+</style>
+
+<div id="campaign-content-container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="widget stacked">
+				<div class="widget-header">
+					<i class="icon-tasks"></i>
+					<h3>@formTitleAction MediaPartner</h3>
+				</div>
+				<div class="widget-content">
+					<form class="form-horizontal col-md-8" method="POST" action="/MediaPartners/save" enctype="multipart/form-data">
+
+						@Html.HiddenFor(m => m.Id)
+
+						<div class="form-group">
+							@Html.LabelFor(m => m.Name, new { @class = "col-sm-2 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(model => model.Name)</div>
+							</div>
+
+
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(m => m.ManifestName, new { @class = "col-sm-2 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.TextBoxFor(m => m.ManifestName, new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(model => model.ManifestName)</div>
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.LabelFor(m => m.Parents, new { @class = "col-sm-2 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.SelectFor(m => m.SelectedParent, options: Model.Parents, htmlAttributes: new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.SelectedParent)</div>
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.LabelFor(m => m.Categories, new { @class = "col-sm-2 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.SelectFor(m => m.SelectedCategory, options: Model.Categories, htmlAttributes: new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.SelectedCategory)</div>
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.LabelFor(m => m.IsNetwork, new { @class = "col-sm-2 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.CheckBoxFor(m => m.IsNetwork, new { @checked = "checked", @class = "isNetwork", @style = "margin-top:12px;" })
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="form-field col-sm-6 col-sm-offset-2">
+								<div id="notifier"></div>
+							</div>
+						</div>
+
+
+						<div class="form-group validation-summary-container">
+							<div class="form-field col-sm-6 col-sm-offset-2 validation-summary">
+								@Html.ValidationSummary("", new { @class = "bg-danger" })
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8">
+								<button class="btn btn-success" type="submit" style="margin-left: 20px;">@formTitleAction MediaPartner</button>
+								<a href="/MediaPartners/list" class="btn-cancel">Go back</a>
+							</div>
+						</div>
+
+						
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

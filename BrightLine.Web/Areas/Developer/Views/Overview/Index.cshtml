@@ -1,0 +1,301 @@
+﻿@using System.Configuration
+@using BrightLine.Common.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var appSettings = (List<string>)ViewBag.AppSettingsKeys;
+    var settingsList = (Dictionary<string, SettingValue>)ViewBag.SettingsList;
+    var version = typeof(Campaign).Assembly.GetName().Version.ToString();
+}
+
+@section styles{
+	<style type="text/css">
+		.topTable{
+			height: 228px;
+		}
+
+		.firstRow{
+			margin-top: 10px;
+		}
+
+		.connectionStringsHeader{
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+	</style>
+}
+<div class="row row-fluid firstRow">
+    <div class="col-md-4">
+		<div class="widget stacked">
+			<div class="widget widget-table">
+				<div class="widget-header">
+					<span class="icon-list-alt"></span>
+					<h3>Overview</h3>
+				</div>
+				<!-- .widget-header -->
+				<div class="widget-content topTable">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Key</th>
+								<th>Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="color: red; font-weight: bold;">@ViewBag.IQEnv</td>
+								<td style="color: red; font-weight: bold;">@ViewBag.IQVersion</td>
+							</tr>
+							<tr>
+								<td>Drive Space</td>
+								<td>@string.Format("{0:n0} MB", @ViewBag.FreeSpace > 0 ? (long)@ViewBag.FreeSpace / 1048576 : 0) /  @string.Format("{0:n0} MB", @ViewBag.TotalSpace > 0 ? (long)@ViewBag.TotalSpace / 1048576 : 0)</td>
+							</tr>
+							<tr>
+								<td>Windows Identity</td>
+								<td>@System.Security.Principal.WindowsIdentity.GetCurrent().Name</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="col-md-4">
+        <div class="widget widget-table">
+            <div class="widget-header">
+                <span class="icon-list-alt"></span>
+                <span class="connectionStringsHeader">Connectionstrings</span>
+            </div>
+            <!-- .widget-header -->
+			<div class="widget-content topTable">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Key</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>OLTP</td>
+							<td>@ViewBag.OLTPConnectionString</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="widget widget-table">
+            <div class="widget-header">
+                <span class="icon-list-alt"></span>
+                <h3>Total Errors (Daily)</h3>
+            </div>
+            <!-- .widget-header -->
+			<div class="widget-content topTable" id='configEntriesList-widget'>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Key</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="color: red; font-weight: bold;">Today</td>
+							<td style="color: red; font-weight: bold;">@ViewBag.ErrorsTotalToday</td>
+						</tr>
+						<tr>
+							<td>T-1</td>
+							<td>@ViewBag.ErrorsTotalTMinus1</td>
+						</tr>
+						<tr>
+							<td>T-2</td>
+							<td>@ViewBag.ErrorsTotalTMinus2</td>
+						</tr>
+						<tr>
+							<td>T-3</td>
+							<td>@ViewBag.ErrorsTotalTMinus3</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (ViewBag.MigrationHistory != null)
+        {
+            var migrationHistory = ViewBag.MigrationHistory as List<string>;
+            <div class="widget widget-table">
+                <div class="widget-header">
+                    <span class="icon-list-alt"></span>
+                    <h3>Database Migrations (EF)</h3>
+                </div>
+                <!-- .widget-header -->
+                <div class="widget-content" id='migrationHistoryList-widget'>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Migration name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var entry in migrationHistory)
+                            {
+                                <tr>
+                                    <td>@entry</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		@if (ViewBag.Audits != null)
+		{
+			var audits = ViewBag.Audits as List<AuditEvent>;
+			<div class="widget widget-table">
+				<div class="widget-header">
+					<span class="icon-list-alt"></span>
+					<h3>Recently Audit Events</h3>
+				</div>
+				<!-- .widget-header -->
+				<div class="widget-content">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Group</th>
+								<th>Action</th>
+								<th>User</th>
+								<th>Date</th>
+								<th>Source</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var audit in audits)
+							{
+								var source = audit.Source;
+								if (source != null && source.Length > 25)
+								{
+									source = source.Substring(0, 25);
+								}
+								<tr>
+									<td>@audit.Group</td>
+									<td>@audit.ActionName</td>
+									<td>@audit.User</td>
+									<td>@audit.ActionDate.ToString()</td>
+									<td>@source</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		@if (ViewBag.MachineInfo != null)
+		{
+			var machineInfo = ViewBag.MachineInfo as List<KeyValuePair<string, string>>;
+			<div class="widget widget-table">
+				<div class="widget-header">
+					<span class="icon-list-alt"></span>
+					<h3>Web Server Overview</h3>
+				</div>
+				<!-- .widget-header -->
+				<div class="widget-content">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Key</th>
+								<th>Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var entry in machineInfo)
+							{
+								<tr>
+									<td>@entry.Key</td>
+									<td>@entry.Value</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="widget widget-table">
+			<div class="widget-header">
+				<span class="icon-list-alt"></span>
+				<h3>Settings (Settings table)</h3>
+			</div>
+			<!-- .widget-header -->
+			<div class="widget-content">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Key</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var setting in settingsList)
+						{
+							<tr>
+								<td>@setting.Key</td>
+								<td>@setting.Value.Value</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="widget widget-table">
+			<div class="widget-header">
+				<span class="icon-list-alt"></span>
+				<h3>
+					Settings (Web.config)
+				</h3>
+			</div>
+			<!-- .widget-header -->
+			<div class="widget-content">
+				<table class="table table-striped" style="max-width:99%;overflow:hidden;">
+					<thead>
+						<tr>
+							<th>Key</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var setting in appSettings)
+						{
+							<tr>
+								<td>@setting</td>
+								<td>@ConfigurationManager.AppSettings.GetValues(setting).GetValue(0)</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

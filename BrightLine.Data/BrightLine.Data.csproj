@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{341E093A-9CB4-48C7-B74F-0C9F9652527C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrightLine.Data</RootNamespace>
+    <AssemblyName>BrightLine.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PRO|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dev|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=2.2.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleInjector.2.2.1\lib\net40-client\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Helpers\OLTPContextHelper.cs" />
+    <Compile Include="Interfaces\IOLTPContextHelper.cs" />
+    <Compile Include="Migrations\201410151807224_Rebuild all.cs" />
+    <Compile Include="Migrations\201410151807224_Rebuild all.Designer.cs">
+      <DependentUpon>201410151807224_Rebuild all.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411051702502_Creative properties and composite key.cs" />
+    <Compile Include="Migrations\201411051702502_Creative properties and composite key.Designer.cs">
+      <DependentUpon>201411051702502_Creative properties and composite key.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411132044414_Campaign stored procedures.cs" />
+    <Compile Include="Migrations\201411132044414_Campaign stored procedures.Designer.cs">
+      <DependentUpon>201411132044414_Campaign stored procedures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411261509006_Metric to lookup.cs" />
+    <Compile Include="Migrations\201411261509006_Metric to lookup.Designer.cs">
+      <DependentUpon>201411261509006_Metric to lookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412031748541_Ad.AdTag.cs" />
+    <Compile Include="Migrations\201412031748541_Ad.AdTag.Designer.cs">
+      <DependentUpon>201412031748541_Ad.AdTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412041742515_Ad.Name.cs" />
+    <Compile Include="Migrations\201412041742515_Ad.Name.Designer.cs">
+      <DependentUpon>201412041742515_Ad.Name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412081729062_ProductLine.FeatureTypes.Thumbnail.Description.cs" />
+    <Compile Include="Migrations\201412081729062_ProductLine.FeatureTypes.Thumbnail.Description.Designer.cs">
+      <DependentUpon>201412081729062_ProductLine.FeatureTypes.Thumbnail.Description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412111945368_Ad-Flight-Campaign joining.cs" />
+    <Compile Include="Migrations\201412111945368_Ad-Flight-Campaign joining.Designer.cs">
+      <DependentUpon>201412111945368_Ad-Flight-Campaign joining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412112333419_Flight Dates.cs" />
+    <Compile Include="Migrations\201412112333419_Flight Dates.Designer.cs">
+      <DependentUpon>201412112333419_Flight Dates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412171723436_Creative.Features.cs" />
+    <Compile Include="Migrations\201412171723436_Creative.Features.Designer.cs">
+      <DependentUpon>201412171723436_Creative.Features.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412291550368_Creative.ProductLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Migrations\201412291550368_Creative.ProductLine.Designer.cs">
+      <DependentUpon>201412291550368_Creative.ProductLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412291550358_ProductLines.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Migrations\201412291550358_ProductLines.Designer.cs">
+      <DependentUpon>201412291550358_ProductLines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412291550358_Metrics.cs" />
+    <Compile Include="Migrations\201412291550358_Metrics.Designer.cs">
+      <DependentUpon>201412291550358_Metrics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412292024441_FeatureType.ProductLines.cs" />
+    <Compile Include="Migrations\201412292024441_FeatureType.ProductLines.Designer.cs">
+      <DependentUpon>201412292024441_FeatureType.ProductLines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501071611084_ProductLine.HexBackgroundColor.Abbreviation.cs" />
+    <Compile Include="Migrations\201501071611084_ProductLine.HexBackgroundColor.Abbreviation.Designer.cs">
+      <DependentUpon>201501071611084_ProductLine.HexBackgroundColor.Abbreviation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501211518351_Update Metrics.cs" />
+    <Compile Include="Migrations\201501211518351_Update Metrics.Designer.cs">
+      <DependentUpon>201501211518351_Update Metrics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501231550379_ProductLineFeatureTypes.cs" />
+    <Compile Include="Migrations\201501231550379_ProductLineFeatureTypes.Designer.cs">
+      <DependentUpon>201501231550379_ProductLineFeatureTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502041824512_Campaign.Ads and Ad.Platform.Network.App .cs" />
+    <Compile Include="Migrations\201502041824512_Campaign.Ads and Ad.Platform.Network.App .Designer.cs">
+      <DependentUpon>201502041824512_Campaign.Ads and Ad.Platform.Network.App .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502042206534_Metric.HexColor.cs" />
+    <Compile Include="Migrations\201502042206534_Metric.HexColor.Designer.cs">
+      <DependentUpon>201502042206534_Metric.HexColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502101931562_PageviewAverageDuration.cs" />
+    <Compile Include="Migrations\201502101931562_PageviewAverageDuration.Designer.cs">
+      <DependentUpon>201502101931562_PageviewAverageDuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502171931587_Remove Campaign.LaunchDate.cs" />
+    <Compile Include="Migrations\201502171931587_Remove Campaign.LaunchDate.Designer.cs">
+      <DependentUpon>201502171931587_Remove Campaign.LaunchDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503022117198_Minus Flight.cs" />
+    <Compile Include="Migrations\201503022117198_Minus Flight.Designer.cs">
+      <DependentUpon>201503022117198_Minus Flight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503041833045_Remove ConfigSetting, add Setting.cs" />
+    <Compile Include="Migrations\201503041833045_Remove ConfigSetting, add Setting.Designer.cs">
+      <DependentUpon>201503041833045_Remove ConfigSetting, add Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503121405120_Placement and Ad.cs" />
+    <Compile Include="Migrations\201503121405120_Placement and Ad.Designer.cs">
+      <DependentUpon>201503121405120_Placement and Ad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503232203310_Remove Required from Product.Brand.cs" />
+    <Compile Include="Migrations\201503232203310_Remove Required from Product.Brand.Designer.cs">
+      <DependentUpon>201503232203310_Remove Required from Product.Brand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503232203311_Model pruning.cs" />
+    <Compile Include="Migrations\201503232203311_Model pruning.Designer.cs">
+      <DependentUpon>201503232203311_Model pruning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503232044319_Rename UxtvType to CampaignType.cs" />
+    <Compile Include="Migrations\201503232044319_Rename UxtvType to CampaignType.Designer.cs">
+      <DependentUpon>201503232044319_Rename UxtvType to CampaignType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503241345444_Merge-Model pruning.cs" />
+    <Compile Include="Migrations\201503241345444_Merge-Model pruning.Designer.cs">
+      <DependentUpon>201503241345444_Merge-Model pruning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503241539311_Further pruning.cs" />
+    <Compile Include="Migrations\201503241539311_Further pruning.Designer.cs">
+      <DependentUpon>201503241539311_Further pruning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503251643179_Campaign properties removed.cs" />
+    <Compile Include="Migrations\201503251643179_Campaign properties removed.Designer.cs">
+      <DependentUpon>201503251643179_Campaign properties removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503251645477_Ad.IsReported.cs" />
+    <Compile Include="Migrations\201503251645477_Ad.IsReported.Designer.cs">
+      <DependentUpon>201503251645477_Ad.IsReported.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504061706308_AdTag seeding.cs" />
+    <Compile Include="Migrations\201504061706308_AdTag seeding.Designer.cs">
+      <DependentUpon>201504061706308_AdTag seeding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504081943033_Remove AdTag.Placement.cs" />
+    <Compile Include="Migrations\201504081943033_Remove AdTag.Placement.Designer.cs">
+      <DependentUpon>201504081943033_Remove AdTag.Placement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504082031326_AdTag.Ads.cs" />
+    <Compile Include="Migrations\201504082031326_AdTag.Ads.Designer.cs">
+      <DependentUpon>201504082031326_AdTag.Ads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504212231217_PageDefinition added.cs" />
+    <Compile Include="Migrations\201504212231217_PageDefinition added.Designer.cs">
+      <DependentUpon>201504212231217_PageDefinition added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504212233116_Page updated.cs" />
+    <Compile Include="Migrations\201504212233116_Page updated.Designer.cs">
+      <DependentUpon>201504212233116_Page updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504152022048_FeatureAd removed.cs" />
+    <Compile Include="Migrations\201504152022048_FeatureAd removed.Designer.cs">
+      <DependentUpon>201504152022048_FeatureAd removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505071727583_Clear.cs" />
+    <Compile Include="Migrations\201505071727583_Clear.Designer.cs">
+      <DependentUpon>201505071727583_Clear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505081750017_Security.cs" />
+    <Compile Include="Migrations\201505081750017_Security.Designer.cs">
+      <DependentUpon>201505081750017_Security.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181551488_Creative.AdType required.cs" />
+    <Compile Include="Migrations\201505181551488_Creative.AdType required.Designer.cs">
+      <DependentUpon>201505181551488_Creative.AdType required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505221504166_Cms Model-Setting-Validation added.cs" />
+    <Compile Include="Migrations\201505221504166_Cms Model-Setting-Validation added.Designer.cs">
+      <DependentUpon>201505221504166_Cms Model-Setting-Validation added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505282049146_Resource new columns added.cs" />
+    <Compile Include="Migrations\201505282049146_Resource new columns added.Designer.cs">
+      <DependentUpon>201505282049146_Resource new columns added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506012052266_Cms Model Instance tables modified.cs" />
+    <Compile Include="Migrations\201506012052266_Cms Model Instance tables modified.Designer.cs">
+      <DependentUpon>201506012052266_Cms Model Instance tables modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506021522128_Clear1.cs" />
+    <Compile Include="Migrations\201506021522128_Clear1.Designer.cs">
+      <DependentUpon>201506021522128_Clear1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506031614498_CmsModelInstance add name.cs" />
+    <Compile Include="Migrations\201506031614498_CmsModelInstance add name.Designer.cs">
+      <DependentUpon>201506031614498_CmsModelInstance add name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506031747380_Remove ResourceDoc.cs" />
+    <Compile Include="Migrations\201506031747380_Remove ResourceDoc.Designer.cs">
+      <DependentUpon>201506031747380_Remove ResourceDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506031759145_Remove Execution Stage and ProductionStep.cs" />
+    <Compile Include="Migrations\201506031759145_Remove Execution Stage and ProductionStep.Designer.cs">
+      <DependentUpon>201506031759145_Remove Execution Stage and ProductionStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506041427190_AdDestinationAd.cs" />
+    <Compile Include="Migrations\201506041427190_AdDestinationAd.Designer.cs">
+      <DependentUpon>201506041427190_AdDestinationAd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506041548597_DeliveryGroup.cs" />
+    <Compile Include="Migrations\201506041548597_DeliveryGroup.Designer.cs">
+      <DependentUpon>201506041548597_DeliveryGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506091951229_FeatureCategory add Feature_Id column.cs" />
+    <Compile Include="Migrations\201506091951229_FeatureCategory add Feature_Id column.Designer.cs">
+      <DependentUpon>201506091951229_FeatureCategory add Feature_Id column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506091413215_Add Channel. Remove Network and Publisher.cs" />
+    <Compile Include="Migrations\201506091413215_Add Channel. Remove Network and Publisher.Designer.cs">
+      <DependentUpon>201506091413215_Add Channel. Remove Network and Publisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506101758202_ChannelNetwork.cs" />
+    <Compile Include="Migrations\201506101758202_ChannelNetwork.Designer.cs">
+      <DependentUpon>201506101758202_ChannelNetwork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506102216229_Clear2.cs" />
+    <Compile Include="Migrations\201506102216229_Clear2.Designer.cs">
+      <DependentUpon>201506102216229_Clear2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506231825431_Add Setting Definitions to Blueprint.cs" />
+    <Compile Include="Migrations\201506231825431_Add Setting Definitions to Blueprint.Designer.cs">
+      <DependentUpon>201506231825431_Add Setting Definitions to Blueprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506301538366_add Setting_Id to CmsSettingInstance.cs" />
+    <Compile Include="Migrations\201506301538366_add Setting_Id to CmsSettingInstance.Designer.cs">
+      <DependentUpon>201506301538366_add Setting_Id to CmsSettingInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507101739106_add displayFieldName and displayFieldType to CmsModelDefinition - Copy.cs" />
+    <Compile Include="Migrations\201507101739106_add displayFieldName and displayFieldType to CmsModelDefinition - Copy.Designer.cs">
+      <DependentUpon>201507101739106_add displayFieldName and displayFieldType to CmsModelDefinition - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507151714551_add ResourceTypeId to FileType and reseeed ResourceType table.cs" />
+    <Compile Include="Migrations\201507151714551_add ResourceTypeId to FileType and reseeed ResourceType table.Designer.cs">
+      <DependentUpon>201507151714551_add ResourceTypeId to FileType and reseeed ResourceType table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507221523023_CmsSettingInstance json added.cs" />
+    <Compile Include="Migrations\201507221523023_CmsSettingInstance json added.Designer.cs">
+      <DependentUpon>201507221523023_CmsSettingInstance json added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507232221436_add Resources to creative.cs" />
+    <Compile Include="Migrations\201507232221436_add Resources to creative.Designer.cs">
+      <DependentUpon>201507232221436_add Resources to creative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508051554161_Setting created.cs" />
+    <Compile Include="Migrations\201508051554161_Setting created.Designer.cs">
+      <DependentUpon>201508051554161_Setting created.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508071911504_Agency created.cs" />
+    <Compile Include="Migrations\201508071911504_Agency created.Designer.cs">
+      <DependentUpon>201508071911504_Agency created.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508071920427_agency required on campaign.cs" />
+    <Compile Include="Migrations\201508071920427_agency required on campaign.Designer.cs">
+      <DependentUpon>201508071920427_agency required on campaign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508111613527_add channel on DeliveryGroup.cs" />
+    <Compile Include="Migrations\201508111613527_add channel on DeliveryGroup.Designer.cs">
+      <DependentUpon>201508111613527_add channel on DeliveryGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508121816300_removed Stage from Campaign.cs" />
+    <Compile Include="Migrations\201508121816300_removed Stage from Campaign.Designer.cs">
+      <DependentUpon>201508121816300_removed Stage from Campaign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508141459074_BeginDate is required for Ad.cs" />
+    <Compile Include="Migrations\201508141459074_BeginDate is required for Ad.Designer.cs">
+      <DependentUpon>201508141459074_BeginDate is required for Ad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508272057210_channel IsNetwork not nullable bool anymore.cs" />
+    <Compile Include="Migrations\201508272057210_channel IsNetwork not nullable bool anymore.Designer.cs">
+      <DependentUpon>201508272057210_channel IsNetwork not nullable bool anymore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311822351_Channel required for DeliveryGroup.cs" />
+    <Compile Include="Migrations\201508311822351_Channel required for DeliveryGroup.Designer.cs">
+      <DependentUpon>201508311822351_Channel required for DeliveryGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011636488_Camapign_RemoveProperties.cs" />
+    <Compile Include="Migrations\201509011636488_Camapign_RemoveProperties.Designer.cs">
+      <DependentUpon>201509011636488_Camapign_RemoveProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509012024312_Remove Publisher_Id and Network_Id from Channel.cs" />
+    <Compile Include="Migrations\201509012024312_Remove Publisher_Id and Network_Id from Channel.Designer.cs">
+      <DependentUpon>201509012024312_Remove Publisher_Id and Network_Id from Channel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509031509139_test.cs" />
+    <Compile Include="Migrations\201509031509139_test.Designer.cs">
+      <DependentUpon>201509031509139_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509081832591_add Thumbnail_Id column to Creative.cs" />
+    <Compile Include="Migrations\201509081832591_add Thumbnail_Id column to Creative.Designer.cs">
+      <DependentUpon>201509081832591_add Thumbnail_Id column to Creative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509091256129_created FileTypeValidation model.cs" />
+    <Compile Include="Migrations\201509091256129_created FileTypeValidation model.Designer.cs">
+      <DependentUpon>201509091256129_created FileTypeValidation model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509171812090_add Internal property to campaign model.cs" />
+    <Compile Include="Migrations\201509171812090_add Internal property to campaign model.Designer.cs">
+      <DependentUpon>201509171812090_add Internal property to campaign model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509231846501_Add Companion Ad property on Ad.cs" />
+    <Compile Include="Migrations\201509231846501_Add Companion Ad property on Ad.Designer.cs">
+      <DependentUpon>201509231846501_Add Companion Ad property on Ad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509291440260_add max length to all string fields in models.cs" />
+    <Compile Include="Migrations\201509291440260_add max length to all string fields in models.Designer.cs">
+      <DependentUpon>201509291440260_add max length to all string fields in models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510011642407_changed Ad CompanionAd_Id to have underscore in name.cs" />
+    <Compile Include="Migrations\201510011642407_changed Ad CompanionAd_Id to have underscore in name.Designer.cs">
+      <DependentUpon>201510011642407_changed Ad CompanionAd_Id to have underscore in name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510011950120_DeliveryGroup_ImpressionCountImpressionGoal.cs" />
+    <Compile Include="Migrations\201510011950120_DeliveryGroup_ImpressionCountImpressionGoal.Designer.cs">
+      <DependentUpon>201510011950120_DeliveryGroup_ImpressionCountImpressionGoal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510061440283_change ValidationType min and max to minDateTime and maxDateTime.cs" />
+    <Compile Include="Migrations\201510061440283_change ValidationType min and max to minDateTime and maxDateTime.Designer.cs">
+      <DependentUpon>201510061440283_change ValidationType min and max to minDateTime and maxDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510131920197_Add IsUploaded field to Resource model.cs" />
+    <Compile Include="Migrations\201510131920197_Add IsUploaded field to Resource model.Designer.cs">
+      <DependentUpon>201510131920197_Add IsUploaded field to Resource model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510201757509_Add User and Host to LogEntry.cs" />
+    <Compile Include="Migrations\201510201757509_Add User and Host to LogEntry.Designer.cs">
+      <DependentUpon>201510201757509_Add User and Host to LogEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510261553491_clear3.cs" />
+    <Compile Include="Migrations\201510261553491_clear3.Designer.cs">
+      <DependentUpon>201510261553491_clear3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510291554228_UserAddMediaAgency.cs" />
+    <Compile Include="Migrations\201510291554228_UserAddMediaAgency.Designer.cs">
+      <DependentUpon>201510291554228_UserAddMediaAgency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511052230141_Add NightwatchTransaction model.cs" />
+    <Compile Include="Migrations\201511052230141_Add NightwatchTransaction model.Designer.cs">
+      <DependentUpon>201511052230141_Add NightwatchTransaction model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511061941205_add build properties and change status property.cs" />
+    <Compile Include="Migrations\201511061941205_add build properties and change status property.Designer.cs">
+      <DependentUpon>201511061941205_add build properties and change status property.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511231907553_Internal property added to User.cs" />
+    <Compile Include="Migrations\201511231907553_Internal property added to User.Designer.cs">
+      <DependentUpon>201511231907553_Internal property added to User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512081704108_remove productline and all of its dependent entities.cs" />
+    <Compile Include="Migrations\201512081704108_remove productline and all of its dependent entities.Designer.cs">
+      <DependentUpon>201512081704108_remove productline and all of its dependent entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512151447036_created CMSPublish and CMSPublishStatus entities.cs" />
+    <Compile Include="Migrations\201512151447036_created CMSPublish and CMSPublishStatus entities.Designer.cs">
+      <DependentUpon>201512151447036_created CMSPublish and CMSPublishStatus entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512162129508_CmsModelInstance add PublishJson property, CmsSettingInstance add PublishJson property.cs" />
+    <Compile Include="Migrations\201512162129508_CmsModelInstance add PublishJson property, CmsSettingInstance add PublishJson property.Designer.cs">
+      <DependentUpon>201512162129508_CmsModelInstance add PublishJson property, CmsSettingInstance add PublishJson property.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601041445115_remove AdGroup.cs" />
+    <Compile Include="Migrations\201601041445115_remove AdGroup.Designer.cs">
+      <DependentUpon>201601041445115_remove AdGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601042143031_create contract, rate type, rate card, and update channel.cs" />
+    <Compile Include="Migrations\201601042143031_create contract, rate type, rate card, and update channel.Designer.cs">
+      <DependentUpon>201601042143031_create contract, rate type, rate card, and update channel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601071922125_create rabbitmq settings.cs" />
+    <Compile Include="Migrations\201601071922125_create rabbitmq settings.Designer.cs">
+      <DependentUpon>201601071922125_create rabbitmq settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601111832305_add unique constraint to name column in Cms lookup tables.cs" />
+    <Compile Include="Migrations\201601111832305_add unique constraint to name column in Cms lookup tables.Designer.cs">
+      <DependentUpon>201601111832305_add unique constraint to name column in Cms lookup tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601141618494_Channel rename to MediaPartner.cs" />
+    <Compile Include="Migrations\201601141618494_Channel rename to MediaPartner.Designer.cs">
+      <DependentUpon>201601141618494_Channel rename to MediaPartner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601142039396_add GoogleAnalyticsIds column to Campaign.cs" />
+    <Compile Include="Migrations\201601142039396_add GoogleAnalyticsIds column to Campaign.Designer.cs">
+      <DependentUpon>201601142039396_add GoogleAnalyticsIds column to Campaign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601191630599_add max length 255 to CmsPublishStatus Name column.cs" />
+    <Compile Include="Migrations\201601191630599_add max length 255 to CmsPublishStatus Name column.Designer.cs">
+      <DependentUpon>201601191630599_add max length 255 to CmsPublishStatus Name column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601191657449_add unique constraint to lookup tables.cs" />
+    <Compile Include="Migrations\201601191657449_add unique constraint to lookup tables.Designer.cs">
+      <DependentUpon>201601191657449_add unique constraint to lookup tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601191757066_revert metric name.cs" />
+    <Compile Include="Migrations\201601191757066_revert metric name.Designer.cs">
+      <DependentUpon>201601191757066_revert metric name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601251533060_Parent property added to Agency.cs" />
+    <Compile Include="Migrations\201601251533060_Parent property added to Agency.Designer.cs">
+      <DependentUpon>201601251533060_Parent property added to Agency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601262056256_added MediaPartner to User.cs" />
+    <Compile Include="Migrations\201601262056256_added MediaPartner to User.Designer.cs">
+      <DependentUpon>201601262056256_added MediaPartner to User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602012133230_x-y coordinates on Ad.cs" />
+    <Compile Include="Migrations\201602012133230_x-y coordinates on Ad.Designer.cs">
+      <DependentUpon>201602012133230_x-y coordinates on Ad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602041554303_add AdFormat to Creative.cs" />
+    <Compile Include="Migrations\201602041554303_add AdFormat to Creative.Designer.cs">
+      <DependentUpon>201602041554303_add AdFormat to Creative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602262053006_Added Bitrate to Resource model.cs" />
+    <Compile Include="Migrations\201602262053006_Added Bitrate to Resource model.Designer.cs">
+      <DependentUpon>201602262053006_Added Bitrate to Resource model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602291342307_Removed Source on Resource model.cs" />
+    <Compile Include="Migrations\201602291342307_Removed Source on Resource model.Designer.cs">
+      <DependentUpon>201602291342307_Removed Source on Resource model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603011727255_Created TrackingEvent and AdTrackingEvent models.cs" />
+    <Compile Include="Migrations\201603011727255_Created TrackingEvent and AdTrackingEvent models.Designer.cs">
+      <DependentUpon>201603011727255_Created TrackingEvent and AdTrackingEvent models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603141633434_Add InactivityThreshold to Creative.cs" />
+    <Compile Include="Migrations\201603141633434_Add InactivityThreshold to Creative.Designer.cs">
+      <DependentUpon>201603141633434_Add InactivityThreshold to Creative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603151557386_Add ManifestName on ResourceType.cs" />
+    <Compile Include="Migrations\201603151557386_Add ManifestName on ResourceType.Designer.cs">
+      <DependentUpon>201603151557386_Add ManifestName on ResourceType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603151710448_Set Commercial Spot Ad Type Manifest Name in Sql.cs" />
+    <Compile Include="Migrations\201603151710448_Set Commercial Spot Ad Type Manifest Name in Sql.Designer.cs">
+      <DependentUpon>201603151710448_Set Commercial Spot Ad Type Manifest Name in Sql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603161710325_Renamed Campaign Agency to MediaAgency.cs" />
+    <Compile Include="Migrations\201603161710325_Renamed Campaign Agency to MediaAgency.Designer.cs">
+      <DependentUpon>201603161710325_Renamed Campaign Agency to MediaAgency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603161711412_added CreativeAgency to Campaign.cs" />
+    <Compile Include="Migrations\201603161711412_added CreativeAgency to Campaign.Designer.cs">
+      <DependentUpon>201603161711412_added CreativeAgency to Campaign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603181615310_AppPlatformIdentifier.cs" />
+    <Compile Include="Migrations\201603181615310_AppPlatformIdentifier.Designer.cs">
+      <DependentUpon>201603181615310_AppPlatformIdentifier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603282008142_Add Generation to Campaign model.cs" />
+    <Compile Include="Migrations\201603282008142_Add Generation to Campaign model.Designer.cs">
+      <DependentUpon>201603282008142_Add Generation to Campaign model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604042019211_Add RepoName to Ad entity.cs" />
+    <Compile Include="Migrations\201604042019211_Add RepoName to Ad entity.Designer.cs">
+      <DependentUpon>201604042019211_Add RepoName to Ad entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OLTPContext.DbSets.cs" />
+    <Compile Include="OLTPContextSingleton.cs" />
+    <Compile Include="CrudRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OLTPContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrightLine.Common\BrightLine.Common.csproj">
+      <Project>{7d72890e-6db9-41f2-96cb-9ad07d762d65}</Project>
+      <Name>BrightLine.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BrightLine.Utility\BrightLine.Utility.csproj">
+      <Project>{5f3580d0-efae-49f5-b800-a26c48b480a0}</Project>
+      <Name>BrightLine.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410151807224_Rebuild all.resx">
+      <DependentUpon>201410151807224_Rebuild all.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411051702502_Creative properties and composite key.resx">
+      <DependentUpon>201411051702502_Creative properties and composite key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411132044414_Campaign stored procedures.resx">
+      <DependentUpon>201411132044414_Campaign stored procedures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411261509006_Metric to lookup.resx">
+      <DependentUpon>201411261509006_Metric to lookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412031748541_Ad.AdTag.resx">
+      <DependentUpon>201412031748541_Ad.AdTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412041742515_Ad.Name.resx">
+      <DependentUpon>201412041742515_Ad.Name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412081729062_ProductLine.FeatureTypes.Thumbnail.Description.resx">
+      <DependentUpon>201412081729062_ProductLine.FeatureTypes.Thumbnail.Description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412111945368_Ad-Flight-Campaign joining.resx">
+      <DependentUpon>201412111945368_Ad-Flight-Campaign joining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412112333419_Flight Dates.resx">
+      <DependentUpon>201412112333419_Flight Dates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412171723436_Creative.Features.resx">
+      <DependentUpon>201412171723436_Creative.Features.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412291550368_Creative.ProductLine.resx">
+      <DependentUpon>201412291550368_Creative.ProductLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412291550358_ProductLines.resx">
+      <DependentUpon>201412291550358_ProductLines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412291550358_Metrics.resx">
+      <DependentUpon>201412291550358_Metrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412292024441_FeatureType.ProductLines.resx">
+      <DependentUpon>201412292024441_FeatureType.ProductLines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501071611084_ProductLine.HexBackgroundColor.Abbreviation.resx">
+      <DependentUpon>201501071611084_ProductLine.HexBackgroundColor.Abbreviation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501211518351_Update Metrics.resx">
+      <DependentUpon>201501211518351_Update Metrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501231550379_ProductLineFeatureTypes.resx">
+      <DependentUpon>201501231550379_ProductLineFeatureTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502041824512_Campaign.Ads and Ad.Platform.Network.App .resx">
+      <DependentUpon>201502041824512_Campaign.Ads and Ad.Platform.Network.App .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502042206534_Metric.HexColor.resx">
+      <DependentUpon>201502042206534_Metric.HexColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502101931562_PageviewAverageDuration.resx">
+      <DependentUpon>201502101931562_PageviewAverageDuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502171931587_Remove Campaign.LaunchDate.resx">
+      <DependentUpon>201502171931587_Remove Campaign.LaunchDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503022117198_Minus Flight.resx">
+      <DependentUpon>201503022117198_Minus Flight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503041833045_Remove ConfigSetting, add Setting.resx">
+      <DependentUpon>201503041833045_Remove ConfigSetting, add Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503121405120_Placement and Ad.resx">
+      <DependentUpon>201503121405120_Placement and Ad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503232203310_Remove Required from Product.Brand.resx">
+      <DependentUpon>201503232203310_Remove Required from Product.Brand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503232203311_Model pruning.resx">
+      <DependentUpon>201503232203311_Model pruning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503232044319_Rename UxtvType to CampaignType.resx">
+      <DependentUpon>201503232044319_Rename UxtvType to CampaignType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503241345444_Merge-Model pruning.resx">
+      <DependentUpon>201503241345444_Merge-Model pruning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503241539311_Further pruning.resx">
+      <DependentUpon>201503241539311_Further pruning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503251643179_Campaign properties removed.resx">
+      <DependentUpon>201503251643179_Campaign properties removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503251645477_Ad.IsReported.resx">
+      <DependentUpon>201503251645477_Ad.IsReported.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504061706308_AdTag seeding.resx">
+      <DependentUpon>201504061706308_AdTag seeding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504081943033_Remove AdTag.Placement.resx">
+      <DependentUpon>201504081943033_Remove AdTag.Placement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504082031326_AdTag.Ads.resx">
+      <DependentUpon>201504082031326_AdTag.Ads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504212231217_PageDefinition added.resx">
+      <DependentUpon>201504212231217_PageDefinition added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504212233116_Page updated.resx">
+      <DependentUpon>201504212233116_Page updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504152022048_FeatureAd removed.resx">
+      <DependentUpon>201504152022048_FeatureAd removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505071727583_Clear.resx">
+      <DependentUpon>201505071727583_Clear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505081750017_Security.resx">
+      <DependentUpon>201505081750017_Security.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181551488_Creative.AdType required.resx">
+      <DependentUpon>201505181551488_Creative.AdType required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505221504166_Cms Model-Setting-Validation added.resx">
+      <DependentUpon>201505221504166_Cms Model-Setting-Validation added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505282049146_Resource new columns added.resx">
+      <DependentUpon>201505282049146_Resource new columns added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506012052266_Cms Model Instance tables modified.resx">
+      <DependentUpon>201506012052266_Cms Model Instance tables modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506021522128_Clear1.resx">
+      <DependentUpon>201506021522128_Clear1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506031614498_CmsModelInstance add name.resx">
+      <DependentUpon>201506031614498_CmsModelInstance add name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506031747380_Remove ResourceDoc.resx">
+      <DependentUpon>201506031747380_Remove ResourceDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506031759145_Remove Execution Stage and ProductionStep.resx">
+      <DependentUpon>201506031759145_Remove Execution Stage and ProductionStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506041427190_AdDestinationAd.resx">
+      <DependentUpon>201506041427190_AdDestinationAd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506041548597_DeliveryGroup.resx">
+      <DependentUpon>201506041548597_DeliveryGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506091951229_FeatureCategory add Feature_Id column.resx">
+      <DependentUpon>201506091951229_FeatureCategory add Feature_Id column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506091413215_Add Channel. Remove Network and Publisher.resx">
+      <DependentUpon>201506091413215_Add Channel. Remove Network and Publisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506101758202_ChannelNetwork.resx">
+      <DependentUpon>201506101758202_ChannelNetwork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506102216229_Clear2.resx">
+      <DependentUpon>201506102216229_Clear2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506231825431_Add Setting Definitions to Blueprint.resx">
+      <DependentUpon>201506231825431_Add Setting Definitions to Blueprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506301538366_add Setting_Id to CmsSettingInstance.resx">
+      <DependentUpon>201506301538366_add Setting_Id to CmsSettingInstance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507101739106_add displayFieldName and displayFieldType to CmsModelDefinition - Copy.resx">
+      <DependentUpon>201507101739106_add displayFieldName and displayFieldType to CmsModelDefinition - Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507151714551_add ResourceTypeId to FileType and reseeed ResourceType table.resx">
+      <DependentUpon>201507151714551_add ResourceTypeId to FileType and reseeed ResourceType table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507221523023_CmsSettingInstance json added.resx">
+      <DependentUpon>201507221523023_CmsSettingInstance json added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507232221436_add Resources to creative.resx">
+      <DependentUpon>201507232221436_add Resources to creative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508051554161_Setting created.resx">
+      <DependentUpon>201508051554161_Setting created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508071911504_Agency created.resx">
+      <DependentUpon>201508071911504_Agency created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508071920427_agency required on campaign.resx">
+      <DependentUpon>201508071920427_agency required on campaign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508111613527_add channel on DeliveryGroup.resx">
+      <DependentUpon>201508111613527_add channel on DeliveryGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508121816300_removed Stage from Campaign.resx">
+      <DependentUpon>201508121816300_removed Stage from Campaign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508141459074_BeginDate is required for Ad.resx">
+      <DependentUpon>201508141459074_BeginDate is required for Ad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508272057210_channel IsNetwork not nullable bool anymore.resx">
+      <DependentUpon>201508272057210_channel IsNetwork not nullable bool anymore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311822351_Channel required for DeliveryGroup.resx">
+      <DependentUpon>201508311822351_Channel required for DeliveryGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011636488_Camapign_RemoveProperties.resx">
+      <DependentUpon>201509011636488_Camapign_RemoveProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509012024312_Remove Publisher_Id and Network_Id from Channel.resx">
+      <DependentUpon>201509012024312_Remove Publisher_Id and Network_Id from Channel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509031509139_test.resx">
+      <DependentUpon>201509031509139_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509081832591_add Thumbnail_Id column to Creative.resx">
+      <DependentUpon>201509081832591_add Thumbnail_Id column to Creative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509091256129_created FileTypeValidation model.resx">
+      <DependentUpon>201509091256129_created FileTypeValidation model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509171812090_add Internal property to campaign model.resx">
+      <DependentUpon>201509171812090_add Internal property to campaign model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509231846501_Add Companion Ad property on Ad.resx">
+      <DependentUpon>201509231846501_Add Companion Ad property on Ad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509291440260_add max length to all string fields in models.resx">
+      <DependentUpon>201509291440260_add max length to all string fields in models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510011642407_changed Ad CompanionAd_Id to have underscore in name.resx">
+      <DependentUpon>201510011642407_changed Ad CompanionAd_Id to have underscore in name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510011950120_DeliveryGroup_ImpressionCountImpressionGoal.resx">
+      <DependentUpon>201510011950120_DeliveryGroup_ImpressionCountImpressionGoal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510061440283_change ValidationType min and max to minDateTime and maxDateTime.resx">
+      <DependentUpon>201510061440283_change ValidationType min and max to minDateTime and maxDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510131920197_Add IsUploaded field to Resource model.resx">
+      <DependentUpon>201510131920197_Add IsUploaded field to Resource model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510201757509_Add User and Host to LogEntry.resx">
+      <DependentUpon>201510201757509_Add User and Host to LogEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510261553491_clear3.resx">
+      <DependentUpon>201510261553491_clear3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510291554228_UserAddMediaAgency.resx">
+      <DependentUpon>201510291554228_UserAddMediaAgency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511052230141_Add NightwatchTransaction model.resx">
+      <DependentUpon>201511052230141_Add NightwatchTransaction model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511061941205_add build properties and change status property.resx">
+      <DependentUpon>201511061941205_add build properties and change status property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511231907553_Internal property added to User.resx">
+      <DependentUpon>201511231907553_Internal property added to User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512081704108_remove productline and all of its dependent entities.resx">
+      <DependentUpon>201512081704108_remove productline and all of its dependent entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512151447036_created CMSPublish and CMSPublishStatus entities.resx">
+      <DependentUpon>201512151447036_created CMSPublish and CMSPublishStatus entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512162129508_CmsModelInstance add PublishJson property, CmsSettingInstance add PublishJson property.resx">
+      <DependentUpon>201512162129508_CmsModelInstance add PublishJson property, CmsSettingInstance add PublishJson property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601041445115_remove AdGroup.resx">
+      <DependentUpon>201601041445115_remove AdGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601042143031_create contract, rate type, rate card, and update channel.resx">
+      <DependentUpon>201601042143031_create contract, rate type, rate card, and update channel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601071922125_create rabbitmq settings.resx">
+      <DependentUpon>201601071922125_create rabbitmq settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601111832305_add unique constraint to name column in Cms lookup tables.resx">
+      <DependentUpon>201601111832305_add unique constraint to name column in Cms lookup tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601141618494_Channel rename to MediaPartner.resx">
+      <DependentUpon>201601141618494_Channel rename to MediaPartner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601142039396_add GoogleAnalyticsIds column to Campaign.resx">
+      <DependentUpon>201601142039396_add GoogleAnalyticsIds column to Campaign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601191630599_add max length 255 to CmsPublishStatus Name column.resx">
+      <DependentUpon>201601191630599_add max length 255 to CmsPublishStatus Name column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601191657449_add unique constraint to lookup tables.resx">
+      <DependentUpon>201601191657449_add unique constraint to lookup tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601191757066_revert metric name.resx">
+      <DependentUpon>201601191757066_revert metric name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601251533060_Parent property added to Agency.resx">
+      <DependentUpon>201601251533060_Parent property added to Agency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601262056256_added MediaPartner to User.resx">
+      <DependentUpon>201601262056256_added MediaPartner to User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602012133230_x-y coordinates on Ad.resx">
+      <DependentUpon>201602012133230_x-y coordinates on Ad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602041554303_add AdFormat to Creative.resx">
+      <DependentUpon>201602041554303_add AdFormat to Creative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602262053006_Added Bitrate to Resource model.resx">
+      <DependentUpon>201602262053006_Added Bitrate to Resource model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602291342307_Removed Source on Resource model.resx">
+      <DependentUpon>201602291342307_Removed Source on Resource model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603011727255_Created TrackingEvent and AdTrackingEvent models.resx">
+      <DependentUpon>201603011727255_Created TrackingEvent and AdTrackingEvent models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603141633434_Add InactivityThreshold to Creative.resx">
+      <DependentUpon>201603141633434_Add InactivityThreshold to Creative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603151557386_Add ManifestName on ResourceType.resx">
+      <DependentUpon>201603151557386_Add ManifestName on ResourceType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603151710448_Set Commercial Spot Ad Type Manifest Name in Sql.resx">
+      <DependentUpon>201603151710448_Set Commercial Spot Ad Type Manifest Name in Sql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603161710325_Renamed Campaign Agency to MediaAgency.resx">
+      <DependentUpon>201603161710325_Renamed Campaign Agency to MediaAgency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603161711412_added CreativeAgency to Campaign.resx">
+      <DependentUpon>201603161711412_added CreativeAgency to Campaign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603181615310_AppPlatformIdentifier.resx">
+      <DependentUpon>201603181615310_AppPlatformIdentifier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603282008142_Add Generation to Campaign model.resx">
+      <DependentUpon>201603282008142_Add Generation to Campaign model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604042019211_Add RepoName to Ad entity.resx">
+      <DependentUpon>201604042019211_Add RepoName to Ad entity.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\MSBuild\MSBuild.ExtensionPack.tasks" />
+  <Import Project="$(SolutionDir)\MSBuild\MSBuild.ExtensionPack.VersionNumber.targets" />
+</Project>

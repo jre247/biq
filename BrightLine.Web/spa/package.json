@@ -1,0 +1,96 @@
+{
+  "name": "BrightLine-IQ-SPA",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Gulp starter with common tasks and scenarios",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spiralx/gulp-starter-stylus.git"
+  },
+  "browser": {
+    "jquery": "./bower_components/jquery/dist/jquery.js",
+    "lodash": "./bower_components/lodash/dist/lodash.js",
+    "backbone": "./bower_components/backbone/backbone.js",
+    "underscore": "lodash",
+    "chaplin": "./bower_components/chaplin/chaplin.js",
+    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      "coffeeify",
+      "hbsfy",
+      "require-globify"
+    ]
+  },
+  "scripts": {
+    "start": "npm run local",
+    "build:original": "webpack --config webpack.config.original.js",
+    "build:minified": "webpack --config webpack.config.minified.js",
+    "local": "node webpack.server.js",
+    "dev": "npm run build:original",
+    "pro": "npm run build:original && npm run build:minified"
+  },
+  "browserify-shim": {
+    "jQuery": "global:lodash",
+    "underscore": "global:lodash",
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    }
+  },
+  "devDependencies": {
+    "coffeelint": "^1.10.1",
+    "gulp-docco": "0.0.4",
+    "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "browser-sync": "^2.10.0",
+    "cjsx-loader": "^2.0.1",
+    "classnames": "^2.2.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-react": "^3.2.0",
+    "coffee-reactify": "^4.0.0",
+    "coffee-script": "^1.9.3",
+    "coffeeify": "^1.1.0",
+    "coffeelint": "^1.10.1",
+    "css-loader": "^0.21.0",
+    "envify": "^1.2.1",
+    "envify-loader": "^0.1.0",
+    "glob": "^6.0.4",
+    "gulp": "^3.8.11",
+    "gulp-callback": "0.0.3",
+    "gulp-concat": "^2.5.2",
+    "gulp-debug": "^2.0.1",
+    "gulp-filter": "^2.0.2",
+    "gulp-minify-css": "^1.1.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylus": "^2.0.3",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.5",
+    "gulp-watch": "^4.2.4",
+    "handlebars": "^1.3.0",
+    "hbsfy": "~2.0.0",
+    "lodash": "^3.10.1",
+    "main-bower-files": "^2.8.0",
+    "nib": "1.1.0",
+    "pretty-hrtime": "^1.0.0",
+    "react": "^0.14.3",
+    "react-addons-pure-render-mixin": "^0.14.3",
+    "react-addons-update": "^0.14.3",
+    "react-bootstrap": "^0.27.3",
+    "react-dom": "^0.14.3",
+    "react-highcharts": "^6.0.0",
+    "react-hot-loader": "^1.3.0",
+    "react-select": "^0.9.1",
+    "require-dir": "^0.3.0",
+    "require-globify": "^1.2.1",
+    "style-loader": "^0.12.3",
+    "stylus": "^0.51.1",
+    "webpack": "^1.9.10",
+    "webpack-dev-server": "^1.14.0"
+  }
+}

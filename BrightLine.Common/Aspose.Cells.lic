@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Data>
+    <LicensedTo>Brightline</LicensedTo>
+    <LicenseType>Developer Small Business</LicenseType>
+    <LicenseNote>Limited to 1 developer.</LicenseNote>
+    <OrderID>140408105822</OrderID>
+    <OEM>This is not a redistributable license</OEM>
+    <Products>
+      <Product>Aspose.Cells for .NET</Product>
+    </Products>
+    <EditionType>Enterprise</EditionType>
+    <SerialNumber>e8b76819-926d-499a-9ab4-cb83bc84edcd</SerialNumber>
+    <SubscriptionExpiry>20150408</SubscriptionExpiry>
+    <LicenseVersion>2.2</LicenseVersion>
+  </Data>
+  <Signature>L3L13Mo7+j3mNmtX5Ft0hOOi3Vz8LH9R6Fg7lS8/7rd1oMuKIElN0u43DajWhIMiJPiYCUru5JHkSqaNclRDk+nnJbmvpPofiMgUaRDg3H6oqPLXnOBRv3TCc/p/xKSEpiBhqXpCmXulViHEv/U/JKxuPmyGhF7jwJKoLvyKy2k=</Signature>
+</License>

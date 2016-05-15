@@ -1,0 +1,151 @@
+﻿@using System.Collections
+@using System.Reflection
+@using BrightLine.Common.Core.Attributes
+@using BrightLine.Core.Attributes
+@model IEnumerable<BrightLine.Core.IEntity>
+@{
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+    var type = Model.GetType().GetGenericArguments()[0];
+    var title = type.Name;
+    var ea = type.GetCustomAttributes<EntityAttribute>().FirstOrDefault();
+    var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+    //var allowCopy = false;
+    //var exportUrl = "";
+    //if (ea != null)
+    //{
+    //	allowCopy = ea.AllowCopy;
+    //	exportUrl = ea.ExportUrl;
+    //}
+    var maxId = Model.Any() ? Model.Max(m => m.Id) : 0;
+    var lastColumnIndex = properties.Count(p =>
+        {
+            var eea = p.GetCustomAttributes<EntityEditorAttribute>().FirstOrDefault();
+            return (eea != null && eea.ShowInListing);
+        });
+}
+@section styles {
+   <link href="~/assets/stylesheets/EntityList.css" rel="stylesheet">
+}
+@section scripts {
+    <script type="text/javascript" src="~/assets/javascripts/entityList.js"></script>
+}
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container">
+        <div class="campaign-generic-listing container-fluid collapsable-container whitebox" style="margin-top: 20px">
+            <div class="listing-nav-container container-fluid">
+                <div class="row listing-nav nav">
+                    <div class="col-sm-3 listing-nav-title title">@title Listing</div>
+                    <div class="col-sm-5 listing-nav-search-container">
+                        <div class="input-group input-group-simple component-searchbox is-empty">
+                            <div class="input-group-addon glyphicon glyphicon-search" onclick="$(this).next().select();">
+                                <img src="/content/img/icons/clear-circle.png" class="clear-search">
+                            </div>
+                            <input type="text" id="listing-filter" class="form-control" placeholder="Search @(title)s..." data-target="listing">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default creatives-filter-clear" type="button" onclick="utility.textbox.clear('#listing-filter'); $(this).parent().prev().select();">X</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 listing-nav-actions-container">
+                        <a href="../create/@title" title="Add a new @title" role="button" class="btn btn-success">New @title</a>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-items-container">
+                <div class='widget widget-table'>
+                    <div class='widget-content' style='display: none;' id='listing-widget'>
+                        <table id='listing' class='table table-striped'>
+                            <colgroup>
+                                <col />
+                                @foreach (var p in properties)
+                                {
+                                    var eea = p.GetCustomAttributes<EntityEditorAttribute>().FirstOrDefault();
+                                    if (eea == null || !eea.ShowInListing)
+                                    {
+                                        continue;
+                                    }
+                                }
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    @foreach (var p in properties)
+                                    {
+                                        var eea = p.GetCustomAttributes<EntityEditorAttribute>().FirstOrDefault();
+                                        if (eea == null || !eea.ShowInListing)
+                                        {
+                                            continue;
+                                        }
+                                        var name = (string.IsNullOrWhiteSpace(eea.Display)) ? p.Name : eea.Display;
+                                        <th>@name</th>
+                                    }
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var m in Model)
+                                {
+                                    <tr data-id="@m.Id" title="@m.Display (@m.Id)">
+
+                                        @foreach (var p in properties)
+                                        {
+                                            var eea = p.GetCustomAttributes<EntityEditorAttribute>().FirstOrDefault();
+                                            if (eea == null || !eea.ShowInListing)
+                                            {
+                                                continue;
+                                            }
+                                            <td>
+                                                @{
+                                            var raw = ReflectionHelper.TryGetValue(m, p);
+                                            if (raw == null)
+                                            {
+                                                <text>&nbsp;</text>
+                                            }
+                                            else if (p.PropertyType != typeof(string) && (p.PropertyType.IsArray || p.PropertyType.GetInterface("IEnumerable") != null))
+                                            {
+                                                var raws = raw as IEnumerable;
+                                                var vs = (from object r in raws select r.ToString());
+                                                @(string.Join(", ", vs))
+                                            }
+                                            else if (!string.IsNullOrWhiteSpace(eea.DataFormatString))
+                                            {
+                                                var format = "{0:" + eea.DataFormatString + "}";
+                                                <text>@string.Format(format, raw)</text>
+                                            }
+                                            else if (p.PropertyType == typeof(bool) || p.PropertyType == typeof(bool?))
+                                            {
+                                                var text = raw.ToString().ToLower() == "true" ? "Yes" : "No";
+                                                <text>@text</text>
+                                            }
+                                            else
+                                            {
+                                                <text>@raw</text>
+                                            }
+                                                }
+                                            </td>
+                                        }
+                                        <td class="glyphicon-action" style="white-space: nowrap">
+                                            <div class="glyphicon glyphicon-edit" data-href="../edit/@title/@m.Id" title="Edit @m.Display"></div>
+                                            @*<div class="glyphicon glyphicon-trash" title="Delete @m.Display"></div>*@
+                                            <div class="glyphicon glyphicon-refresh" id="restore-@(m.Id)" style="display:@(m.IsDeleted ? "inline-block" : "none")" title="Soft restore @m.Display"></div>
+                                            @*<div class="glyphicon glyphicon-remove" id="archive-@(m.Id)" style="display:@(m.IsDeleted ? "none" : "inline-block")" title="Soft delete @m.Display"></div>*@
+                                            @*@if (allowCopy)
+                                                {
+                                                                               <div class="glyphicon glyphicon-log-in" data-href="../copy/@title/@m.Id" title="Copy @m.Display"></div>
+                                                }
+                                                                           @if (!string.IsNullOrWhiteSpace(exportUrl))
+                                                {
+                                                                               <div class="glyphicon glyphicon-export" data-href="@exportUrl/@m.Id" title="Export @m.Display"></div>
+                                                }*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- .widget-content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

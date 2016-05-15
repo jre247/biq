@@ -1,0 +1,85 @@
+.file-upload-container {
+  .form-control, .form-contol *{
+    cursor: pointer
+  }
+  .resource-file{
+    width: 100%
+    margin-left: 0
+  }
+
+  .info.image-dimensions{
+    .title{
+      color: #bcbcbc
+      font-size: 9.75px
+      line-height: 9.75px
+      padding: .2em .6em .3em 0
+    }
+    .description{
+
+    }
+  }
+  .col-xs-8 .form-control input[type='file']{
+    width: 100%
+    margin-left: 0
+  }
+
+}
+.fieldview{
+  label.col-xs-2 i{
+    margin-left: 10px
+    cursor: pointer
+  }
+}
+
+.existing-resource-precontainer{
+  .existing-resource-container{
+    a{
+      max-width: 100%
+      display: inline-block
+
+      &.resource-video{
+      } 
+      
+      &.resource-image{
+        .resource-image-content {
+          box-shadow: 1px 2px 5px rgba(0,0,0,0.25) 
+          display: inline-block
+          margin-top: 10px
+          
+          img{
+            margin: 10px
+            max-width: calc(480px)
+            background: rgba(37,44,58,0.88)
+            display: inline-block
+          }
+        }
+      } 
+    }
+  }
+  a.select-new{
+    margin: 10px 0 0
+    display: inline-block
+  }
+}
+
+.unexisting-resource-precontainer{
+  a.cancel{
+    margin: 10px 0 0
+    display: inline-block
+  }
+}
+
+
+
+.file-upload-state{
+  &[data-state='existing']{
+    .unexisting-resource-precontainer{
+      display: none
+    }
+  }
+  &[data-state='unexisting']{
+    .existing-resource-precontainer{
+      display: none
+    }
+  }
+}

@@ -1,0 +1,53 @@
+﻿@using BrightLine.Web
+@model BrightLine.Common.ViewModels.Account.RetrieveViewModel
+@{
+    ViewBag.Title = "Retrieve Account";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+@section styles{
+    <link href="@Url.Content(string.Format("/assets/stylesheets/account.css{0}", string.Format("?c={0}", MvcApplication.AppIdentifier)))" rel="stylesheet" type="text/css" />
+}
+<div class="account-precontainer">
+    <div class="account-container">
+        <div class="content clearfix">
+            @if (!Model.Completed)
+            {
+                <h1>Retrieve Account</h1>
+                using (Html.BeginForm())
+                {
+                    <div class="form">
+                        <div class="form-group">
+                            <div class="bg-danger validation-summary">
+                                @Html.ValidationSummary(false)
+                            </div>
+                        </div>
+                        <div class="form-group border-top border-bottom">
+                            <i class="fa fa-user"></i>
+                            <label for="username">Email Address:</label>
+                            @Html.TextBoxFor(m => m.EmailAddress, null, new { name = "username", placeholder = "Email address", @class = "form-control" })
+                        </div>
+                        <!-- /field -->
+                    </div>
+			<!-- /login-fields -->
+                    <div class="form-group">
+                        <button class="button btn btn-success btn-large " style="width: 100%">Retrieve Account</button>
+                    </div>
+			<!-- .actions -->
+                }
+            }
+            else
+            {
+                <div class="login-fields">
+                    <h1>Recovery Email sent</h1>
+                    <p>If an account is associated with the e-mail provided, you will receive a recovery e-mail in a moment. Please make sure to check your spam box.</p>
+                    <p>If you do not receive an e-mail, please contact <a href="@ViewBag.MailAddress">support</a>.</p>
+                </div>
+            }
+        </div>
+        <!-- /content -->
+        <div class="login-extra">
+            <a href="/">Go back</a>
+        </div>
+    </div>
+</div>
+

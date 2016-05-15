@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B611442A-415A-4D09-8FBD-BF0F16F2F5B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrightLine.Tests.OLTP</RootNamespace>
+    <AssemblyName>BrightLine.Tests.OLTP</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PRO|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="dbo\Functions\GetCampaignDate.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaigns_Listing.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_Ads.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_AnalyticsContentDetail.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_AnalyticsDateData.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_AnalyticsOverview.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_AnalyticsPromotionalDetail.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_Creatives.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_PerformanceSummary.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_RawAdTypes.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_RawCategories.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_RawFeaturePages.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_RawPlatforms.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_RawVideos.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Stored Procedures\Campaign_Summary.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ConvertDate.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\GetAdName.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ParseAdTypeRollupMetrics.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ParseCampaignRollupMetrics.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ParseCategoryRollupMetrics.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ParseFeaturePageRollupMetrics.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ParsePlatformRollupMetrics.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="dbo\Functions\ParseVideoRollupMetrics.cs">
+      <SubType>Designer</SubType>
+    </Compile>
+    <Compile Include="SqlDatabaseSetup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="CH-BUILD-01.sqlunittest.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dbo\Functions\GetCampaignDate.resx">
+      <DependentUpon>GetCampaignDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaigns_Listing.resx">
+      <DependentUpon>Campaigns_Listing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_Ads.resx">
+      <DependentUpon>Campaign_Ads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_AnalyticsContentDetail.resx">
+      <DependentUpon>Campaign_AnalyticsContentDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_AnalyticsDateData.resx">
+      <DependentUpon>Campaign_AnalyticsDateData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_AnalyticsOverview.resx">
+      <DependentUpon>Campaign_AnalyticsOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_AnalyticsPromotionalDetail.resx">
+      <DependentUpon>Campaign_AnalyticsPromotionalDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_Creatives.resx">
+      <DependentUpon>Campaign_Creatives.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_PerformanceSummary.resx">
+      <DependentUpon>Campaign_PerformanceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_RawAdTypes.resx">
+      <DependentUpon>Campaign_RawAdTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_RawCategories.resx">
+      <DependentUpon>Campaign_RawCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_RawFeaturePages.resx">
+      <DependentUpon>Campaign_RawFeaturePages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_RawPlatforms.resx">
+      <DependentUpon>Campaign_RawPlatforms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_RawVideos.resx">
+      <DependentUpon>Campaign_RawVideos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Stored Procedures\Campaign_Summary.resx">
+      <DependentUpon>Campaign_Summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ConvertDate.resx">
+      <DependentUpon>ConvertDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\GetAdName.resx">
+      <DependentUpon>GetAdName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ParseAdTypeRollupMetrics.resx">
+      <DependentUpon>ParseAdTypeRollupMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ParseCampaignRollupMetrics.resx">
+      <DependentUpon>ParseCampaignRollupMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ParseCategoryRollupMetrics.resx">
+      <DependentUpon>ParseCategoryRollupMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ParseFeaturePageRollupMetrics.resx">
+      <DependentUpon>ParseFeaturePageRollupMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ParsePlatformRollupMetrics.resx">
+      <DependentUpon>ParsePlatformRollupMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbo\Functions\ParseVideoRollupMetrics.resx">
+      <DependentUpon>ParseVideoRollupMetrics.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>2.0</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>REM $(ProjectDir)copy_project.bat</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

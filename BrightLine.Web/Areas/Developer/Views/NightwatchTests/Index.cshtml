@@ -1,0 +1,241 @@
+﻿@{
+    ViewBag.Title = "Nightwatch Tests";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+	var assetSuffix = AssetHelper.GetAssetSuffix();
+}
+@model BrightLine.Common.ViewModels.Developer.NightwatchTestsViewModel
+
+@section styles{
+	<style type="text/css">
+
+		#loading,
+		#error{
+			display: none;
+		}
+
+		#runTests{
+		    margin-top: 30px;
+			margin-bottom: 30px;
+		}
+
+		#reportHtml{
+			margin-top: 20px;
+		}
+
+		#reportHtml body {
+			margin: 10px;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: 0.8em;
+		}
+
+		#reportHtml h2 {
+			font-size: 1.2em;
+			margin: 0;
+			padding: 0;
+		}
+
+		#reportHtml h3 {
+			font-size: 1em;
+			margin: 0;
+			padding: 0;
+		}
+
+		#reportHtml .toggleSuccess, .toggleError {
+			margin-right: 10px;
+		}
+
+		#reportHtml .errmessages {
+			background-color: rgba(238, 64, 64, 0.43);
+			border: 1px solid rgba(235, 28, 28, 0.78);
+			padding: 5px;
+		}
+
+		#reportHtml .errmessages h2 {
+			margin: 5px 0;
+			font-size: 1em;
+		}
+
+		#reportHtml .errmessages .errors {
+			display: none;
+		}
+
+		#reportHtml .suites {
+			margin: 0 0 0 30px;
+		}
+
+		#reportHtml .package {
+			margin: 15px 0;
+		}
+
+		#reportHtml .package > .name {
+			cursor: pointer;
+		}
+
+		#reportHtml .suite {
+			margin: 15px 0;
+		}
+
+		#reportHtml .suite > .name {
+			cursor: pointer;
+		}
+
+		#reportHtml ul {
+			list-style: none;
+		}
+
+		#reportHtml .testcases {
+		}
+
+		#reportHtml .status {
+			display: inline-block;
+		}
+
+		#reportHtml .testcase .name {
+			display: inline-block;
+		}
+
+		#reportHtml .success {
+			color: rgb(56, 142, 56);
+		}
+
+		#reportHtml .testcase img {
+			max-width: 80%;
+		}
+
+		#reportHtml .package.error > .name {
+			color: rgb(178, 43, 43);
+		}
+
+		#reportHtml .suite.error > .name {
+			color: rgb(178, 43, 43);
+		}
+
+		#reportHtml .testcase.success .name {
+			color: rgb(56, 142, 56);
+		}
+
+		#reportHtml .testcase.error .status {
+			color: rgb(178, 43, 43);
+		}
+
+		/*#reportHtml #container {
+			font-size: 15px;
+		}*/
+
+	</style>
+}
+
+@section scripts {
+	<script src='@Url.Content(string.Format("/content/app/javascripts/vendor_spa.{0}js{1}", assetSuffix, string.Format("?c={0}", BrightLine.Web.MvcApplication.AppIdentifier)))'></script>
+	<script src='@Url.Content(string.Format("/content/app/javascripts/app.{0}js{1}", assetSuffix, string.Format("?c={0}", BrightLine.Web.MvcApplication.AppIdentifier)))'></script>
+
+	
+	<script>
+		var transactionId;
+
+		$("#runTests").click(function () {
+			$('#loading').show();
+			$('#error').hide();
+			$("#reportHtml").empty();
+
+			var build = {
+				buildVersion: _bl.build.version,
+				buildCommitHash: _bl.build.commitHash
+			};
+
+			//run tests
+			$.ajax({
+				type: 'post',
+				url: '/api/NightwatchTests/Run',
+				dataType: 'json',
+				data: JSON.stringify(build),
+				success: function (transaction) {
+					transactionId = transaction.TransactionId;
+					checkForTransactionStatus();
+				},
+				error: function (response) {
+					var message = response.message;
+
+					$('#error').show();
+					$('#loading').hide();
+				},
+				xhrFields: {
+				},
+				processData: false,
+				contentType: "application / json"
+			});
+		});
+
+		var checkForTransactionStatus = function () {
+			var setIntervalForTransactionStatus = window.setInterval(function () {
+				//check for specific test status every 5 seconds, and if status is success then refresh iframe results to show updated results
+				$.ajax({
+					type: 'get',
+					url: '/api/NightwatchTests/Status/' + transactionId,
+					dataType: 'json',
+					success: function (status) {
+						if (status) {
+							window.clearInterval(setIntervalForTransactionStatus);
+							getReportHtml();
+						}
+					},
+					error: function (response) {
+						var message = response.message;
+
+						$('#error').show();
+						$('#loading').hide();
+					},
+					xhrFields: {
+					},
+					processData: false,
+					contentType: false
+				});
+			}, 5000);
+		}
+
+		var getReportHtml = function () {
+			$.ajax({
+				type: 'get',
+				url: '/api/NightwatchTests/Report',
+				//dataType: 'json',
+				success: function (reportHtml) {
+					//inject report html into report div
+					$('#loading').hide();
+					$("#reportHtml").append(reportHtml);
+				},
+				error: function (response) {
+					var message = response.message;
+
+					$('#error').show();
+					$('#loading').hide();
+				},
+				xhrFields: {
+				},
+				processData: false,
+				contentType: false
+			});
+		}
+	</script>
+
+
+}
+
+<div id="app-wrapper"></div>
+
+<button id="runTests" class="btn btn-success">Run Nightwatch Tests</button>
+
+<div id='loading'>
+	<div class='spinner'>
+		<div class='bounce1'></div>
+		<div class='bounce2'></div>
+		<div class='bounce3'></div>
+	</div>
+</div>
+
+<div id="reportHtml">
+
+</div>
+
+<div id="error">
+	An unexpected error occurred while running Nightwatch tests.
+</div>

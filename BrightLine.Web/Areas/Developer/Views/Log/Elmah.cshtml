@@ -1,0 +1,30 @@
+﻿@{
+	ViewBag.Title = "Elmah";
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+	var now = DateTime.UtcNow;
+}
+@section scripts{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#elmahLogs").height(($(window).height() - 120));
+			$(window).bind('resize', function () {
+				$("#elmahLogs").height(($(window).height() - 120));
+			});
+		});
+	</script>
+}
+
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<ul class="breadcrumb">
+			<li>@now.ToLongDateString()</li>
+			<li>@now.ToLongTimeString()</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<iframe id="elmahLogs" src="/developer/elmah" style="width: 100%; border: 0px;"></iframe>
+	</div>
+</div>

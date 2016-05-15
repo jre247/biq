@@ -1,0 +1,35 @@
+//Use .validation-summary2 as root classname to avoid conflicts with .validation-summary
+
+.validation-summary2{
+  min-height: 0px
+  padding-top: 8px
+  border-radius: 4px
+  margin-bottom: 30px
+
+  // Hide all types of messages.
+  .validation-summary2-message{
+    display: none
+  }
+  
+  &.bg-danger{
+    border: 1px solid #ebccd1
+    color: #a94442
+    
+    // Only show error messages in a error type of validation-summary-view
+    .validation-summary2-message.type-error{
+      display: initial
+    }
+
+  }
+  
+  &.bg-success{
+    // border: 1px solid #ebccd1
+    // color: #a94442
+  }
+  
+  ul{
+    list-style-type: none
+    padding-left: 1em
+    font-weight: bold
+  }
+}

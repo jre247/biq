@@ -1,0 +1,86 @@
+﻿@using BrightLine.Web.Helpers
+@model BrightLine.Common.Models.CampaignContentSchema
+@{
+    ViewBag.Title = "CMS - Edit";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+    var displayName = @Model.Campaign.Name;
+    var campaignId = @Model.Campaign.Id;
+    var schemaId = @Model.Id;
+    var tagName = @Model.Tag;
+    var modelType = (string)ViewData["modelType"];
+}
+
+@section scripts {
+
+}
+
+@section styles {
+    <style>
+        [action*="/cms"] .form-group .form-field {
+            max-width: initial;
+        }
+    </style>
+}
+
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container" style="margin-top: 20px">
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink("CMS", "Index", "CMS")</li>
+            <li class="active">@Html.ActionLink(@displayName, "Schemas", "CMS", new { id = @campaignId }, null)</li>
+            <li class="active">@Html.ActionLink(@tagName, "Models", "CMS", new { id = schemaId }, null)</li>
+            <li>Edit</li>
+        </ul>
+
+        <div class="row-fluid cfww">
+            <div class="widget widget-table">
+                    <div class="widget-header">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+                    <!-- .widget-header -->
+                    <div class="widget-content">
+                        @using (Html.BeginForm((string)ViewBag.formAction, "CMS", FormMethod.Post, new { @class = "form-horizontal col-md-8", enctype = "multipart/form-data" }))
+                        {
+
+                            <fieldset>
+                                <legend></legend>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">File</label>
+                                    <div class="form-field col-sm-6">
+                                        <input type="file" name="file" id="file" title="Choose File" />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-8">
+                                        <input type="submit" class="btn save btn-success" value="Save" />
+                                        <button class="button btn btn-info" name="action" value="Validate">Validate</button>
+                                        <a href="/cms/models/@Model.Id" class="btn-cancel">Go back</a>
+                                        @Html.Hidden("ContentSchemaId", Model.Id)
+                                        @Html.Hidden("Campaign", campaignId)
+                                    </div>
+                                </div>
+
+                                <div class="form-group validation-summary-container">
+                                    <div class="form-field col-sm-8 col-sm-offset-2 validation-summary">
+                                        @Html.ValidationSummary("", new { @class = "bg-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-field col-sm-6 col-sm-offset-2">
+                                        <div id="notifier"></div>
+                                    </div>
+                                </div>
+
+                                <br />
+                            </fieldset>
+
+                        }
+                    </div>
+                </div>
+        </div>
+        @*}*@
+    </div>
+</div>

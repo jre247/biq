@@ -1,0 +1,31 @@
+﻿<#@ template language="C#" hostspecific="true" #>
+<#@ assembly name="$(SolutionDir)BrightLine.Common\$(OutDir)\BrightLine.Common.dll" #>
+<#@ assembly name="$(SolutionDir)BrightLine.Infrastructure\$(OutDir)\BrightLine.Infrastructure.dll" #>
+
+using BrightLine.Common.Models.OLAP.Aggregations.Ad;
+using BrightLine.Common.Models.OLAP.Aggregations.App;
+using BrightLine.Common.Models.OLAP.Aggregations.Destination;
+using BrightLine.Common.Models.OLAP.Dimensions;
+using BrightLine.Common.Data;
+using SimpleInjector;
+
+namespace BrightLine.OLAP
+{
+    public static partial class Bootstrapper
+    {
+        public static void InitializeContainer(Container container)
+        {
+<#    
+    var props = BrightLine.Infrastructure.Build.T4HelpExtentions.GetOLAPCrudRepositoryRegistrations();
+    PushIndent("\t\t\t");
+    WriteLine("#region CrudRepository Registrations");
+    foreach (var prop in props)
+    {      
+        WriteLine(prop);
+    }
+    WriteLine("#endregion");
+    PopIndent();
+#>          
+        }
+    }
+}

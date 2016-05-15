@@ -1,0 +1,29 @@
+﻿tr.odd td.sorting_1 {
+  background-color: #f9f9f9 !important;
+}
+
+tr.even td.sorting_1 {
+  background-color: #fff !important;
+}
+
+.validation-summary-errors {
+  padding: 2px;
+  margin: 3px;
+  background-color: #DA4F49;
+  background-image: linear-gradient(to bottom, #EE5F5B, #BD362F);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 1.25em;
+}
+
+.validation-summary-errors > ul {
+  list-style: none;
+  margin: 4px;
+  padding: 2px;
+}

@@ -1,0 +1,198 @@
+﻿@model List<BrightLine.Common.ViewModels.Users.UserViewModel>
+@{
+    var title = ViewBag.Title = "Users";
+    
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+    var emptyArray = MvcHtmlString.Create("[]");
+    var users = Model.JsonSerializeToString(emptyArray);
+    var timeZones = TimeZoneInfo.GetSystemTimeZones().Select(tz => new { tz.Id, tz.DisplayName }).JsonSerializeToString();
+    ViewBag.ShowLoader = true;
+}
+@section styles{
+    <link href="/Content/temp/dropzone/css/dropzone.css" rel="stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/msgbox/jquery.msgbox.css" rel="stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/datepicker/datepicker.css" rel="stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/css/custom.css" rel="stylesheet">
+    <style type="text/css">
+        td.active {
+            color: darkgreen;
+        }
+
+        td.inactive {
+            color: darkred;
+        }
+
+        td.invited {
+            color: darkblue;
+        }
+        .glyphicon-action{
+            text-align: right;
+        }
+    </style>
+}
+
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container">
+        <div class="campaign-generic-listing container-fluid collapsable-container whitebox" style="margin-top: 20px">
+            <div class="listing-nav-container container-fluid">
+                <div class="row listing-nav nav">
+                    <div class="col-sm-3 listing-nav-title title">@title Listing</div>
+                    <div class="col-sm-5 listing-nav-search-container">
+                        <div class="input-group input-group-simple component-searchbox is-empty">
+                            <div class="input-group-addon glyphicon glyphicon-search" data-bind="click: function(){$root.Search('');}">
+                                <img src="/content/img/icons/clear-circle.png" class="clear-search">
+                            </div>
+                            <input type="text" id="search-text" class="form-control" placeholder="Search @(title)..." data-bind="value: $root.Search, valueUpdate: 'input'">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default creatives-filter-clear" type="button" onclick="utility.textbox.clear('#listing-filter'); $(this).parent().prev().select();">X</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 listing-nav-actions-container">
+                        <a data-entity="newUser" id="newUser" role="button" class="btn btn-success" title="Create new user" data-bind="click: $root.EditUser.bind($data, null)" data-toggle="modal" data-target="#modal-edit-user">New User</a>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-items-container">
+                <div class="widget widget-table">                    
+                    <div class="widget-content">
+                        <table id="user-listing" class="table table-striped sortable">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Last Login</th>
+                                    <th>Last Activity</th>
+                                    <th>Status</th>
+                                    <th class="sorting_disabled">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: { data: Users(), as: 'user' }">
+                                <tr data-bind="visible: ko.utils.filterTable(user, $root.Search)">
+                                    <td data-bind="text: user.FirstName"></td>
+                                    <td data-bind="text: user.LastName"></td>
+                                    <td data-bind="text: user.Email"></td>
+                                    <td data-bind="date: user.LastLoginDate, attr: { 'sorttable_customkey': user.LastLoginDateSort() }"></td>
+                                    <td data-bind="date: user.LastActivityDate, attr: { 'sorttable_customkey': user.LastActivityDateSort() }"></td>
+                                    <td data-bind="text: user.Status"></td>
+                                    <td class="glyphicon-action" data-bind="attr: { 'data-locked': user.IsLocked()}">
+                                        <div data-entity="editUser" class="glyphicon glyphicon-edit" data-bind="attr: { title: 'Edit ' + user.FirstName() + ' ' + user.LastName() }, click: $parent.EditUser.bind(user), attr: {'data-email': user.Email()}" data-toggle="modal" data-target="#modal-edit-user"></div>
+                                        @*<div class="glyphicon glyphicon-remove" data-bind="visible: !user.IsDeleted(), attr: { title: 'Archive\n' + user.FullName() }, click: $parent.ArchiveUser.bind(user)"></div>*@
+                                        @*<div class="glyphicon glyphicon-repeat" data-bind="visible: user.IsDeleted(), attr: { title: 'Restore\n' + user.FullName() }, click: $parent.RestoreUser.bind(user)"></div>*@
+                                        @*<div class="glyphicon glyphicon-lock" data-bind="visible: user.IsLocked(), attr: { title: 'Unlock ' + user.FirstName() + ' ' + user.LastName() }, click: $parent.UnlockUser.bind(user)"></div>*@
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-edit-user" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-edit-user" aria-hidden="true">
+    <div class="modal-dialog modal-fluid" data-bind="if: User">
+        <div class="modal-content" data-bind="with: User">
+            <form data-bind="submit: $root.SaveUser" role="form">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback" data-bind="css: EmailCss()">
+                                <label class="control-label" for="Email">Email</label>
+                                <input type="text" class="form-control" id="Email" data-entity="email" data-bind="value: Email, enable: IsNewEntity, event: { change: CheckEmailAvailable }">
+                                <span class="glyphicon form-control-feedback"></span>
+                                <span class="help-block" data-bind="visible: !EmailAvailable()">Email is unavailable.</span>
+                            </div>
+                            <div class="form-group has-feedback" data-bind="css: FirstNameCss">
+                                <label class="control-label" for="LastName">First Name</label>
+								<input data-entity="firstName" type="text" class="form-control" id="FirstName" data-bind="value: FirstName, valueUpdate: 'input'">
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback" data-bind="css: LastNameCss">
+                                <label class="control-label" for="LastName">Last Name</label>
+								<input data-entity="lastName" type="text" class="form-control" id="LastName" data-bind="value: LastName, valueUpdate: 'input'">
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Status</label>
+                                <a class="form-control" data-bind="visible: AllowInvite(), click: $root.ResendInvitation.bind($data)">Resend Invitation</a>
+                                <label class="checkbox" data-bind="visible: !AllowInvite()">
+                                    <input type="checkbox" data-bind="checked: IsActive, disable: Status() == 'New User - Active'" />
+                                    <span data-bind="text: Status"></span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="TimeZoneId" class="control-label">Time zone:</label>
+                                <select id="TimeZoneId" class="form-control" data-bind="options: AvailableTimeZones, optionsText: 'DisplayName', optionsValue: 'Id', value: TimeZoneId"></select>
+                            </div>
+							<div class="form-group">
+								<label class="control-label" for="Internal">Internal</label>
+								<label class="checkbox">
+									<input id="Internal" data-entity="internal" type="checkbox" data-bind="checked: Internal" />
+								</label>
+							</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Roles:</label>
+                            <div class="form-group">
+                                <!-- ko foreach: AvailableRoles -->
+                                <label class="checkbox">
+									<input type="checkbox" data-bind="checkedValue: $data, checked: $parent.Roles, click: $parent.CheckRole.bind($data), attr:{'data-entity': $data.DisplayName}" />
+                                    <span data-bind="text: $data.DisplayName"></span>
+                                </label>
+                                <!-- /ko -->
+                            </div>
+                            <div class="form-group" data-bind="visible: IsAdvertiserRole">
+                                <label for="AdvertiserId" class="control-label">Advertiser:</label>
+								<select id="AdvertiserId" class="form-control" data-bind="options: AvailableAdvertisers, optionsText: 'Name', optionsValue: 'Id', value: Advertiser, attr:{'data-entity': 'advertiser'}"></select>
+                            </div>
+							<div class="form-group" data-bind="visible: IsMediaAgencyRole">
+								<label for="MediaAgencyId" class="control-label">Media Agency:</label>
+								<select id="MediaAgencyId" class="form-control" data-bind="options: AvailableMediaAgencies, optionsText: 'Name', optionsValue: 'Id', value: MediaAgency, attr:{'data-entity': 'mediaAgency'}"></select>
+							</div>
+							<div class="form-group" data-bind="visible: IsMediaPartnerRole">
+								<label for="MediaPartnerId" class="control-label">Media Partner:</label>
+								<select id="MediaPartnerId" class="form-control" data-bind="options: AvailableMediaPartners, optionsText: 'Name', optionsValue: 'Id', value: MediaPartner, attr:{'data-entity': 'mediaPartner'}"></select>
+							</div>
+                        </div>
+		
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-entity="close" type="reset" class="btn btn-default" data-dismiss="modal" data-bind="click: reset">Close</button>
+					<button data-entity="saveUser" type="submit" class="btn btn-success" data-bind="disable: HasErrors() || Processing()">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+        @section scripts{
+            <script type="text/javascript" src="/Content/temp/knockout-3.0.0.js"></script>
+            <script type="text/javascript" src="/Content/lib/bootstrap-3.1.1/msgbox/jquery.msgbox.js"></script>
+            <script type="text/javascript" src="/Content/temp/dropzone/dropzone.js"></script>
+            <script type="text/javascript" src="/Content/temp/sorttable.js"></script>
+            <script type="text/javascript" src="/Content/temp/native.extensions.js"></script>
+            <script type="text/javascript" src="/Content/temp/brightline/brightline.js"></script>
+            <script type="text/javascript" src="/Content/temp/brightline/knockout.extensions.js"></script>
+
+            <script type="text/javascript" src="/Content/temp/brightline/brightline.users.js"></script>
+            <script type="text/javascript">
+                var users = @users;
+                var timeZones = @timeZones;
+                $(document).ready(function() {
+                	var callback = function() {
+                        var uvm = new UsersViewModel(users);
+                        ko.applyBindings(uvm, function() {
+                            $(".loading").fadeOut();
+                            $("[title]").tooltip({ container: "body", placement: "bottom" });
+                        });
+                    };
+                    loadData(timeZones, callback);
+                });
+            </script>
+        }

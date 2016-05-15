@@ -1,0 +1,41 @@
+C:\Code\Brightline\ 
+C:\Code\Brightline\BrightLine.Common\Framework\IoC.tt 
+C:\Code\Brightline\BrightLine.Common\Framework\IoC.tt copied to C:\Code\Brightline\BrightLine.Common\Framework\IoC.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.Data\Bootstrapper.tt 
+C:\Code\Brightline\BrightLine.Data\Bootstrapper.tt copied to C:\Code\Brightline\BrightLine.Data\Bootstrapper.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.Data\OLTPContext.tt 
+C:\Code\Brightline\BrightLine.Data\OLTPContext.tt copied to C:\Code\Brightline\BrightLine.Data\OLTPContext.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.IQ.Web\Models\Context\IQV4.Context.tt 
+C:\Code\Brightline\BrightLine.IQ.Web\Models\Context\IQV4.Context.tt copied to C:\Code\Brightline\BrightLine.IQ.Web\Models\Context\IQV4.Context.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.IQ.Web\Models\Context\IQV4.tt 
+C:\Code\Brightline\BrightLine.IQ.Web\Models\Context\IQV4.tt copied to C:\Code\Brightline\BrightLine.IQ.Web\Models\Context\IQV4.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.OLAP\Bootstrapper.tt 
+C:\Code\Brightline\BrightLine.OLAP\Bootstrapper.tt copied to C:\Code\Brightline\BrightLine.OLAP\Bootstrapper.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.OLAP\OLAPContext.tt 
+C:\Code\Brightline\BrightLine.OLAP\OLAPContext.tt copied to C:\Code\Brightline\BrightLine.OLAP\OLAPContext.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 
+C:\Code\Brightline\BrightLine.Service\Bootstrapper.tt 
+C:\Code\Brightline\BrightLine.Service\Bootstrapper.tt copied to C:\Code\Brightline\BrightLine.Service\Bootstrapper.tt.bak 
+replaced macros in t4template 
+running transform 
+deleting the t4 backup template 

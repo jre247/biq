@@ -1,0 +1,98 @@
+.groupingtable{
+  margin: 0 20px 10px
+  
+  .headers{
+    
+    .header{
+      font-weight: bold
+    }
+  }
+  
+  .cell{
+    float: left
+    padding: 8px
+    line-height: 16px
+    display: inline-block
+    
+    &.col-dimension{
+      // width: 100px
+    }
+    &.col-metric{
+      // width: 120px
+      text-align: center
+    }
+  }
+  
+  
+  .groupings{
+
+    .info.collection_empty{
+      width: calc(100% - 80px)
+      
+      .title{
+        margin-bottom: 20px
+      }
+    }
+    
+    .grouping{
+      opacity: 1 !important
+      .expander{
+        display: none
+      }
+      &.expandable{
+        >.grouping-data{          
+          cursor: pointer
+          
+          .expander{
+            display: inline-block
+            font-size: 12px
+            
+            &.fa-chevron-down{
+              position: relative
+              top: -1px
+            }
+          } 
+        }
+        
+        .grouping-sub-groupings{
+          display: none
+        }
+        
+        &.expanded{
+          >.grouping-sub-groupings{
+            display: initial
+          }
+        }
+      }
+      
+      &[data-parity='odd']{
+        >.grouping-data{
+          background: #fafafa  
+        }        
+      }
+      
+      &.unexpandable{
+        >.grouping-data{
+          cursor: default
+        }
+      }
+      
+
+      .grouping-data{
+        border-top: 1px solid #ccc
+        
+        .spacer{
+          width: 20px
+          display: inline-block
+        }
+        .expander-container{
+          width: 15px
+          display: inline-block
+        }
+        
+
+      }
+      
+    }
+  }
+}

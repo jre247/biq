@@ -1,0 +1,233 @@
+﻿@using System.Web.Mvc.Html
+@using BrightLine.Common.Models.Enums
+@using BrightLine.Core
+@model BrightLine.Common.ViewModels.Campaigns.CampaignViewModel
+@{
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    ViewBag.Title = Model.IsNewEntity ? "Create Campaign" : "Edit Campaign";
+    var action = Model.IsNewEntity ? "Create Campaign" : "Update Campaign";
+    var products = (IEnumerable<ILookup>)ViewBag.Products;
+    var agencies = (IEnumerable<ILookup>)ViewBag.Agencies;
+}
+@section scripts {
+    <script>
+        $(function () {
+            utility.file.update($("#thumbnail-file"), $("#thumbnail-file-name"));
+
+            //Highlight this item in listing page, if it was recently edited
+            (function () {
+                var timeUpdated = new Date($("#DateUpdated").val()),
+					timeNow = new Date(),
+					timeDiff = timeNow - timeUpdated,
+					id = $("#Id").val();
+
+                if (timeDiff < 8000) {
+                    hu = new utility.HighlightUpdates({ key: 'Campaigns.Listing' });
+                    hu.add(".gridlist-item[data-id='" + id + "']")
+                }
+            })()
+        });
+        var showPreview = function (element, xOffset) {
+            var img = $(element);
+            var src = img.prop("src");
+            var o = img.offset();
+            var css = { position: "absolute", top: o.top + "px", left: o.left + xOffset + "px" };
+            var imgContainer = $("<div/>").prop("id", "preview-hover").css(css).appendTo("body").fadeIn();
+            var preview = $("<img alt=''/>").prop("src", src).css({ "max-height": "140px", "max-width": "260px;" });
+            imgContainer.append(preview);
+        };
+        var removePreview = function () {
+            $("#preview-hover").remove();
+        };
+        $(document).ready(function (e) {
+            $('#add-product').click(function (e) {
+                e.preventDefault();
+                $('#cancel-product').show();
+                $('#new-product').show().select();
+                $('#create-product').show();
+                $('#add-product').hide();
+                return false;
+            });
+            $('#cancel-product').click(function (e) {
+                e.preventDefault();
+                $('#cancel-product').hide();
+                $('#create-product').hide();
+                $('#new-product').hide().val('');
+                $('#add-product').show();
+                var val = $('#create-product').val();
+                $('#Product option[text=\'' + val + '\']').remove();
+                return false;
+            });
+            $('#create-product').click(function (e) {
+                e.preventDefault();
+                var val = $('#new-product').val();
+                var existing = $('#Product option[text=\'' + val + '\']');
+                if (existing.length) {
+                    $(existing).prop('selected', true);
+                    return;
+                }
+
+                existing = $('#Product option[value=0]');
+                if (existing.length) {
+                    $(existing).prop('selected', true).html(val);
+                    return;
+                }
+
+                var option = $('<option selected="selected" value="0">' + val + '</option>');
+                console.log(val);
+                $('#Product').append(option);
+
+                $('#cancel-product').hide();
+                $('#create-product').hide();
+                $('#new-product').hide();
+                $('#add-product').show();
+                return false;
+            });
+        });
+    </script>
+}
+@section styles {
+}
+
+<div id="campaign">
+    <div id="campaign-content-container" style="margin-top: 20px">
+        <div class="row cfww">
+            <div class="col-xs-12">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon-tasks"></i>
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+                    <div class="widget-content">
+                        @using (Html.BeginForm("save", "campaigns", FormMethod.Post, new { role = "form", @class = "form-horizontal col-xs-8", @id = "saveForm", @enctype = "multipart/form-data" }))
+                        {
+                            <input type="hidden" value="@Model.Id" name="Id" id="Id" />
+                            <input type="hidden" value="@Model.DateUpdated" name="DateUpdated" id="DateUpdated" />
+                            <input type="hidden" value="@Model.CmsKey" name="CmsKey" id="CmsKey" />
+                            <div class="form-group required">
+                                @Html.LabelFor(m => m.Name, new { @class = "col-xs-3 control-label" })
+                                <div class="form-field col-xs-6">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                    <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.Name)</div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Description, new { @class = "col-xs-3 control-label" })
+                                <div class="form-field col-xs-6">
+                                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                                    <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.Description)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(m => m.MediaAgency, new { @class = "col-xs-3 control-label" })
+                                <div class="form-field col-xs-6">
+                                    @Html.SelectFor(m => m.MediaAgency, options: agencies, htmlAttributes: new { @class = "form-control" })
+                                    <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.MediaAgency)</div>
+                                </div>
+                            </div>
+
+							<div class="form-group required">
+								@Html.LabelFor(m => m.CreativeAgency, new { @class = "col-xs-3 control-label" })
+								<div class="form-field col-xs-6">
+									@Html.SelectFor(m => m.CreativeAgency, options: agencies, htmlAttributes: new { @class = "form-control" })
+									<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.CreativeAgency)</div>
+								</div>
+							</div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SalesForceId, new { @class = "col-xs-3 control-label" })
+                                <div class="form-field col-xs-6">
+                                    @Html.TextBoxFor(m => m.SalesForceId, new { @class = "form-control" })
+                                    <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.SalesForceId)</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(m => m.Product, new { @class = "col-xs-3 control-label" })
+                                <div class="form-field col-xs-6">
+                                    @Html.SelectFor(m => m.Product, options: products, htmlAttributes: new { @class = "form-control" })
+                                    <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.Product)</div>
+                                    <a href="#" class="btn-cancel" id="add-product">Add new product</a>
+                                    <input type="text" id="new-product" name="new-product" class="form-control" style="display:none;margin-top:5px;" />
+                                    <a href="#" class="btn-cancel" id="create-product" style="display:none">Create</a>
+                                    <a href="#" class="btn-cancel" id="cancel-product" style="display:none">Cancel</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                @Html.LabelFor(m => m.CampaignType, new { @class = "col-xs-3 control-label" })
+                                <div class="form-field col-xs-6">
+                                    @Html.EnumRadioListFor(m => m.CampaignType, typeof(CampaignTypes), spanClass: "stacked-radio")
+                                    <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.CampaignType)</div>
+                                </div>
+                            </div>
+
+							<div class="form-group">
+								@Html.LabelFor(m => m.Internal, new { @class = "col-xs-3 control-label" })
+
+								<div class="form-field col-xs-6">
+									@Html.CheckBoxFor(m => m.Internal, new { @checked = "checked", @class = "Internal", @style = "margin-top:12px;" })
+								</div>
+							</div>
+
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">
+                                    Thumbnail
+                                </label>
+                                <div class="form-field col-xs-6">
+                                    @if (Model.Thumbnail != null && Model.ResourceDownloadUrl != null)
+                                    {
+                                        <input type="hidden" value="@Model.Thumbnail.Id" name="Thumbnail" />
+                                        <a id="thumbnailName" href="@Model.ResourceDownloadUrl">@Model.Thumbnail.Name</a>
+                                        <a href="@Model.ResourceDownloadUrl">
+                                            <img class="form-preview" src="@Model.ResourceDownloadUrl" alt="@Model.Thumbnail.Name" onmouseover="showPreview(this, 25) " onmouseout="removePreview() " />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" value="0" name="Thumbnail" />
+                                    }
+                                    <div class="form-control">
+                                        <input type="hidden" value="" name="ResourceId" id="ResourceId" />
+                                        <input type="file" name="ThumbnailFile" id="thumbnail-file" class="resource-file" />
+                                        <div id="thumbnail-file-name" class="resource-file-name">Select file...</div>
+                                    </div>
+                                    <p class="help-block">Optimal image size is 260 width x 140 height.</p>
+                                    <div class="bg-danger hidden">@Html.ValidationMessage("ImageSizeException")</div>
+                                </div>
+
+                            </div>
+							<div class="form-group">
+								@Html.LabelFor(m => m.GoogleAnalyticsIds, new { @class = "col-xs-3 control-label" })
+								<div class="form-field col-xs-6">
+									@Html.TextBoxFor(m => m.GoogleAnalyticsIds, new { @class = "form-control" })
+									<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.GoogleAnalyticsIds)</div>
+								</div>
+							</div>
+                            <div class="form-group">
+                                <div class="form-field col-xs-6 col-xs-offset-3">
+                                    <div id="notifier"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group validation-summary-container">
+                                <div class="form-field col-xs-6 col-xs-offset-3 validation-summary">
+                                    @Html.ValidationSummary("", new { @class = "bg-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-offset-3 col-xs-8">
+                                    <input type="submit" class="btn save btn-success" id="submitBtn" value="@action" />
+                                    <a href="/campaigns" class="btn-cancel">Go back</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

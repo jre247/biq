@@ -1,0 +1,55 @@
+﻿@using BrightLine.Web
+@model BrightLine.Common.ViewModels.Account.SignInViewModel
+@{
+	ViewBag.Title = "Sign In";
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+@section styles{
+    <link href="@Url.Content(string.Format("/assets/stylesheets/account.css{0}", string.Format("?c={0}", MvcApplication.AppIdentifier)))" rel="stylesheet" type="text/css" />
+}
+<div class="account-precontainer">
+	<div class="account-container">
+		<div class="content clearfix">
+			<h1><img src="/content/img/logo_brightline.png" style="width:44%"/></h1>
+			@using (Html.BeginForm())
+   {
+				<div class="form">
+					<div class="form-group">
+						<div class="bg-danger validation-summary">
+							@Html.ValidationSummary(false)
+						</div>
+					</div>
+                    <div class="form-group border-top">
+                        <i class="fa fa-user"></i>
+                        <label for="username">Email Address:</label>
+                        @Html.TextBoxFor(m => m.EmailAddress, null, new { name = "username", placeholder = "Email address", @class = "form-control" })
+                    </div>
+					<!-- /field -->
+
+                    <div class="form-group border-top border-bottom">
+                        <i class="fa fa-lock"></i>
+                        <label for="password">Password:</label>
+                        @Html.PasswordFor(m => m.Password, new { name = "password", placeholder = "Password", @class = "form-control" })
+                    </div>
+					<!-- /password -->
+				</div>
+				<!-- /login-fields -->
+				<div class="form-group">
+					<button class="button btn btn-success btn-large " style="width: 100%">Sign In</button>
+					<span class="login-checkbox">
+						@Html.CheckBoxFor(m => m.RememberMe, new { @class = "field login-checkbox" })
+						@Html.LabelFor(m => m.RememberMe, null, new { style = "width:200px;" })
+					</span>
+				</div>
+				<!-- .actions -->
+   }
+		</div>
+		<!-- /content -->
+	</div>
+	<!-- /account-container -->
+	<!-- Text Under Box -->
+	<div class="login-extra">
+		@Html.ActionLink("Forgot your password?", "Retrieve", "Account")
+	</div>
+	<!-- /login-extra -->
+</div>

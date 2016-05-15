@@ -1,0 +1,4 @@
+BrightLine.Common\Framework\IoC.tt
+BrightLine.Data\Bootstrapper.tt
+BrightLine.Data\OLTPContext.tt
+BrightLine.Service\Bootstrapper.tt

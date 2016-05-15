@@ -1,0 +1,70 @@
+﻿@using BrightLine.CMS
+@using BrightLine.Common.Models
+
+@model List<CampaignContentModel>
+@{
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var displayName = (string)ViewData["campaignName"];
+    var campaignId = (int)ViewData["campaignId"];
+    var schemaId = (int)ViewData["schemaId"];
+    var tagName = (string)ViewData["tagName"];
+    ViewBag.Title = string.Format("CMS - {0} - {1} - Models", displayName, tagName);
+}
+
+@section scripts {
+
+}
+
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container" style="margin-top: 20px">
+        <div class="row cfww">
+            <div class="">
+                <ul class="breadcrumb">
+                    <li><a href="/cms">CMS</a></li>
+                    <li><a href="/cms/schemas/@campaignId">@displayName</a></li>
+                    <li>@tagName</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row cfww">
+            <a style='margin-bottom: 10px;' data-toggle='modal' href='/cms/edit/@schemaId' role='button' class='btn btn-default'>Edit Content</a>
+            <div class="span12">
+                <div class="widget widget-table">
+                    <div class="widget-header">
+                        <span class="icon-list-alt"></span>
+                        <h3>Models</h3>
+                    </div>
+                    <!-- .widget-header -->
+                    <div class="widget-content" id='resourceDocs-widget'>
+                        <table id="resourceDocs" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Date Modified</th>
+                                    @*<th>JSON Published (Download)</th>
+                                        <th>JSON Published (View)</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var contentModel in Model)
+                                {
+                                    var publishedFileName = CmsHelper.BuildModelFileName(campaignId, contentModel, false);
+                                    <tr>
+                                        <td><a href="/cms/instances/@contentModel.Schema.Id?modelType=@contentModel.ModelName">@contentModel.ModelName</a></td>
+                                        <td>@(contentModel.DateUpdated.HasValue ? DateHelper.ToUserTimezone(contentModel.DateUpdated.Value).ToString("MM/dd/yyyy hh:mm tt") : DateHelper.ToUserTimezone(contentModel.DateCreated).ToString("MM/dd/yyyy hh:mm tt"))</td>
+                                        @*							    <td><a href="/cms/collectionpublished/@contentModel.Id">Download</a></td>
+                                            <td><a href="/cms/collectionpublished/@contentModel.Id?type=json">View</a></td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- .widget-content -->
+                </div>
+                <!-- /widget -->
+            </div>
+            <!-- /span12 -->
+        </div>
+    </div>
+</div>

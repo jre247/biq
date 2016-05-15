@@ -1,0 +1,219 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+	var formTitleAction = ViewBag.FormSubmitAction;
+	var pageTitleAction = ViewBag.PageTitleAction;
+	ViewBag.Title = pageTitleAction + " Blueprint";
+}
+
+@model BrightLine.Common.ViewModels.Blueprints.BlueprintViewModel
+
+<style>
+	.isNetwork {
+		margin-top: 12px;
+	}
+
+	.readonlyField{
+		padding-top: 7px;
+	}
+
+	.previewImageContainer{
+	    margin-top: 14px;
+		margin-bottom: 14px;
+	}
+
+	.previewContainer{
+		margin-top: 5px;
+	}
+</style>
+
+@section scripts {
+	<script>
+		utility.file.update($("#Preview-file"), $("#Preview-file-name"));
+		utility.file.update($("#ConnectedTVCreative-file"), $("#ConnectedTVCreative-file-name"));
+		utility.file.update($("#ConnectedTVSupport-file"), $("#ConnectedTVSupport-file-name"));
+
+		var featureTypesDictionary;
+
+		$(document).ready(function () {
+			featureTypesDictionary = @Html.Raw(Model.FeatureTypesDictionary);
+		});
+
+		//find all Feature Types that belong to the selected Feature Type Group and inject them into the Feature Types select list
+		$('#SelectedFeatureTypeGroup').change(function () {
+			var selectedFeatureTypeGroupId = $('#SelectedFeatureTypeGroup').val();
+			var featureTypes = featureTypesDictionary[selectedFeatureTypeGroupId];
+
+			$('#SelectedFeatureType').html('');
+			var filterTypeOptions= "";
+			$.each(featureTypes, function(index,item){
+				var featureTypeId = item.Id;
+				var featureTypeName = item.Name;
+
+				filterTypeOptions +="<option value='"+ featureTypeId +"'>" + featureTypeName + "</option>";
+			});
+
+			$("#SelectedFeatureType").html(filterTypeOptions)
+		});
+</script>
+}
+
+<div id="campaign-content-container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="widget stacked">
+				<div class="widget-header">
+					<i class="icon-tasks"></i>
+					<h3>@formTitleAction Blueprint</h3>
+				</div>
+				<div class="widget-content">
+					<form class="form-horizontal col-md-9" method="POST" action="/blueprints/save" enctype="multipart/form-data">
+
+						@Html.HiddenFor(m => m.Id)
+
+						<div class="form-group required">
+							@Html.LabelFor(m => m.Name, new { @class = "col-sm-3 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(model => model.Name)</div>
+							</div>
+						</div>
+
+						<div class="form-group required">
+							@Html.LabelFor(m => m.ManifestName, new { @class = "col-sm-3 control-label" })
+
+							@{
+								if (!Model.IsNewModel)
+								{
+									<div class="form-field col-sm-6 readonlyField">
+										@Html.DisplayFor(m => m.ManifestName)
+										@Html.HiddenFor(m => m.ManifestName)
+									</div>
+								}
+								else
+								{
+									<div class="form-field col-sm-6">
+										@Html.TextBoxFor(m => m.ManifestName, new { @class = "form-control" })
+										<div class="bg-danger hidden">@Html.ValidationMessageFor(model => model.ManifestName)</div>
+									</div>
+								}
+
+							}
+
+
+						</div>
+
+						<div class="form-group required">
+							@Html.LabelFor(m => m.FeatureTypeGroups, new { @class = "col-sm-3 control-label" })
+
+							<div class="form-field col-sm-6">
+								@Html.SelectFor(m => m.SelectedFeatureTypeGroup, options: Model.FeatureTypeGroups, htmlAttributes: new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.SelectedFeatureTypeGroup)</div>
+							</div>
+						</div>
+
+						<div class="form-group required">
+							@Html.LabelFor(m => m.FeatureTypes, new { @class = "col-sm-3 control-label" })
+
+							<div id="featureTypesDynamic" class="form-field col-sm-6">
+								@Html.SelectFor(m => m.SelectedFeatureType, options: Model.FeatureTypes, htmlAttributes: new { @class = "form-control" })
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.SelectedFeatureType)</div>
+							</div>
+						</div>
+
+						<div class="form-group required">
+							@Html.LabelFor(m => m.Preview, new { @class = "col-sm-3 control-label" })
+
+							<div class="form-field col-sm-6 previewContainer">
+								@if (Model.Preview != null && Model.PreviewDownloadUrl != null)
+								{
+									<input type="hidden" value="@Model.Preview.Id" name="Preview" />
+									<a href="@Model.PreviewDownloadUrl">@Model.Preview.Name</a>
+									<div class="previewImageContainer">
+										<img class="form-Preview" width="260" height="140" src="@Model.PreviewDownloadUrl" alt="@Model.Preview.Name" />
+									</div>
+									
+								}
+								else
+								{
+									<input type="hidden" value="0" name="Preview" />
+								}
+								<div class="form-control">
+									<input type="hidden" value="" name="PreviewId" id="PreviewId" />
+									<input type="file" name="PreviewFile" id="Preview-file" class="resource-file" />
+									<div id="Preview-file-name" class="resource-file-name">Select file...</div>
+								</div>
+								<p class="help-block">Optimal image size is 260 width x 140 height.</p>
+								<div class="bg-danger hidden">@Html.ValidationMessage("ImageSizeException")</div>
+								<div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.Preview)</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(m => m.ConnectedTVCreative, new { @class = "col-sm-3 control-label" })
+
+							<div class="form-field col-sm-6">
+								@if (Model.ConnectedTVCreative != null && Model.ConnectedTVCreativeDownloadUrl != null)
+								{
+									<input type="hidden" value="@Model.ConnectedTVCreative.Id" name="Preview" />
+									<a href="@Model.ConnectedTVCreativeDownloadUrl">Download</a>
+								}
+								else
+								{
+									<input type="hidden" value="0" name="ConnectedTVCreative" />
+								}
+								<div class="form-control">
+									<input type="hidden" value="" name="ConnectedTVCreativeId" id="ConnectedTVCreativeId" />
+									<input type="file" name="ConnectedTVCreativeFile" id="ConnectedTVCreative-file" class="resource-file" />
+									<div id="ConnectedTVCreative-file-name" class="resource-file-name">Select file...</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(m => m.ConnectedTVSupport, new { @class = "col-sm-3 control-label" })
+
+							<div class="form-field col-sm-6">
+								@if (Model.ConnectedTVSupport != null && Model.ConnectedTVSupportDownloadUrl != null)
+								{
+									<input type="hidden" value="@Model.ConnectedTVSupport.Id" name="Preview" />
+									<a href="@Model.ConnectedTVSupportDownloadUrl">Download</a>
+								}
+								else
+								{
+									<input type="hidden" value="0" name="ConnectedTVSupport" />
+								}
+								<div class="form-control">
+									<input type="hidden" value="" name="ConnectedTVSupportId" id="ConnectedTVSupportId" />
+									<input type="file" name="ConnectedTVSupportFile" id="ConnectedTVSupport-file" class="resource-file" />
+									<div id="ConnectedTVSupport-file-name" class="resource-file-name">Select file...</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="form-field col-sm-6 col-sm-offset-2">
+								<div id="notifier"></div>
+							</div>
+						</div>
+
+						<div class="form-group validation-summary-container">
+							<div class="form-field col-sm-6 col-sm-offset-2 validation-summary">
+								@Html.ValidationSummary("", new { @class = "bg-danger" })
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8">
+								<button data-nw="save-blueprint" class="btn btn-success" type="submit" style="margin-left: 20px;">@formTitleAction Blueprint</button>
+								<a href="/blueprints" class="btn-cancel">Go back</a>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

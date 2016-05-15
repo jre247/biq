@@ -1,0 +1,291 @@
+﻿{
+	"publishedBy": {
+		"email": "test@brightline.tv",
+		"name": "test tester"
+	},
+	"campaign": {
+		"id": 20198,
+		"name": "OnStar",
+		"product": {
+			"id": 142,
+			"name": "OnStar"
+		},
+		"analytics": {
+
+		},
+		"cms": {
+			"base": "",
+			"key": "20198",
+			"version": ""
+		},
+		"ads": [
+			{
+				"ad_id": 263561,
+				"name": "4G LTE",
+				"tag": null,
+				"url": null,
+				"destination_ad_id": 12,
+				"adType": {
+					"id": 10015,
+					"name": null,
+					"isPromo": false
+				},
+				"features": [
+					{
+						"id": 1361,
+						"featureAdId": 1312,
+						"name": "Life with 4G LTE",
+						"cmsCollection": "",
+						"blueprint": {
+							"id": 7,
+							"name": "Information",
+							"key": "blueprint-combo-gallery"
+						},
+						"pages": {
+							"1": {
+								"page_id": 101185,
+								"name": "Life with 4G LTE",
+								"url": "life-with-4g-lte"
+							}
+						}
+					},
+					{
+						"id": 1363,
+						"featureAdId": 1313,
+						"name": "Benefits of 4G LTE",
+						"cmsCollection": "",
+						"blueprint": {
+							"id": 7,
+							"name": "Information",
+							"key": "blueprint-combo-gallery"
+						},
+						"pages": {
+							"1": {
+								"page_id": 101195,
+								"name": "Benefits of 4G LTE",
+								"url": "benefits-of-4g-lte"
+							}
+						}
+					}
+				],
+				"placement": null,
+				"platform": {
+					"id": 29,
+					"name": "Opera"
+				},
+				"channel": null,
+				"publisher": null,
+				"app": null,
+				"blueprint": null,
+				"coordinates": {
+					"hd": {
+						"x": 33,
+						"y": 44
+					}
+				},
+				"creative": {
+					"id": 1,
+					"name": "4G LTE",
+					"adType": {
+						"id": 10015,
+						"name": null,
+						"isPromo": false
+					},
+					"resources": [
+						{
+							"id": 1,
+							"name": "orange.png",
+							"fileName": "orange.png",
+							"md5Hash": "3jde-aieej-acee",
+							"resourceType": {
+								"id": 1,
+								"name": "SD Image"
+							},
+							"width": 255,
+							"height": 233
+
+						}
+
+					]
+				}
+			},
+			{
+				"ad_id": 263570,
+				"tag": null,
+				"url": null,
+				"destination_ad_id": 14,
+				"adType": {
+					"id": 10001,
+					"name": null,
+					"isPromo": true
+				},
+				"features": null,
+				"placement": {
+					"id": 4,
+					"name": "Samsung AdHub Image Banner"
+				},
+				"platform": {
+					"id": 16,
+					"name": "Samsung"
+				},
+				"channel": {
+					"id": 3,
+					"name": "Samsung AdHub"
+				},
+				"publisher": null,
+				"app": null,
+				"blueprint": null,
+				"creative": null
+			},
+			{
+				"ad_id": 263579,
+				"tag": null,
+				"url": null,
+				"destination_ad_id": 14,
+				"adType": {
+					"id": 10017,
+					"name": "overlay",
+					"isPromo": true
+				},
+				"features": [
+					{
+						"id": 0,
+						"name": null,
+						"cmsCollection": null,
+						"blueprint": {
+							"id": -1,
+							"name": "layout",
+							"key": "blueprint-overlay"
+						},
+						"pages": null
+					}
+				],
+				"placement": {
+					"id": 4,
+					"name": "Samsung AdHub Image Banner"
+				},
+				"platform": {
+					"id": 16,
+					"name": "Samsung"
+				},
+				"channel": {
+					"id": 3,
+					"name": "Samsung AdHub"
+				},
+				"publisher": null,
+				"app": null,
+				"blueprint": null,
+				"creative": null
+			},
+			{
+				"ad_id": 263565,
+				"name": "4G LTE",
+				"tag": null,
+				"url": null,
+				"destination_ad_id": 12,
+				"adType": {
+					"id": 10010,
+					"name": null,
+					"isPromo": false
+				},
+				"features": [
+					{
+						"id": 3357,
+						"name": "Diagnostic Feature",
+						"cmsCollection": "",
+						"blueprint": {
+							"id": 29,
+							"name": "blueprint-diagnostic",
+							"key": "blueprint-diagnostic"
+						},
+						"pages": {
+							"0": {
+								"page_id": 104399,
+								"key": 0,
+								"name": "Page 1",
+								"url": null
+							},
+							"1": {
+								"page_id": 104400,
+								"key": 1,
+								"name": "Page 2",
+								"url": null
+							}
+						}
+					},
+					{
+						"id": 0,
+						"name": null,
+						"cmsCollection": null,
+						"blueprint": {
+							"id": -1,
+							"name": "layout",
+							"key": "blueprint-layout"
+						},
+						"pages": null
+					},
+					{
+						"id": 0,
+						"name": null,
+						"cmsCollection": null,
+						"blueprint": {
+							"id": -1,
+							"name": "nav",
+							"key": "blueprint-horizontal-nav"
+						},
+						"pages": null
+					}
+				],
+				"placement": null,
+				"platform": {
+					"id": 29,
+					"name": "Opera"
+				},
+				"channel": null,
+				"publisher": null,
+				"app": null,
+				"blueprint": null,
+				"coordinates": {
+					"hd": {
+						"x": 33,
+						"y": 44
+					}
+				},
+				"creative": {
+					"id": 1,
+					"name": "4G LTE",
+					"adType": {
+						"id": 10015,
+						"name": null,
+						"isPromo": false
+					},
+					"resources": [
+						{
+							"id": 1,
+							"name": "orange.png",
+							"fileName": "orange.png",
+							"md5Hash": "3jde-aieej-acee",
+							"resourceType": {
+								"id": 1,
+								"name": "SD Image"
+							},
+							"width": 255,
+							"height": 233
+
+						}
+
+					]
+				}
+			}
+		]
+	},
+	"manifestId"
+	:
+	"440a3105-e37d-4c1b-9502-9aeb2f4fc66f",
+	"createdOn"
+	:
+	"2015-04-08T16:02:07.253972Z",
+	"status"
+	:
+	"Created"
+}

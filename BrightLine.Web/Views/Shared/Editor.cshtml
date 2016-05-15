@@ -1,0 +1,193 @@
+﻿@using System.Collections
+@using System.Reflection
+@using BrightLine.Common.Utility.Authentication
+@using BrightLine.Core
+@using BrightLine.Core.Attributes
+@model BrightLine.Core.IEntity
+@{
+    // existing instances will be a proxied object from EF, need base type. New instances will be an IEntity type.
+    var type = (Model.GetType().FullName.Contains("System.Data.Entity.DynamicProxies")) ? Model.GetType().BaseType : Model.GetType();
+    var title = type.Name;
+    var formTitleAction = Model.Id == 0 ? "Create" : "Edit";
+    var formSubmitAction = Model.Id == 0 ? "Create" : "Update";
+    
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var isAdminRoute = HttpContext.Current.Request.Url.Segments[1].ToLower() == "admin/";
+    var ea = ReflectionHelper.TryGetAttribute<EntityAttribute>(type);
+}
+@if (Model == null /* id not found, just display a message and bail. */)
+{
+    <div class="row">
+        <div class="col-md-4 col-md-push-4">
+            <div class="alert alert-info text-center">
+                <h1>Id not found!</h1>
+                <span>There is no data for this id.</span>
+                <br />
+                <br />
+                <button class="btn btn-default" onclick="javascript:window.history.go(-1);">
+                    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Go back
+                </button>
+            </div>
+        </div>
+    </div>
+    return;
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $("[name*='Date']:visible").each(function (e) {
+                var format = ($(this).attr("data-format") || "mm/dd/yy").replace(/\{0:(.+)\}/i, "$1");
+                var date = $(this).val();
+                try {
+                    var d = $.datepicker.parseDate("mm/dd/yy", date);
+                    $(this).val($.datepicker.formatDate(format, d));
+                } catch (e) {
+                    console.log($(this).attr("id") + ": " + e.name + " - " + e.message);
+                }
+                $(this).datepicker({
+                    dateFormat: format,
+                    defaultDate: date
+                });
+            });
+        });
+    </script>
+}
+@section styles{
+    <style type="text/css">
+    </style>
+}
+<div id="campaign">
+    <div id="campaign-content-container" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget stacked">
+                    <div class="widget-header">
+                        <i class="icon-tasks"></i>
+                        <h3>@formTitleAction @title</h3>
+                    </div>
+                    <div class="widget-content">
+                        <form class="form-horizontal col-md-12 backbone-form" method="POST" action="@(isAdminRoute ? "/admin/" : "/")save/@type.Name" enctype="multipart/form-data">
+                            <input type="hidden" name="model" value="@type.Name" />
+
+                            @{
+                                var pis = type.GetProperties().OrderBy(pi =>
+                                {
+                                    var a = pi.GetCustomAttribute<EntityEditorAttribute>();
+                                    return (a != null) ? a.Order : int.MaxValue;
+                                });
+                                foreach (var pi in pis)
+                                {
+                                    var eea = pi.GetCustomAttribute<EntityEditorAttribute>();
+                                    if (eea == null)
+                                    {
+                                        continue;
+                                    }
+                                    if (eea.IsHidden)
+                                    {
+                                        if (eea.IsUserId)
+                                        {
+                                            var value = pi.GetValue(Model);
+                                            var id = ReflectionHelper.TryGetValue(value, "Id") ?? Auth.UserModel.Id;
+                                            @Html.Hidden(pi.Name, id)
+                                        }
+                                        @Html.Hidden(pi.Name)
+                                        continue;
+                                    }
+                                    <div class="form-group">
+                                        @{
+                                    var name = (eea.Display ?? pi.Name);
+                                    if ((!Model.IsNewEntity && !eea.AllowEdit) || eea.DisplayOnly)
+                                    {
+                                        var value = pi.GetValue(Model);
+                                        var display = ReflectionHelper.TryGetValue(value, "Display") ?? ReflectionHelper.TryGetValue(value, "Name") ?? value ?? "Not set";
+                                        <label for="" class="col-sm-2 control-label">@name</label>
+                                            <label class="col-sm-2 control-label">@Html.Label(name)</label>
+                                            <label class="col-sm-2 control-label">@display</label>
+                                    }
+                                    else if (pi.PropertyType.IsEnum)
+                                    {
+                                        <label class="col-sm-2 control-label">@name</label>
+                                            <div class="form-field col-sm-6">
+                                                @Html.SelectEnum(pi.Name, pi.PropertyType, pi.GetValue(Model), htmlAttributes: new { @class = "form-control" })
+                                            </div>
+									}
+									else if (eea.IsFromCollection)
+									{
+										var modelValue = ReflectionHelper.TryGetValue(Model, pi.Name);
+										if (pi.PropertyType.IsArray || pi.PropertyType.GetInterface("IEnumerable") != null) // multiple select
+										{
+											var multiplePropertyType = pi.PropertyType.GetGenericArguments()[0];
+											var multipleEm = EntityManager.GetManager(multiplePropertyType);
+											var multipleList = multipleEm.GetAll().OrderBy<IEntity, string>((e) => e.Display);
+                                            <label class="col-sm-2 control-label">@name</label>
+                                            <div class="form-field col-sm-6">
+                                                @Html.SimpleMultipleSelect(pi.Name, multipleList, "Id", "Display", (IEnumerable)modelValue, htmlAttributes: new { @class = "form-control", style = "height:150px;" })
+                                                @Html.RestrictedActionLink(new[] { AuthConstants.Roles.Admin, AuthConstants.Roles.Developer }, "New " + name.ToLower(), "create", "entity", new { model = multiplePropertyType.Name }, new { @class = "btn btn-success btn-xs pull-right", target = "_blank" })
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            var singlePropertyType = pi.PropertyType;
+                                            var singleEm = EntityManager.GetManager(singlePropertyType);
+                                            var singleList = singleEm.GetAll().OrderBy<IEntity, string>((e) => e.Display);
+                                            var propertyValue = ReflectionHelper.TryGetValue(modelValue, "Id");
+                                            <label class="col-sm-2 control-label">@name</label>
+                                            <div class="form-field col-sm-6">
+                                                @Html.SimpleSelect(pi.Name, singleList, "Id", "Display", propertyValue, true, htmlAttributes: new { @class = "form-control" })
+                                                @Html.RestrictedActionLink(new[] { AuthConstants.Roles.Admin, AuthConstants.Roles.Developer }, "New " + name.ToLower(), "create", "entity", new { model = singlePropertyType.Name }, new { @class = "btn btn-success btn-xs pull-right", target = "_blank" })
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <label class="col-sm-2 control-label">@name</label>
+                                            <div class="form-field col-sm-6">
+                                                @Html.TextBox(pi.Name, pi.GetValue(Model), htmlAttributes: new { @class = "form-control" })
+                                            </div>
+                                    }
+                                        }
+                                    </div>
+                                }
+
+                                if (ea != null && ea.HasFile)
+                                {
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">File upload</label>
+                                        <div class="form-field col-sm-6">
+                                            <input type="file" name="Resource" id="resource-file" class="resource-file" />
+                                            <div id="resource-file-name" class="resource-file-name">Select file...</div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+                            <div class="form-group">
+                                <div class="form-field col-sm-6 col-sm-offset-2">
+                                    <div id="notifier"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group validation-summary-container">
+                                <div class="form-field col-sm-6 col-sm-offset-2 validation-summary">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button class="btn save btn-success" type="submit" style="margin-left: 20px;">@formSubmitAction @title</button>
+                                    <a href="@(isAdminRoute ? "/admin/" : "/")list/@type.Name" class="btn-cancel">Go back</a>
+                                    @*<button id="cancelCreate" class="btn btn-default" type="reset" onclick="javascript:window.location.href='@(isAdminRoute ? "/admin/" : "/")list/@type.Name';">Cancel</button>
+                                    <button class="btn btn-success" type="submit">Save</button>*@
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

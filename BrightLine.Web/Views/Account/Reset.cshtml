@@ -1,0 +1,55 @@
+﻿@using BrightLine.Web
+@model BrightLine.Common.ViewModels.Account.ResetViewModel
+@{
+    ViewBag.Title = "Reset";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+@section styles{
+    <link href="@Url.Content(string.Format("/assets/stylesheets/account.css{0}", string.Format("?c={0}", MvcApplication.AppIdentifier)))" rel="stylesheet" type="text/css" />
+}
+<div class="account-precontainer">
+    <div class="account-container">
+        <div class="content clearfix">
+
+
+            @if (!Model.Completed)
+            {
+                <h1>Reset Password</h1>
+                using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <div class="bg-danger validation-summary">
+                            @Html.ValidationSummary(false)
+                        </div>
+                    </div>
+                    if (!Model.Invalid)
+                    {
+                        <div class="form-group border-top border-bottom">
+                            <i class="fa fa-lock"></i>
+                            <label for="password">Password:</label>
+                            @Html.PasswordFor(m => m.Password, new { name = "password", placeholder = "Password", @class = "form-control" })
+                        </div>
+    			<!-- /control-group -->
+
+                        <div class="form-group">
+                            <button class="button btn btn-success" style="width: 100%">Reset Password</button>
+                        </div>
+                        @Html.HiddenFor(m => m.Token)
+                        @Html.HiddenFor(m => m.SecondaryToken)
+			<!-- .actions -->
+                    }
+                }
+            }
+            else
+            {
+                <h1>Reset Successful</h1>
+                <p>Your password has been reset successfully. Click <a href="/">here</a> to login.</p>
+            }
+        </div>
+        <!-- /content -->
+        <div class="login-extra">
+            <a href="/">Go back</a>
+        </div>
+    </div>
+</div>
+

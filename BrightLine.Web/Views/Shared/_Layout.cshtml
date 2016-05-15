@@ -1,0 +1,130 @@
+@using BrightLine.Common.Utility.Authentication
+@using System.Configuration
+@{
+	bool showAdmin = (Auth.IsUserInAnyRole(AuthConstants.Roles.Developer, AuthConstants.Roles.Admin)) || (ViewBag.ShowAdminToggle != null && ViewBag.ShowAdminToggle == true);
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>BrightLine iQ - @ViewBag.Title</title>
+	<link rel="shortcut icon" href="/Content/img/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+	@Styles.Render("~/css/less.css", "~/css/bl.css")
+	@RenderSection("styles", required: false)
+	@*	<script type="text/javascript">
+		var heap = heap || []; heap.load = function (a) { window._heapid = a; var b = document.createElement("script"); b.type = "text/javascript", b.async = !0, b.src = ("https:" === document.location.protocol ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap.js"; var c = document.getElementsByTagName("script")[0]; c.parentNode.insertBefore(b, c); var d = function (a) { return function () { heap.push([a].concat(Array.prototype.slice.call(arguments, 0))) } }, e = ["identify", "track"]; for (var f = 0; f < e.length; f++) heap[e[f]] = d(e[f]) }; heap.load("1293843340");
+	</script>*@
+</head>
+<body>
+	<div id="wrap">
+		@Html.Partial("_Nav")
+		<div class="container-fluid" id="main-content">
+			<div id="flash-message" class=""></div>
+			@RenderBody()
+		</div>
+		<!--/.fluid-container-->
+		<div id="push"></div>
+	</div>
+	<!-- /#wrap -->
+	<div id="footer">
+		<div class="container-fluid">
+			<p class="copyright">&copy; @DateTime.Now.Year.ToString() <a href="http://brightline.tv">BrightLine</a></p>
+			<div class="message-box pull-right">
+			</div>
+		</div>
+	</div>
+
+	<script> var _blenv = '@Env.Name.ToLower()'</script>
+	@Scripts.Render("~/js/core.js", "~/js/modules.js", "~/js/brightline-common.js")
+	@RenderSection("scripts", required: false)
+	<script type="text/javascript">
+		analytics.initialize({ 'Google Analytics': 'UA-43175601-1', 'Mixpanel': { token: 'e92eaaf0cb0bd298b3c385cdccd53026', people: true } });
+        @if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
+		{ <text>analytics.identify('@HttpContext.Current.User.Identity.Name'); </text> }
+        @if (@Env.IsProd)
+		{ <text>analytics.pageview(); analytics.track('Page View', {});</text> }
+	</script>
+
+	<script>
+		// Show any pending messages( from the server - message is saved in a cookie ).
+		$(document).ready(function () {
+			BLMessage.show();
+		});
+	</script>
+	@Html.RestrictedAspect(showAdmin, @<text>
+	<style type="text/css">
+		.toggle-admin-on, .toggle-admin-off {
+			margin: 13px 0px 0px 0px;
+			border-radius: 3px;
+			padding: 1px 10px;
+			display: none;
+		}
+
+		.toggle-admin-on {
+			background-color: #005e00 !important;
+		}
+
+			.toggle-admin-on:hover {
+				background-color: #007e00 !important;
+			}
+
+			.toggle-admin-on:active {
+				background-color: #003e00 !important;
+			}
+
+		.toggle-admin-off {
+			background-color: #5e0000 !important;
+			background-position: -310px -70px;
+		}
+
+			.toggle-admin-off:hover {
+				background-color: #7e0000 !important;
+			}
+
+			.toggle-admin-off:active {
+				background-color: #3e0000 !important;
+			}
+	</style>
+	<script type="text/javascript">
+		var admin_mode_cookie_name = "ADMIN-MODE";
+		var admin_mode_cookie = $.cookie(admin_mode_cookie_name);
+		console.log(admin_mode_cookie);
+		(function () {
+			if (admin_mode_cookie === "administrating") {
+				$(".admin-only").show();
+				$(".toggle-admin-on").hide();
+				$(".toggle-admin-off").show();
+			} else {
+				$(".admin-only").hide();
+				$(".toggle-admin-on").show();
+				$(".toggle-admin-off").hide();
+			}
+		})(admin_mode_cookie);
+
+		$(document).ready(function () {
+			$(".toggle-admin").click(function (e) {
+				if (!admin_mode_cookie) {
+					// set the admin_mode_cookie object to the new cookie
+					admin_mode_cookie = $.cookie(admin_mode_cookie_name, "administrating");
+					// show admin elements
+					$(".admin-only").show();
+					$(".toggle-admin-on").hide();
+					$(".toggle-admin-off").show();
+				} else {
+					// clear the cookie, then clear the reference
+					admin_mode_cookie = $.removeCookie(admin_mode_cookie_name);
+					// hide admin elements
+					$(".admin-only").hide();
+					$(".toggle-admin-on").show();
+					$(".toggle-admin-off").hide();
+				}
+				console.log(admin_mode_cookie);
+			});
+		});
+	</script>
+	</text>)
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+﻿@using BrightLine.CMS
+@using BrightLine.Common.Models
+
+@model List<CampaignContentModelInstance>
+@{
+    ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var displayName = (string)ViewData["campaignName"];
+	var campaignId = (int)ViewData["campaignId"];
+    var schemaId = (int) ViewData["schemaId"];
+	var tagName = (string)ViewData["tagName"];
+	var modelType = (string)ViewData["modelType"];
+}
+
+@section scripts {
+	
+}
+
+<div class="row cfww">
+	<div class="">
+		<ul class="breadcrumb">
+			<li><a href="/cms">CMS</a></li>
+			<li><a href="/cms/schemas/@campaignId">@displayName</a></li>
+			@if (string.IsNullOrWhiteSpace(modelType))
+			{
+				<li>@tagName</li>
+			}
+			else
+			{
+				<li><a href="/cms/models/@schemaId">@tagName</a></li>
+				<li>@modelType</li>
+			}
+		</ul>
+	</div>
+</div>
+
+<div class="row cfww">
+    <a style='margin-bottom: 10px;' data-toggle='modal' href='/cms/edit/@schemaId' role='button' class='btn btn-default'>Edit Content</a>
+	<div class="span12">	
+		<div class="widget widget-table">
+			<div class="widget-header">
+				<span class="icon-list-alt"></span>
+				<h3>Model Instances</h3>
+			</div>
+			<!-- .widget-header -->
+			<div class="widget-content" id='resourceDocs-widget'>
+				<table id="resourceDocs" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Model</th>	   
+							<th>Publishable</th>
+							<th>Key</th>
+							<th>Id</th>
+							<th>Date Modified</th>
+                            <th>JSON Raw</th>
+						    <th>JSON Published</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var instance in Model.OrderByDescending(o => o.IsPublishable))
+						{
+						    var publishedFileName = CmsHelper.BuildInstanceFileName(campaignId, instance, false);
+                            var rawFileName = CmsHelper.BuildInstanceFileName(campaignId, instance, true);
+							<tr>							
+								<td>@instance.ModelName</td>  
+								<td>@instance.IsPublishable</td>
+								<td>@instance.Key</td>	   
+								<td>@instance.Id</td>
+								<td>@(instance.DateUpdated.HasValue ? @instance.DateUpdated : @instance.DateCreated)</td>
+							    <td><a href="/cms/instanceraw/@instance.Id">Download</a> - <a href="/cms/instanceraw/@instance.Id?type=json">View </a></td>
+							    <td><a href="/cms/instancepublished/@instance.Id">Download</a> - <a href="/cms/instancepublished/@instance.Id?type=json">View</a></td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<!-- .widget-content -->
+		</div>
+		<!-- /widget -->
+	</div>
+	<!-- /span12 -->
+</div>

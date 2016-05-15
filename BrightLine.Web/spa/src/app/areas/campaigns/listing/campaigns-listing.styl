@@ -1,0 +1,318 @@
+#campaign-listing{
+  padding: 20px 0
+  margin-left: -15px
+  margin-right: -15px
+  width: initial
+}
+#listing-nav{
+  &> .row {
+    margin: 0
+    line-height: 30px
+    background: #fff
+    padding: 6px 0
+    border-bottom: 1px solid #cecece
+  }
+  
+  .nav-campaigns-left {
+    padding-right: 0
+    width: 480px
+    
+    .nav-campaigns-length {
+      color: #778295
+      margin-left: 15px
+      font-size: 13px
+      line-height: 34px
+      float: left
+      min-width: 130px
+    }
+    
+    .nav-campaigns-search {
+      width: 300px
+      float: left
+    }
+    
+    .nav-campaigns-search input[type='text']{
+      /*width: calc(100% - 35px)*/
+    }
+  }
+
+
+  .nav-campaigns-right {
+    text-align: right
+    -user-select: none
+    -webkit-user-select: none
+    -moz-user-select: none
+    padding-left: 0
+    width: 660px
+    height: 34px
+    
+    .nav-campaigns-sorts {
+      text-align: left
+      min-width: 250px
+      
+      button {
+        background-image: none
+        background: #fff
+        border: 1px solid #ccc
+        
+        &.starred {
+          background: #3276b1
+          border: 1px solid transparent
+          color: #fff
+        }
+      }
+      
+      .btn-filter-favorites{
+        i{
+          margin-right: 5px
+        }
+      }
+    }
+    
+    .nav-campaigns-create {
+      text-align: right
+      max-width: 50%
+      /*min-width: 180px
+      float: right*/
+    }
+    
+    #status-filter-container{
+      display: inline-block;
+      line-height: initial;
+      height: 34px
+      position: relative
+      margin-left: 5px
+    
+      .status-filter{
+        &>div{display: inline-block}
+        .status-filter-select-container{
+          width: 135px
+          display: inline-block
+          line-height: 16px
+          cursor: pointer
+          
+          .Select{
+            top: -6px
+          }
+        }
+        .status-filter-reset{
+          margin: 0 0 0 10px
+          cursor: pointer
+          color: #ccc
+          display: none
+        }
+        
+        display: inline-block
+        width: 135px
+      }
+    }
+  }
+} 
+
+#nav-campaigns-list {
+  background: #fff
+  border-bottom: 1px solid #eaecf1
+  padding: 25px 0
+  margin: 0 0 32px
+  line-height: 12px
+  -user-select: none
+  -webkit-user-select: none
+  -moz-user-select: none
+}
+
+
+
+@media (max-width: 1254px) {
+  #campaigns-list{
+    justify-content: center
+  }
+}
+
+@media (min-width:1088px) {
+  .nav-campaigns-left{
+  }
+}
+@media (min-width:925px) and  (max-width: 1087px) {
+  /*Stack the listing info length underneath the search*/
+  .nav-campaigns-left{
+  }
+  .nav-campaigns-left .nav-campaigns-length{
+    display: block
+    margin-left: 60px
+  }
+}
+
+
+#campaigns-list {
+  padding: 0
+  margin: 0 0 40px
+  clear: both
+  min-height: 100px
+  background-color: #fff
+  // display: flex
+  // flex-wrap: wrap
+          
+  .campaigns-item {
+    width: 253px
+    height: 220px
+    padding: 0
+    margin: 30px 16px 10px
+    position: relative
+    list-style: none
+    background: #fff
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.25)
+    float: left
+    
+    .campaigns-item-body {
+      padding: 10px 10px 0
+      height: 170px
+      position: relative
+      
+      .campaigns-item-body-overlay {
+        opacity: 0
+        width: 233px
+        height: 160px
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 2
+        margin: 10px 10px 0
+        padding: 10px
+        background: rgba(37,44,58,.88)
+        color: #fff
+        text-decoration: none
+      }
+      
+      .campaigns-item-body-logo {
+        background: center center no-repeat
+        background-size: cover
+        width: 100%
+        height: 100%
+        position: relative
+        z-index: 1
+      }
+    }
+    
+    .campaigns-item-footer {
+      background: #fff
+      padding: 10px
+      margin: 0
+      height: 50px
+      
+      .glyphicon {
+        font-size: 16px
+        text-align: center
+        line-height: 19px
+        cursor: pointer
+        top: 3px
+        margin-right: 10px
+      }
+      
+      .glyphicon + .glyphicon {
+        border-left: 1px solid #ddd
+      }
+      
+      .campaigns-item-footer-name {
+        display:block
+        line-height: 30px
+        
+        .campaigns-item-footer-time {
+          float: right
+        }
+      }
+      
+      .campaigns-item-footer-tools {
+        display: none
+        text-align: right
+        
+        &> a {
+          width: 37px
+          height: 30px
+          line-height: 27px
+          // overflow: hidden
+          padding: 0 10px
+          border: 1px solid transparent
+          border-radius: 2px
+          cursor: pointer
+          float:right
+          position: relative
+          text-decoration: none
+          top: 0px
+          left: 0px
+          
+          // &:hover {
+          //   border: 1px solid #428bca
+          //   color: #428bca
+          //   width: auto            
+          // }
+        }
+      }
+    }
+  }
+  .campaigns-item:hover{
+    
+    .campaigns-item-body-overlay {
+      opacity: 1
+      transition: opacity .2s
+    }
+    
+    .campaigns-item-body-overlay > span {
+      display: block
+    }
+    
+    .campaigns-item-footer-name {
+      display: none
+    }
+    
+    .campaigns-item-footer-tools {
+      display: block
+    }
+  }
+  
+  .col-actions{
+    width: 260px
+  }
+  
+  .gridlist-item-list{
+    .col-begin-date, .col-end-date{
+      width: 120px
+    }
+  }
+}
+
+    
+
+.inline {
+  display: inline-block
+}
+
+
+.btn-sort {
+  margin: 0 3px
+  color: #000
+  display: inline
+  cursor: pointer
+  position: relative
+}
+
+.btn-sort > i{
+  position: absolute
+  top: 9px
+  right: 7px
+}
+.btn-sort-active{
+  padding-right: 26px
+  background-color: #3276b1 !important
+  color: #fff !important
+}
+
+
+#listing-content > #loading-container {
+  padding-top: 15em
+}
+  
+ul[id^='select2-CampaignsListingCampaignStatusFilter']{
+  & > li:first-child{
+    display: none
+  }
+}

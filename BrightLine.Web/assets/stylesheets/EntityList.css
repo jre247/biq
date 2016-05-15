@@ -1,0 +1,20 @@
+﻿tr.odd td.sorting_1 {
+	background-color: #f9f9f9 !important;
+}
+
+tr.even td.sorting_1 {
+	background-color: #fff !important;
+}
+
+div.dataTables_info {
+	width: 100%;
+	padding: 5px 10px 5px 20px;
+	border-top: 2px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.glyphicon {
+	margin-right: 8px;
+}
+
+

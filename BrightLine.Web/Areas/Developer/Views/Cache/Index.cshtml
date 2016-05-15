@@ -1,0 +1,72 @@
+﻿@using BrightLine.Common.Framework
+@model BrightLine.Web.Areas.Developer.Models.CacheModel
+@{
+    ViewBag.Title = "Cache";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a href="/developer/cache/purge" role="button" class="btn btn-sm btn-warning">Purge</a>
+        <a href="/developer/cache" role="button" class="btn btn-sm btn-warning">Refresh</a>
+    </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="col-md-12">
+        <div class="widget widget-table">
+            <div class="widget-header">
+                <h3>Cache List</h3>
+            </div>
+            <div class="widget-content">
+                <div class="table-responsive">
+                    <table id="cacheEntriesList" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>Key</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Auto-fetched</th>
+                                <th>Total Reads</th>
+                                <th>Minutes To Keep</th>
+                                <th>Minutes Remaining </th>
+                                <th>Expires</th>
+                                <th>Last Accessed</th>
+                                <th>Last Modified</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CacheMetaItems)
+                            {
+                                <tr>
+                                    <td><a href='@string.Format("/developer/cache/remove?key={0}", item.Key)'>Remove</a></td>
+                                    <td>
+                                        @if (item.IsAutoRefreshed())
+                                        {
+                                            <a href='@string.Format("/developer/cache/refresh?key={0}", item.Key)'>Refresh</a>
+                                        }
+                                        else
+                                        {
+                                            <text>&nbsp;</text>
+                                        }
+                                    </td>
+                                    <td>@item.Key</td>
+                                    <td>@item.StringVal</td>
+                                    <td><span title="@item.Type">@item.Type.Truncate(20)</span></td>
+                                    <td>@item.IsAutoRefreshed()</td>
+                                    <td>@item.AccessCount</td>
+                                    <td>@item.ExpirationMinutes</td>
+                                    <td>@item.GetMinutesLeftForExpiration(false)</td>
+                                    <td>@item.Expires.ToString("MM/dd/yy  h:mm tt")</td>
+                                    <td>@item.LastAccessTime.ToString("MM/dd/yy  h:mm tt")</td>
+                                    <td>@item.LastUpdated.ToString("MM/dd/yy  h:mm tt")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

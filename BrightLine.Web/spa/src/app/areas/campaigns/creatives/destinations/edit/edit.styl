@@ -1,0 +1,66 @@
+#destination-edit{
+  #features-and-blueprints{
+    padding: 0 20px 20px
+    
+    .feature-fields-and-models-listing-container{
+        position: relative
+        padding-top: 30px
+      
+      &+.feature-fields-and-models-listing-container{
+        border-top: 1px solid #ccc;
+      }
+      
+      &>div{
+        float: left
+      }
+      
+      .remove-feature{
+        position: absolute
+        right: 0
+        top: 0
+        margin: 5px 0
+        text-decoration: none
+        display: block
+        color: #929292
+        
+        .fa-times{
+          font-size: 16px
+        }
+      }
+      
+      .feature-fields-container{
+        padding-top: 0
+        
+        .fieldview{
+          padding-left: 0
+        }
+      }
+    }  
+  }
+  
+
+
+  #add-feature-container{
+    margin-left: 20px
+    #add-feature{
+      width: 210px
+      margin: 0 !important
+      
+      .Select{
+        position: relative !important
+        
+        .Select-menu-outer{
+          max-height: initial
+            
+          .Select-menu{
+            max-height: initial
+          }
+        }
+      }
+    }
+  }
+  
+  .section+.section{
+    border-top: 1px solid #ccc
+  }
+}

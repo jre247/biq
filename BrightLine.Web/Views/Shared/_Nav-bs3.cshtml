@@ -1,0 +1,124 @@
+﻿@using BrightLine.Common.Framework
+@using BrightLine.Common.Utility.Authentication;
+@using BrightLine.Common;
+@using BrightLine.Common.Services;
+@using BrightLine.Utility.Menus
+@{
+	var rolesRepo = IoC.Resolve<IRoleService>();
+
+    var isAuthenticated = Auth.IsAuthenticated();
+    var isDeveloper = Auth.IsUserInAnyRole(AuthConstants.Roles.Developer);
+    var isRealAdmin = Auth.Service.IsAdmin(true);
+	var roles = rolesRepo.GetAll();
+    var menu = IoC.Resolve<Menu>();
+    var activeTab = BrightlineHtmlHelper.GetControllerName() + "-tab";
+    bool showAdmin = (Auth.IsUserInAnyRole(AuthConstants.Roles.Developer, AuthConstants.Roles.Admin)) || (ViewBag.ShowAdminToggle != null && ViewBag.ShowAdminToggle == true);
+    var toggleAssetRefActive = HttpContext.Current.Request.Cookies.Get("assetReference") != null ? true : false;
+    var toggleAssetRefClass = toggleAssetRefActive ? "active" : "inactive";
+}
+@if (isAuthenticated)
+{
+    <div id="nav" class="navbar navbar-inverse navbar-default">
+        <div class="cfww">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/campaigns"><img src="/content/img/logo_brightline.png" /></a>
+            </div>
+            <div class="">
+                <ul class="nav pull-right navbar-nav">
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">@HttpContext.Current.User.Identity.Name.ToLower()<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/account/settings">Profile</a>
+                            </li>
+                            <li>
+                                <a href="/account/signout">Sign out</a>
+                            </li>
+                            @if (isRealAdmin)
+                            {
+                                <li class="divider"></li>
+                                <li>
+                                    <a tabindex="-1" onclick="utility.admin.clearCache();">Clear Cache</a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Change Role</a>
+                                    <ul class="dropdown-menu pull-left">
+                                        <li>
+                                            <a href="/account/resetrole">Reset Role</a>
+                                            @if (!string.IsNullOrWhiteSpace(AuthWebAdminHelper.OverriddenRole))
+                                            {
+                                            <li><a>Override: @AuthWebAdminHelper.OverriddenRole</a></li>
+                                            }
+                                            <li class="divider"></li>
+                                            @foreach (var role in roles.Where(r => r.Name != AuthConstants.Roles.Admin).OrderBy(o => o.Name))
+                                            {
+                                                <li><a href="/account/changerole?id=@role.Id">@role.DisplayName</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-left" id="nav-main-items">
+                    @foreach (var menuItem in menu.Items)
+                    {
+                        // Use some kind of role cache ? Possibly in Auth.IsInAnyRole.
+                        var canShow = menuItem.Roles.Length == 0 || Auth.IsUserInAnyRole(menuItem.Roles);
+                        if (canShow)
+                        {
+                            var activeClass = "";
+                            if (menuItem.CssId == activeTab)
+                            {
+                                activeClass = "class=\"active\"";
+                                if (menuItem.HasSubmenu())
+                                {
+                                    activeClass = "active";
+                                }
+                            }
+
+                            if (!menuItem.HasSubmenu())
+                            {
+
+                                <li id="@menuItem.CssId" @Html.Raw(activeClass)>@Html.ActionLink(menuItem.Text, menuItem.Action, menuItem.ControllerName, routeValues: menuItem.RouteValues, htmlAttributes: menuItem.HtmlAttributes)</li>
+                            }
+                            else
+                            {
+                                <li id="@menuItem.CssId" class="dropdown @activeClass">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">@menuItem.Text<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var subMenuItem in menuItem.Children)
+                                        {
+                                            if (!subMenuItem.HasSubmenu())
+                                            {
+
+                                                <li>@Html.ActionLink(subMenuItem.Text, subMenuItem.Action, subMenuItem.ControllerName, routeValues: subMenuItem.RouteValues, htmlAttributes: subMenuItem.HtmlAttributes)</li>
+                                            }
+                                            else
+                                            {
+
+                                                <li class="dropdown-submenu">
+                                                    <a tabindex="-1" href="#">@subMenuItem.Text</a>
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var secondaryMenuItem in subMenuItem.Children)
+                                                        {
+
+                                                            <li>@Html.ActionLink(secondaryMenuItem.Text, secondaryMenuItem.Action, secondaryMenuItem.ControllerName, routeValues: secondaryMenuItem.RouteValues, htmlAttributes: secondaryMenuItem.HtmlAttributes)</li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+
+        </div>
+    </div>
+}

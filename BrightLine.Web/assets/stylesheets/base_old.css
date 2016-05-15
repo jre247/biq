@@ -1,0 +1,503 @@
+﻿/*************************************************************************
+ base.css
+*************************************************************************/
+html {
+	min-height: 100%;
+	height: 100%;
+}
+
+body {
+	overflow-y: scroll;
+	min-height: 100%;
+	height: 100%;
+}
+
+a {
+	cursor: pointer;
+}
+
+#footer {
+	background: #2f343b;
+	width: 100%;
+}
+
+#footer, #push {
+	height: 42px;
+}
+
+	#footer p.copyright {
+		color: #fff;
+		float: left;
+		width: 200px;
+		padding: 10px;
+		margin: 0;
+	}
+
+		#footer p.copyright a {
+			color: #08c;
+			padding-left: 10px;
+		}
+
+			#footer p.copyright a:hover, #footer p.copyright a:active {
+				color: #005580;
+			}
+
+label.checkbox, label.radio {
+	display: block;
+	font-weight: normal;
+	width: 100%;
+	border: 1px solid #eeeeee;
+	border-top-color: transparent;
+	cursor: pointer;
+	padding-left: 25px;
+}
+
+	label.checkbox:hover, label.radio:hover {
+		color: #2a6496;
+		background: #f2f9ff !important;
+		border: 1px solid #d8dee5;
+	}
+
+	label.checkbox:active, label.radio:active {
+		color: #2a6496;
+		background: #edf4fb !important;
+	}
+
+.sub-menu {
+	float: right;
+	width: auto;
+	white-space: nowrap;
+}
+
+	.sub-menu .btn:not(.active):not(.disabled), .sub-menu .btn input[type="button"]:not(.active):not(.disabled) {
+		background-color: rgb(168, 168, 168);
+	}
+
+	.sub-menu button,
+	.sub-menu input[type="button"],
+	.sub-menu .btn {
+		display: block;
+		float: left;
+		height: 40px;
+		width: 100px;
+		padding: 5px 10px;
+		margin: 0px 0px 5px 10px;
+		border: 1px solid rgb(188, 188, 188);
+		border-radius: 4px;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 10px;
+		color: white;
+		white-space: normal;
+		line-height: 15px;
+		background-color: #8D8D8D;
+		background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(178, 178, 178) 0%), to(rgb(141, 141, 141) 100%));
+		background-image: -webkit-linear-gradient(top, rgb(178, 178, 178) 0%,rgb(141, 141, 141) 100%);
+		background-image: -moz-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(141, 141, 141) 100%);
+		background-image: -ms-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(141, 141, 141) 100%);
+		background-image: -o-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(141, 141, 141) 100%);
+	}
+
+		.sub-menu button a,
+		.sub-menu input[type="button"] a,
+		.sub-menu .btn a {
+			color: white;
+			text-decoration: none;
+			border: 0px;
+		}
+
+		.sub-menu button.active,
+		.sub-menu input[type="button"].active,
+		.sub-menu .btn.active {
+			background: #ffffff;
+			border: 1px solid #333;
+			border-bottom: 2px solid #2EA1CF;
+			cursor: default;
+			color: black;
+		}
+
+			.sub-menu button.active a,
+			.sub-menu input[type="button"].active a,
+			.sub-menu .btn.active a {
+				color: black;
+				text-decoration: none;
+				cursor: default;
+				border: 0px;
+				cursor: default;
+			}
+
+		.sub-menu button.disabled,
+		.sub-menu input[type="button"].disabled,
+		.sub-menu .btn.disabled {
+			border: 1px solid #999;
+			background: #353535;
+			cursor: default;
+		}
+
+			.sub-menu button.disabled a,
+			.sub-menu input[type="button"].disabled a,
+			.sub-menu .btn.disabled a {
+				color: #6C6C6C;
+				text-decoration: none;
+				cursor: default;
+			}
+
+		.sub-menu button:not(.active):not(.disabled),
+		.sub-menu input[type="button"]:not(.active):not(.disabled),
+		.sub-menu .btn:not(.active):not(.disabled) {
+			background-color: rgb(168, 168, 168);
+		}
+
+			.sub-menu button:not(.active):not(.disabled):hover,
+			.sub-menu input[type="button"]:not(.active):not(.disabled):hover,
+			.sub-menu .btn:not(.active):not(.disabled):hover {
+				background-color: rgb(120, 120, 120);
+				background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(178, 178, 178) 0%), to(rgb(120, 120, 120) 100%));
+				background-image: -webkit-linear-gradient(top, rgb(178, 178, 178) 0%,rgb(120, 120, 120) 100%);
+				background-image: -moz-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(120, 120, 120) 100%);
+				background-image: -ms-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(120, 120, 120) 100%);
+				background-image: -o-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(120, 120, 120) 100%);
+			}
+
+			.sub-menu button:not(.active):not(.disabled):active,
+			.sub-menu input[type="button"]:not(.active):not(.disabled):active,
+			.sub-menu .btn:not(.active):not(.disabled):active {
+				background-color: rgb(188, 188, 188);
+				background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(178, 178, 178) 0%), to(rgb(188, 188, 188) 100%));
+				background-image: -webkit-linear-gradient(top, rgb(178, 178, 178) 0%,rgb(188, 188, 188) 100%);
+				background-image: -moz-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(188, 188, 188) 100%);
+				background-image: -ms-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(188, 188, 188) 100%);
+				background-image: -o-linear-gradient(top, rgb(178, 178, 178) 0%, rgb(188, 188, 188) 100%);
+			}
+
+.rating {
+	display: inline;
+	background-image: url(/Content/img/bootstrap-3.1.1/4-star-rating.png);
+	width: 64px;
+	height: 16px;
+}
+
+.distribution-point .rating {
+	margin: 0px 0px 5px 0px;
+	float: right;
+}
+
+label .rating {
+	margin: 3px 15px;
+	float: left;
+}
+
+.rating-0 {
+	background-position: 0px 0px;
+}
+
+.rating-1 {
+	background-position: 16px 0px;
+}
+
+.rating-2 {
+	background-position: 32px 0px;
+}
+
+.rating-3 {
+	background-position: 48px 0px;
+}
+
+.rating-4 {
+	background-position: 64px 0px;
+}
+
+.glyphicon-action {
+	cursor: pointer;
+}
+
+.disabled {
+	cursor: not-allowed;
+}
+
+tr > td.disabled, tr.disabled > td {
+	opacity: .5;
+	background-color: rgba(221, 221, 221, 0.5) !important;
+}
+
+.action {
+	cursor: pointer;
+}
+
+	.action:hover *:not(div) {
+		color: #2a6496;
+		background: #f6f6ff !important;
+		background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f6f6ff), to(#f9f9ff)) !important;
+		background-image: -webkit-linear-gradient(top, #f6f6ff, 0%, #f9f9ff, 100%) !important;
+		background-image: -moz-linear-gradient(top, #f6f6ff 0%, #f9f9ff 100%) !important;
+		background-image: linear-gradient(to bottom, #f6f6ff 0%, #f9f9ff 100%) !important;
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff6f6ff', endColorstr='#fff9f9ff', GradientType=0) !important;
+	}
+
+.action-delete {
+	color: #5e0000;
+}
+
+	.action-delete:hover {
+		color: #7e0000;
+	}
+
+	.action-delete:active {
+		color: #3e0000;
+	}
+
+.action-edit {
+	color: #428bca;
+}
+
+	.action-edit:hover {
+		color: #2a6496;
+	}
+
+	.action-edit:active {
+		color: #1a5486;
+	}
+
+.action-add {
+	color: #005e00;
+}
+
+	.action-add:hover {
+		color: #007e00;
+	}
+
+	.action-add:active {
+		color: #003e00;
+	}
+
+.breadcrumb {
+	border: 1px solid #d5d5d5;
+}
+
+	.breadcrumb > li {
+		padding: 0px;
+		display: inline-block;
+	}
+
+.table > tfoot {
+	background: #f5f5f5;
+	background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f5f5f5), to(#ffffff));
+	background-image: -webkit-linear-gradient(top, #f5f5f5, 0%, #ffffff, 100%);
+	background-image: -moz-linear-gradient(top, #f5f5f5 0%, #ffffff 100%);
+	background-image: linear-gradient(to bottom, #f5f5f5 0%, #ffffff 100%);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffffffff', GradientType=0);
+}
+
+	.table > tfoot > tr > td {
+		padding: 2px 8px;
+	}
+
+td.glyphicon-action div {
+	margin: 0px auto;
+}
+
+.table-nested {
+	border-radius: 0px;
+	border-width: 0px;
+	border-bottom-width: 1px;
+}
+
+	.table-nested tbody tr:first-child td {
+		border-top: 0px;
+	}
+
+	.table-nested tbody tr td:first-child {
+		border-left: 0px;
+	}
+
+	.table-nested tbody tr td:last-child {
+		border-right: 0px;
+	}
+
+.tristate-check-off {
+	background: url(/Content/img/bootstrap-3.1.1/3-state-check.png) no-repeat 0px 0px;
+	height: 14px;
+	width: 14px;
+	overflow: hidden;
+}
+
+	.tristate-check-off:hover {
+		background-position: 0px -14px;
+	}
+
+	.tristate-check-off:active {
+		background-position: 0px -28px;
+	}
+
+.tristate-check-on {
+	background: url(/Content/img/bootstrap-3.1.1/3-state-check.png) no-repeat -14px 0px;
+	height: 14px;
+	width: 14px;
+	overflow: hidden;
+}
+
+	.tristate-check-on:hover {
+		background-position: -14px -14px;
+	}
+
+	.tristate-check-on:active {
+		background-position: -14px -28px;
+	}
+
+.tristate-check-partial {
+	background: url(/Content/img/bootstrap-3.1.1/3-state-check.png) no-repeat -28px 0px;
+	height: 14px;
+	width: 14px;
+	overflow: hidden;
+}
+
+	.tristate-check-partial:hover {
+		background-position: -28px -14px;
+	}
+
+	.tristate-check-partial:active {
+		background-position: -28px -28px;
+	}
+
+.stacked-radio input[type='radio'] {
+	vertical-align: text-top;
+}
+
+.stacked-radio label {
+	margin-left:5px;
+}
+
+/*************************************************************************
+ overwrite some of the datatable properties to make it look better. 
+*************************************************************************/
+table.dataTable tr.odd {
+	background-color: #fafafa;
+}
+
+table.dataTable tr.even {
+	background-color: #ffffff;
+}
+
+table.dataTable tr.odd td.sorting_1, table.dataTable tr.odd td.sorting_2, table.dataTable tr.odd td.sorting_3 {
+	background-color: #f5f5f5 !important;
+}
+
+table.dataTable tr.even td.sorting_1, table.dataTable tr.even td.sorting_2, table.dataTable tr.even td.sorting_3 {
+	background-color: #fafafa !important;
+}
+
+table.dataTable thead tr {
+	background-color: #FFF;
+}
+
+	table.dataTable thead tr th {
+		border: 0px;
+	}
+
+.dataTables_scrollHeadInner {
+	background: -moz-linear-gradient(center top, rgb(250, 250, 250) 0%, rgb(233, 233, 233) 100%) repeat scroll 0% 0% transparent;
+	border-bottom: 1px solid lightgrey;
+}
+
+.dataTables_filter {
+	display: none;
+}
+
+
+table.sortable th:not(.no-sort) {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+	table.sortable th:not(.no-sort):after, table.sortable th.empty-sort {
+		font-family: 'Glyphicons Halflings';
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		font-weight: normal;
+		font-size: 10px;
+		content: "\e119";
+	}
+
+table.sortable th:after {
+	float: right;
+	line-height: 20px;
+}
+
+table.sortable th.sorttable_sorted_reverse.empty-sort, table.sortable th.sorttable_sorted_reverse:after {
+	content: "\e094";
+}
+
+table.sortable th.sorttable_sorted.empty-sort, table.sortable th.sorttable_sorted:after {
+	content: "\e093";
+}
+
+.loading {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1040;
+	background-color: #999;
+	opacity: .5;
+}
+
+.spinner {
+	margin: 20% auto;
+	width: 118px;
+	text-align: center;
+	z-index: 1041;
+}
+
+	.spinner > div {
+		width: 18px;
+		height: 18px;
+		background-color: #000;
+		border-radius: 100%;
+		display: inline-block;
+		-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+		animation: bouncedelay 1.4s infinite ease-in-out;
+		/* Prevent first frame from flickering when animation starts */
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+	}
+
+	.spinner .bounce1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
+	}
+
+	.spinner .bounce2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
+	}
+
+@-webkit-keyframes bouncedelay {
+	0%, 80%, 100% {
+		-webkit-transform: scale(0.0);
+	}
+
+	40% {
+		-webkit-transform: scale(1.0);
+	}
+}
+
+@keyframes bouncedelay {
+	0%, 80%, 100% {
+		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
+	}
+
+	40% {
+		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+	}
+}
+
+.admin-only {
+	display: none;
+}

@@ -1,0 +1,79 @@
+﻿@model BrightLine.Common.ViewModels.Settings.SettingsViewModel
+@{
+	ViewBag.Title = "Index";
+	//Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+
+
+<style>
+	.settingKey {
+		width: 21%;
+		display: inline-block;
+	}
+
+	.settingValue {
+		width: 60%;
+		display: inline-block;
+	}
+
+	.settingRow{
+		margin-bottom: 10px;
+	}
+
+	.saveBtn{
+	    margin-top: 20px;
+	}
+
+</style>
+
+<h2>Settings</h2>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+@using (Html.BeginForm("Save", "Settings"))
+{
+	<div class="form">
+		<div class="form-group">
+			<div class="bg-danger validation-summary">
+				@Html.ValidationSummary(false)
+			</div>
+		</div>
+
+
+		@for (var s = 0; s < Model.Settings.Count(); s++)
+		{
+			var setting = Model.Settings.ElementAt(s);
+
+			<div class="settingRow">
+				@Html.HiddenFor(modelItem => Model.Settings[s].Key)
+				@Html.HiddenFor(modelItem => Model.Settings[s].Value)
+
+				@Html.LabelFor(a => setting.Key, setting.Key, new { @class = "settingKey" })
+
+				@Html.TextBoxFor(a => Model.Settings[s].Value, null, new { placeholder = "Value", @id = s, @name = setting.Key, @class = "settingValue form-control" })
+			</div>
+
+			<script>
+				//the purpose of this javascript code is to update 2 specific hidden inputs for each setting:
+				//	1) Key
+				//	2) Value
+				//without updating these two hidden input values for each setting then the MVC model binder won't be able to figure out the new values for each setting in the collection of settings
+				$(document).ready(function(){
+					var selector = '#' + @s;
+					$(selector).on("keyup", function(){
+						var currentInputVal = $('#' + @s).val();
+						var hiddenInputToUpdate = "#Settings_" + @s + "__Value";
+						$(hiddenInputToUpdate).val(currentInputVal);
+					});
+				});
+			</script>
+		}
+
+		<div>
+			<button type="submit" class="btn btn-success saveBtn">Save</button>
+		</div>
+		
+
+	</div>
+}
+

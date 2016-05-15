@@ -1,0 +1,75 @@
+
+@import 'nib'
+
+#ad-edit{
+  .creatives-selection-container{
+    max-width: initial
+    // height: 201px
+    // overflow-x: auto
+
+    .creatives-selection-items{
+      padding-top: 5px
+    }
+
+    .collection_empty{
+      width: 70%
+      margin: 0
+    }
+  }
+  // padding: 20px
+  .creative{
+    cursor: pointer
+    border: 0
+
+    .col-name{
+      width: calc(100% - 114px - 180px) // Full width - (width of name and modifie columns)
+      a{
+        text-decoration: none
+      }
+    }
+    .col-modified-on{
+      display: none
+    }
+
+    &.selected{
+      box-shadow: 1px 2px 14px rgba(0,0,0,0.45)
+      background: #fff
+      vendor('transform', scale(1.03))
+      border: 2px solid #52b266
+    }
+  }
+
+  .date-selector{
+    cursor: pointer
+    font-weight: bold
+  }
+}
+
+#campaign {
+  .ad-coordinates{
+    .field-group-row{
+      .field-group-column{
+        .field-container{
+          width: 70%!important;
+        }
+      }
+    }
+
+  }
+
+  .tracking-events{
+    .form-group {
+      margin-bottom: 7px;
+    }
+  }
+
+  .add-tracking-event-btn{
+    text-align: right
+  }
+
+  .section{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-top: 1px solid #ccc
+  }
+}

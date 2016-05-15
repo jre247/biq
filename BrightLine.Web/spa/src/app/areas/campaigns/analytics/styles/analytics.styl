@@ -1,0 +1,144 @@
+#analytics-nav-container{
+  margin-bottom 8px
+}
+#analytics-filter-container{
+  #analytics-filter-view{
+    position: relative
+  }
+}
+
+#clear-m2{
+  cursor: pointer
+  color: #A2A2A2
+  top: 2px
+  position: relative
+}
+
+#analytics-body{
+  .chart-container{
+    height: 100%
+    .widget-content{
+      min-height: 340px
+      height: 100%
+      .info.collection_empty{
+        margin: 108px auto
+
+        .title{
+          margin-bottom: 20px
+        }
+      }
+      .highcharts-container{
+        margin-bottom: 5px
+        .highcharts-legend{
+          transform: translateY(320px)
+        }
+      }
+    }
+  }
+
+  #secondary-metric-selector-container{
+    .tooltip{
+      width: 250px
+      .tooltip-inner{
+        max-width: 100%
+      }
+    }
+  }
+
+  #analytics-details-view{
+    #performance-items{
+      padding: 15px 0
+    }
+  }
+}
+
+#analytics-interval{
+}
+
+#analytics-dateinterval-container{
+  position: absolute
+  top: 0
+  right: 0
+  margin: 0
+  z-index: 2
+
+  #interval-selector-container{
+    position: relative
+    padding-right: 0
+
+    #analytics-interval-selector{
+      min-width: 80px
+    }
+    .dropdown-menu > li{
+    }
+  }
+}
+
+#analytics-filter{
+  #platform-selector{
+    width: 150px
+  }
+  #interval-selector-container{
+    #analytics-interval{
+      margin-bottom: 27px
+      display: initial
+    }
+    
+    padding-right: 0
+    #analytics-interval-selector{
+      #analytics-interval-selected{
+        text-align: right
+      }
+      #analytics-interval-items{
+        min-width: 90px
+      }
+    }
+  }
+  #analytics-date-picker-container{
+    display: block
+    
+    .datepicker{
+      width: 330px !important
+    }
+  }
+  
+  #analytics-filter-metric-selectors{
+    & > div{
+      display: inline-block
+      margin-right: 15px
+      position: relative
+      float: left
+      line-height: 38px
+    }
+    
+    .analytics-filter-metric-selector-container{
+      width: 225px
+      
+      .Select{
+        position: relative !important
+        
+        .Select-menu-outer{
+          max-height: initial
+            
+          .Select-menu{
+            max-height: initial
+          }
+        }
+      }
+    }
+
+  }
+  
+}
+
+#analytics-overview{  
+  #overviewtable{
+    .info{
+      margin: 30px auto
+      
+      .title{
+        margin-bottom: 20px
+      }
+    }
+  }
+}

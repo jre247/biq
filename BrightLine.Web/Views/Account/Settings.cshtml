@@ -1,0 +1,177 @@
+﻿@using BrightLine.Web
+@model BrightLine.Common.ViewModels.Account.UserViewModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+@section styles
+{
+    <link href="@Url.Content(string.Format("/assets/stylesheets/account.css{0}", string.Format("?c={0}", MvcApplication.AppIdentifier)))" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            background: #F3F3F4;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+    </style>
+}
+<div id="campaign">
+
+    <div id="campaign-content-container">
+        <div class="row">
+            <div class="widget stacked">
+                <div class="widget-header">
+                    <i class="icon-tasks"></i>
+                    <h3>Profile</h3>
+                </div>
+
+                <!-- .widget-header -->
+                <div class="widget-content">
+
+
+                    <div class="tab-pane active" id="profile">
+                        @using (Html.BeginForm("Settings", "Account", null, FormMethod.Post, new { @id = "edit-profile,", @class = "form-horizontal col-md-12 clearfix" }))
+                    {
+                            @Html.HiddenFor(m => m.Id)
+
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix">
+                                    <label class="col-xs-2 control-label">
+                                        <span>Email</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.TextBoxFor(m => m.Email, new Dictionary<string, object> { { "readonly", "true" }, { "class", "form-control" } })
+                                            <p class="help-block">Contact BrightLine to update your email address.</p>
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.Email)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix required">
+                                    <label class="col-xs-2 control-label">
+                                        <span>First Name</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.FirstName)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix required">
+                                    <label class="col-xs-2 control-label">
+                                        <span>Last Name</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.LastName)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix">
+                                    <label class="col-xs-2 control-label">
+                                        <span>Password</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                            <p class="help-block">Leave blank to keep your current password.</p>
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.Password)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix">
+                                    <label class="col-xs-2 control-label">
+                                        <span>New Password</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control" })
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.NewPassword)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix">
+                                    <label class="col-xs-2 control-label">
+                                        <span>Confirm Password</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.PasswordFor(m => m.PasswordConfirm, new { @class = "form-control" })
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.PasswordConfirm)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix">
+                                    <label class="col-xs-2 control-label">
+                                        <span>Time zone</span>
+                                    </label>
+                                    <div class="col-xs-8">
+                                        <div class="field-container">
+                                            @Html.DropDownListFor(m => m.TimeZoneId, new SelectList(TimeZoneInfo.GetSystemTimeZones(), "Id", "DisplayName", Model.TimeZoneId), new { @class = "form-control" })
+                                            <div class="bg-danger hidden">@Html.ValidationMessageFor(m => m.TimeZoneId)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="form-group col-xs-12">
+                                <div class="form-field col-xs-6 col-xs-offset-2">
+                                    <div id="notifier"></div>
+                                </div>
+                            </div>
+
+                        
+                            <div class="col-xs-12">
+                                <div class="form-group validation-summary-container">
+                                    <div class="form-field col-xs-6 col-xs-offset-2 validation-summary">
+                                        @Html.ValidationSummary("", new { @class = "bg-danger" })
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-xs-12 fieldview">
+                                <div class="form-group clearfix">
+                                    <div class="form-field col-xs-offset-2 col-xs-8">
+                                        <div class="field-container">
+                                            <input type="submit" class="btn btn-success" alue="Save" />
+                                            <a href="/" onclick="history.back(1);" class="btn-cancel">Go back</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

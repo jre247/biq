@@ -1,0 +1,31 @@
+﻿<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Ad id="1">
+		<Inline>
+			<AdSystem><![CDATA[BrightLine]]></AdSystem>
+			<AdTitle><![CDATA[Test Ad]]></AdTitle>
+			<Description><![CDATA[Creative Description 1]]></Description>
+			<Creatives>
+				<Creative id="1" sequence="1" xmlns="MediaFile">
+					<Linear>
+						<Duration>00:02:40</Duration>
+						<TrackingEvents>
+							%%Brightline_Tracking_Events%%
+							<Tracking event="creativeView"><![CDATA[www.tracking1.com/track]]></Tracking>
+							<Tracking event="firstQuartile"><![CDATA[www.tracking2.com/track]]></Tracking>
+						</TrackingEvents>
+						<MediaFiles>
+							<MediaFile id="1" delivery="progressive" width="11" height="22" type="video/mp4" bitrate="1000" scalable="true" maintainAspectRatio="true" apiFramework="brightline"><![CDATA[http://cdn-local-m.brightline.tv/campaigns/1/videos/file1.mp4]]></MediaFile>
+						</MediaFiles>
+					</Linear>
+				</Creative>
+				<Creative id="1" sequence="1" apiFramework="brightline" xmlns="CompanionAd">
+					<CompanionAds>
+						<Companion xsi:type="RokuRAFCompanionAdViewModel" id="1" width="11" height="22" apiFramework="brightline">
+							<StaticResource creativeType="application/json"><![CDATA[http://dev-as.brightline.tv/?id=24&Roku_Ad_Id=ROKU_ADS_APP_ID&ver=%%SDK_VER%%&cb=%%CACHEBUSTER%%&mblist=2450X,2500X]]></StaticResource>
+						</Companion>
+					</CompanionAds>
+				</Creative>
+			</Creatives>
+		</Inline>
+	</Ad>
+</VAST>

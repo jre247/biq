@@ -1,0 +1,87 @@
+﻿.msgGrowl-row {
+	margin-bottom: 0px;
+	position: absolute;
+	top: 54px;
+	z-index: 1001;
+	width: 66%; /*100%;*/
+    left: 16%;
+    cursor: pointer;
+}
+
+  .msgGrowl-row * {
+    cursor: pointer !important;
+  }
+
+  .msgGrowl-row > div {
+    width: 100%;
+    left: 0;
+  }
+
+.msgGrowl-container {
+	white-space: nowrap;
+	z-index: 1001;
+	text-align: center;
+	padding: 0px;
+	margin-bottom: 0px;
+}
+
+.bottom-right {
+	bottom: 10px;
+	right: 15px;
+}
+
+.top-center {
+	top: 51px;
+}
+
+.msgGrowl {
+	white-space: nowrap;
+	font-size: 11px;
+	padding: 0;
+	margin: 0 0 5px 0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+}
+
+	.msgGrowl h4, .msgGrowl p {
+		font-size: 13px;
+		margin: .25em 0;
+		cursor: default;
+	}
+
+.msgGrowl-close {
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	top: 5px;
+	right: 20px;
+	font-weight: bold;
+	font-size: 10px;
+	color: #666;
+	border: 1px solid transparent;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	padding: 8px 1px 8px 0px;
+	margin: 0px;
+	line-height: 0;
+}
+
+	.msgGrowl-close:hover {
+		opacity: 1;
+		cursor: pointer;
+		color: #333;
+	}
+
+	.msgGrowl-close:active {
+		color: #000;
+	}
+
+
+.msgGrowl .msgGrowl-content {
+	padding: 10px 20px 10px 45px;
+	min-height: 40px;
+}

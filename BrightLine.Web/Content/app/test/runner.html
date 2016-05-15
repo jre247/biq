@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../../spa/node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="./../../../spa/node_modules/should/should.js"></script>
+    <script src="./../../../spa/node_modules/mocha/mocha.js"></script>
+    <script>mocha.setup('bdd')</script>
+
+    <script src="./../javascripts/vendor_iq.js"></script>
+    <script>
+      _bl = {
+        user: {
+          isAdmin: true,
+          isDeveloper: true
+        }
+      }
+    </script>
+    <script src="./../../../assets/javascripts/base.js"></script>
+    <script src="./../javascripts/vendor_spa.js"></script>
+    <script src="testBundle.js"></script>
+    <script>
+      if (window.mochaPhantomJS) {
+        mochaPhantomJS.run();
+      } else {
+        mocha.run();
+      }
+    </script>
+  </body>
+</html>

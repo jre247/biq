@@ -1,0 +1,118 @@
+﻿@model BrightLine.Common.Campaigns.ViewModels.CmsPublishViewModel
+
+@{
+    ViewBag.Title = "Publish";
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+}
+
+<h2>Publish History</h2>
+
+
+@section styles {
+	<link href="~/assets/stylesheets/EntityList.css" rel="stylesheet">
+}
+@section scripts {
+	<script type="text/javascript">
+
+		var _dataTable;
+		$(document).ready(function () {
+			var table = $('#listing'),
+				listingFilter = $('#listing-filter');
+
+			_dataTable = table.dataTable({
+				'sScrollY': ($(window).height() - 200) + 'px',
+				'sScrollX': ($(window).width() - 100) + 'px',
+				'bPaginate': false,
+				'bScrollCollapse': false,
+				'bStateSave': true,
+				"bSort": false,
+				'aoColumnDefs': [{ bSortable: false, bSearchable: false, aTargets: [-1] }],
+				'fnPreDrawCallback': function (e) {
+					$('#listing-widget').fadeIn(1000);
+					if (!listingFilter.is(":focus")) // only select when not in focus
+						listingFilter.select();
+				}
+			}
+			);
+
+			$(window).bind('resize', function () {
+				_dataTable.fnSettings().oScroll.sY = ($(window).height() - 200) + 'px';
+				_dataTable.fnAdjustColumnSizing();
+			});
+
+			// Filter datatable from custom input
+			listingFilter.keyup(function () {
+				_dataTable.fnFilter($(this).val());
+			});
+
+			// If a search filter was saved, put the value in the filter box so the user understands what has been filtered
+			var filterVal = _dataTable.fnSettings().oPreviousSearch.sSearch;
+			if (filterVal != null && filterVal.length > 0) {
+				listingFilter.val(filterVal);
+			}
+
+			$(".glyphicon-edit").on("click", function (e) {
+				var href = $(this).attr("data-href");
+				window.location.href = href;
+			});
+			_dataTable.fnAdjustColumnSizing();
+		});
+
+	</script>
+
+
+}
+
+<div class="btn-group" role="group" aria-label="...">
+    <a href=@string.Format("/campaigns/publish/{0}?env=DEV", Model.CampaignId)>DEV</a>
+    - <a href=@string.Format("/campaigns/publish/{0}?env=UAT", Model.CampaignId)>UAT</a>
+    - <a href=@string.Format("/campaigns/publish/{0}?env=PRO", Model.CampaignId)>PRO</a>
+</div>
+
+<div id="publish" class="cfww">
+	<div id="publish-content-container">
+        <div class="publish-generic-listing container-fluid collapsable-container whitebox" style="margin-top: 20px">
+            <div class="listing-nav-container container-fluid">
+                <div class="row listing-nav nav">
+                    <div class="col-sm-3 listing-nav-title title">Publish History</div>
+                </div>
+            </div>
+            <div class="listing-items-container">
+                <div class='widget widget-table'>
+                    <div class='widget-content' style='display: none;' id='listing-widget'>
+                        <table id='listing' class='table table-striped'>
+                            <colgroup>
+                                <col style="width: 100px" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+
+                                    <th style="width:150px">Time Started</th>
+                                    <th>Target Environment</th>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                    <th>Pulisher Identifier</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var publishItem in Model.PublishHistory)
+                                {
+                                    <tr>
+                                        <td>@DateHelper.ToUserTimezone(publishItem.TimeStarted)</td>
+                                        <td>@publishItem.TargetEnvironment</td>
+                                        <td>@publishItem.UserEmail</td>
+                                        <td>@publishItem.Status</td>
+                                        <td>@publishItem.PublishId</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+

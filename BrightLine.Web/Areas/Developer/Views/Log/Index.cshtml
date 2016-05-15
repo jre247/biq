@@ -1,0 +1,181 @@
+﻿@{
+    ViewBag.Title = "Log Entries";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var now = DateTime.UtcNow;
+    ViewBag.ShowLoader = true;
+}
+
+@section styles{
+	<style type="text/css">
+
+
+		table {
+			table-layout:fixed;
+		}
+		.ellipsisColumn{
+			overflow:hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+
+		}
+		.ellipsisColumn:hover{
+			cursor:pointer;
+		}
+
+	
+	</style>
+}
+@section scripts
+{
+    <script type="text/javascript">
+        var _qs = function (key, options) {
+            var opts = {
+                defaultValue: undefined,
+                ignoreCase: false
+            };
+            $.extend({}, opts, options);
+            var value = opts.defaultValue;
+            var qs = window.location.search;
+            if (!qs)
+                return value;
+
+            var re = /\&(?!amp;)/ig;
+            var kvs = qs.substr(1).split(re);
+            for (var kv in kvs) {
+                if (!kvs[kv] || !kvs[kv].split)
+                    continue;
+
+                var pair = kvs[kv].split('=');
+                var k = pair[0];
+                var v = pair.length > 0 ? pair[1] : value;
+
+                if (opts.ignoreCase && k) {
+                    k = k.toLowerCase();
+                    key = key.toLowerCase();
+                }
+
+                if (k == key)
+                    return v;
+            }
+           
+            return value;
+        }
+        var _dataTable;
+        $(document).ready(function (e) {
+            var includeDeleted = _qs("includeDeleted") || false;
+            var table = $('#logEntries'),
+				listingFilter = $('.listing-filter');
+
+            _dataTable = table.dataTable({
+                'sScrollY': ($(window).height() - 400) + 'px',
+                "bProcessing": true,
+                'bScrollCollapse': true,
+                "bServerSide": true,
+                "sAjaxSource": "Log/Logs",
+                "fnServerParams": function (aoData) {
+                    aoData.push({ name: "includeDeleted", value: includeDeleted });
+                },
+                "bPaginate": true,
+                "bSearch": true,
+                "bSort": true,
+                "aaSorting": [[1, 'desc']],
+                "aoColumns": [
+					{ "mData": "DateCreated" },
+					{ "mData": "Level" },
+					{ "mData": "Message" },
+					{ "mData": "User" },
+					{ "mData": "Host" },
+					{ "mData": "Display" }],
+				//Add a tooltip to only the following columns: "Message", "Display"
+                columnDefs : [
+				   {   
+           			targets : [0,1,2,3,4,5],
+           			render : function(data, type) {
+           				if (type == 'display') {
+           					var htmlEscapedText = _.escape(data);
+           					return '<div class="ellipsisColumn" title="' + htmlEscapedText + '">' + htmlEscapedText + '</div>';
+           				} else {
+           					return data;
+           				}     
+           			}
+				   }
+                ] ,     
+                fnDrawCallback: function () {
+                	$(".loading").fadeOut();
+                }
+            });
+
+            $(window).bind('resize', function () {
+                $(".loading").show();
+                _dataTable.fnAdjustColumnSizing();
+            });
+            // Filter datatable from custom input
+            listingFilter.keyup(function () {
+                _dataTable.fnFilter($(this).val());
+            });
+
+            // If a search filter was saved, put the value in the filter box so the user understands what has been filtered
+            var filterVal = _dataTable.fnSettings().oPreviousSearch.sSearch;
+            if (filterVal != null && filterVal.length > 0) {
+                listingFilter.val(filterVal);
+            };
+        });
+
+        $(document).on('click', '.ellipsisColumn', function () {
+        	$('#logDescriptionModal').modal('show');
+
+        	var columnText = $(this).text();
+        	$('.modal-body').text(columnText);
+        });
+    </script>
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul class="breadcrumb">
+            <li>@now.ToLongDateString()</li>
+            <li>@now.ToLongTimeString()</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <input class="listing-filter pull-right" type="text" style="width: 250px;" placeholder="Search logs...">
+        <div id="logEntries-widget" class="widget-content">
+            <table id="logEntries" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+						<th style="width: 16%">Timestamp</th>
+						<th style="width: 8%">Level</th>
+						<th style ="width: 23%">Message</th>
+						<th style ="width: 13%">User</th>
+						<th style="width: 10%">Host</th>
+						<th style="width: 30%">Display</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="logDescriptionModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Description</h4>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

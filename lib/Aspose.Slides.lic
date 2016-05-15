@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Data>
+    <LicensedTo>Brightline</LicensedTo>
+    <LicenseType>Developer Small Business</LicenseType>
+    <LicenseNote>Limited to 1 developer.</LicenseNote>
+    <OrderID>140408105822</OrderID>
+    <OEM>This is not a redistributable license</OEM>
+    <Products>
+      <Product>Aspose.Slides for .NET</Product>
+    </Products>
+    <EditionType>Enterprise</EditionType>
+    <SerialNumber>66b4be9c-126e-4ab8-b714-310d4dd86680</SerialNumber>
+    <SubscriptionExpiry>20150408</SubscriptionExpiry>
+    <LicenseVersion>2.2</LicenseVersion>
+  </Data>
+  <Signature>jd74Oh5dAMbFgBqwQbakY/z19DPPr5hMi6jE8doj70IvpuDC5ZSBCTO+BD4h3XgBockPR7kvPcXdwnENjWfiHBXUT7dAqGK4cVwxn6vPngOsVy7NQUYtn3ZKe+HkckwmliQnZEedcqnuqnC3yUm9P/6YAQcmLK/Ix5D3Y4pDZqM=</Signature>
+</License>

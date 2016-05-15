@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="expectedSchemaCondition1.Configuration" xml:space="preserve">
+    <value>Press to configure</value>
+  </metadata>
+  <data name="expectedSchemaCondition1.Schema" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJl
+        PW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAABNTeXN0ZW0uRGF0YS5E
+        YXRhU2V0AwAAABdEYXRhU2V0LlJlbW90aW5nVmVyc2lvbglYbWxTY2hlbWELWG1sRGlmZkdyYW0DAQEO
+        U3lzdGVtLlZlcnNpb24CAAAACQMAAAAGBAAAAMwnPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
+        dXRmLTE2Ij8+DQo8eHM6c2NoZW1hIGlkPSJOZXdEYXRhU2V0IiB4bWxucz0iIiB4bWxuczp4cz0iaHR0
+        cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOm1zZGF0YT0idXJuOnNjaGVtYXMtbWlj
+        cm9zb2Z0LWNvbTp4bWwtbXNkYXRhIj4NCiAgPHhzOmVsZW1lbnQgbmFtZT0iTmV3RGF0YVNldCIgbXNk
+        YXRhOklzRGF0YVNldD0idHJ1ZSIgbXNkYXRhOkxvY2FsZT0iZW4tVVMiPg0KICAgIDx4czpjb21wbGV4
+        VHlwZT4NCiAgICAgIDx4czpjaG9pY2UgbWluT2NjdXJzPSIwIiBtYXhPY2N1cnM9InVuYm91bmRlZCI+
+        DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlIj4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5
+        cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5h
+        bWU9IkNvbHVtbjEiIHR5cGU9InhzOmJvb2xlYW4iIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWlu
+        T2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNv
+        bXBsZXhUeXBlPg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9
+        IlRhYmxlMSI+DQogICAgICAgICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVl
+        bmNlPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJDb2x1bW4xIiB0eXBlPSJ4czpib29s
+        ZWFuIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAg
+        IDwveHM6c2VxdWVuY2U+DQogICAgICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czpl
+        bGVtZW50Pg0KICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJUYWJsZTIiPg0KICAgICAgICAgIDx4czpj
+        b21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVs
+        ZW1lbnQgbmFtZT0iQ29sdW1uMSIgdHlwZT0ieHM6Ym9vbGVhbiIgbXNkYXRhOnRhcmdldE5hbWVzcGFj
+        ZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8L3hzOnNlcXVlbmNlPg0KICAgICAgICAg
+        IDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxlbWVudD4NCiAgICAgICAgPHhzOmVsZW1l
+        bnQgbmFtZT0iVGFibGUzIj4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5cGU+DQogICAgICAgICAgICA8
+        eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IkNvbHVtbjEiIHR5cGU9
+        InhzOmJvb2xlYW4iIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAg
+        ICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBlPg0KICAgICAg
+        ICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlNCI+DQogICAgICAg
+        ICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAgICAgICAg
+        ICA8eHM6ZWxlbWVudCBuYW1lPSJDb2x1bW4xIiB0eXBlPSJ4czpib29sZWFuIiBtc2RhdGE6dGFyZ2V0
+        TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQog
+        ICAgICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8
+        eHM6ZWxlbWVudCBuYW1lPSJUYWJsZTUiPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAg
+        ICAgICAgIDx4czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iQ29sdW1u
+        MSIgdHlwZT0ieHM6Ym9vbGVhbiIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAi
+        IC8+DQogICAgICAgICAgICA8L3hzOnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+
+        DQogICAgICAgIDwveHM6ZWxlbWVudD4NCiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGU2Ij4N
+        CiAgICAgICAgICA8eHM6Y29tcGxleFR5cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAg
+        ICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IkNvbHVtbjEiIHR5cGU9InhzOmJvb2xlYW4iIG1zZGF0
+        YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgPC94czpzZXF1
+        ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBlPg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQog
+        ICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlNyI+DQogICAgICAgICAgPHhzOmNvbXBsZXhUeXBl
+        Pg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1l
+        PSJDb2x1bW4xIiB0eXBlPSJ4czpib29sZWFuIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9j
+        Y3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAgICAgPC94czpjb21w
+        bGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJU
+        YWJsZTgiPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4czpzZXF1ZW5j
+        ZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iQ29sdW1uMSIgdHlwZT0ieHM6Ym9vbGVh
+        biIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8
+        L3hzOnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxl
+        bWVudD4NCiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGU5Ij4NCiAgICAgICAgICA8eHM6Y29t
+        cGxleFR5cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVt
+        ZW50IG5hbWU9IkNvbHVtbjEiIHR5cGU9InhzOmJvb2xlYW4iIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9
+        IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8
+        L3hzOmNvbXBsZXhUeXBlPg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50
+        IG5hbWU9IlRhYmxlMTAiPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4
+        czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iQ29sdW1uMSIgdHlwZT0i
+        eHM6Ym9vbGVhbiIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAg
+        ICAgICAgICA8L3hzOnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAg
+        IDwveHM6ZWxlbWVudD4NCiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGUxMSI+DQogICAgICAg
+        ICAgPHhzOmNvbXBsZXhUeXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAgICAgICAg
+        ICA8eHM6ZWxlbWVudCBuYW1lPSJDb2x1bW4xIiB0eXBlPSJ4czpib29sZWFuIiBtc2RhdGE6dGFyZ2V0
+        TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQog
+        ICAgICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8
+        eHM6ZWxlbWVudCBuYW1lPSJUYWJsZTEyIj4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5cGU+DQogICAg
+        ICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IkNvbHVt
+        bjEiIHR5cGU9InhzOmJvb2xlYW4iIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIw
+        IiAvPg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBl
+        Pg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlMTMi
+        Pg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4czpzZXF1ZW5jZT4NCiAg
+        ICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iQ29sdW1uMSIgdHlwZT0ieHM6Ym9vbGVhbiIgbXNk
+        YXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8L3hzOnNl
+        cXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxlbWVudD4N
+        CiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGUxNCI+DQogICAgICAgICAgPHhzOmNvbXBsZXhU
+        eXBlPg0KICAgICAgICAgICAgPHhzOnNlcXVlbmNlPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBu
+        YW1lPSJDb2x1bW4xIiB0eXBlPSJ4czpib29sZWFuIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1p
+        bk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAgICAgPC94czpj
+        b21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8eHM6ZWxlbWVudCBuYW1l
+        PSJUYWJsZTE1Ij4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5cGU+DQogICAgICAgICAgICA8eHM6c2Vx
+        dWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IkNvbHVtbjEiIHR5cGU9InhzOmJv
+        b2xlYW4iIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAg
+        ICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBlPg0KICAgICAgICA8L3hz
+        OmVsZW1lbnQ+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlMTYiPg0KICAgICAgICAgIDx4
+        czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhz
+        OmVsZW1lbnQgbmFtZT0iQ29sdW1uMSIgdHlwZT0ieHM6Ym9vbGVhbiIgbXNkYXRhOnRhcmdldE5hbWVz
+        cGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8L3hzOnNlcXVlbmNlPg0KICAgICAg
+        ICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxlbWVudD4NCiAgICAgIDwveHM6Y2hv
+        aWNlPg0KICAgIDwveHM6Y29tcGxleFR5cGU+DQogIDwveHM6ZWxlbWVudD4NCjwveHM6c2NoZW1hPgYF
+        AAAAgAE8ZGlmZmdyOmRpZmZncmFtIHhtbG5zOm1zZGF0YT0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNv
+        bTp4bWwtbXNkYXRhIiB4bWxuczpkaWZmZ3I9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206eG1sLWRp
+        ZmZncmFtLXYxIiAvPgQDAAAADlN5c3RlbS5WZXJzaW9uBAAAAAZfTWFqb3IGX01pbm9yBl9CdWlsZAlf
+        UmV2aXNpb24AAAAACAgICAIAAAAAAAAA//////////8L
+</value>
+  </data>
+  <metadata name="checksumCondition1.Configuration" xml:space="preserve">
+    <value>Press to configure</value>
+  </metadata>
+  <data name="agg_IncludeDateTest_TestAction.SqlScript" xml:space="preserve">
+    <value>-- database unit test for agg.IncludeDate
+declare @dateTimeId int,
+	@adBeginDate date,
+	@adEndDate date,
+	@beginDateTimeId int,
+	@endDateTimeId int,
+	@timeInterval int;
+	
+-- null ad begin/dates
+select
+    @dateTimeId = 0,
+    @adBeginDate = NULL,
+    @adEndDate = NULL,
+    @beginDateTimeId = 0,
+    @endDateTimeId = 0,
+    @timeInterval = 0;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- hourly date time id, hourly interval
+select
+    @dateTimeId = 2015030501,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 0;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- daily date time id, daily interval
+select
+    @dateTimeId = 2015030500,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- monthly date time id, monthly interval
+select
+    @dateTimeId = 2015030000,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 4;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- weekly date time id, weekly interval
+select
+    @dateTimeId = 201510,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 201510,
+    @endDateTimeId = 201510,
+    @timeInterval = -2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- 
+---- mismatched intervals
+
+-- hourly date time id, daily interval
+select
+    @dateTimeId = 2015030501,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- hourly date time id, monthly interval
+select
+    @dateTimeId = 2015030501,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 4;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- hourly date time id, weekly interval
+select
+    @dateTimeId = 2015030501,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030501,
+    @endDateTimeId = 2015030501,
+    @timeInterval = -2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- daily date time id, hourly interval
+select
+    @dateTimeId = 2015030500,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 0;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- daily date time id, monthly interval
+select
+    @dateTimeId = 2015030500,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 4;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- daily date time id, weekly interval
+select
+    @dateTimeId = 2015030500,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030501,
+    @endDateTimeId = 2015030501,
+    @timeInterval = -2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- monthly date time id, hourly interval
+select
+    @dateTimeId = 2015030000,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 0;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- monthly date time id, daily interval
+select
+    @dateTimeId = 2015030000,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- monthly date time id, weekly interval
+select
+    @dateTimeId = 2015030000,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030501,
+    @endDateTimeId = 2015030501,
+    @timeInterval = -2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- weekly date time id, hourly interval
+select
+    @dateTimeId = 201510,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 0;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- weekly date time id, daily interval
+select
+    @dateTimeId = 201510,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030500,
+    @endDateTimeId = 2015030500,
+    @timeInterval = 2;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+
+-- weekly date time id, monthly interval
+select
+    @dateTimeId = 201510,
+    @adBeginDate = '03/05/2015',
+    @adEndDate = '03/05/2015',
+    @beginDateTimeId = 2015030501,
+    @endDateTimeId = 2015030501,
+    @timeInterval = 4;
+select [agg].[IncludeDate](@dateTimeId, @adBeginDate, @adEndDate, @beginDateTimeId, @endDateTimeId, @timeInterval);
+</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+</root>

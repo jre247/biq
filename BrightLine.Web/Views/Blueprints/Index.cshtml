@@ -1,0 +1,176 @@
+﻿@model List<BrightLine.Common.ViewModels.Blueprints.BlueprintViewModel>
+@{
+    ViewBag.Title = "Blueprints";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+
+	var title = "Blueprint";
+	
+	var maxId = Model.Any() ? Model.Max(m => m.Id) : 0;
+}
+
+
+@section styles {
+	<link href="~/assets/stylesheets/EntityList.css" rel="stylesheet">
+
+	<style type="text/css" > 
+		.name {
+			width: 280px;
+			max-width: 280px;
+		}
+
+		.nameText {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 99%;
+		}
+
+		.previewImage {
+			width: 14%;
+			padding-left: 26px !important;
+		}
+
+		#campaign th,
+		#campaign td {
+			vertical-align: middle;
+		}
+	</style>
+
+}
+@section scripts {
+	<script type="text/javascript">
+		var _dataTable;
+		$(document).ready(function () {
+			var table = $('#listing'),
+				listingFilter = $('#listing-filter');
+
+			_dataTable = table.dataTable({
+				'sScrollY': ($(window).height() - 200) + 'px',
+				'sScrollX': ($(window).width() - 100) + 'px',
+				'bPaginate': false,
+				'bScrollCollapse': false,
+				'bStateSave': true,
+				'aaSorting': [[2, 'asc']],
+				'aoColumnDefs': [{ bSortable: false, bSearchable: false, aTargets: [0, -1] }],
+				'fnPreDrawCallback': function (e) {
+					$('#listing-widget').fadeIn(1000);
+					if (!listingFilter.is(":focus")) // only select when not in focus
+						listingFilter.select();
+				}
+			}
+			);
+
+			$(window).bind('resize', function () {
+				_dataTable.fnSettings().oScroll.sY = ($(window).height() - 200) + 'px';
+				_dataTable.fnAdjustColumnSizing();
+			});
+
+			// Filter datatable from custom input
+			listingFilter.keyup(function () {
+				_dataTable.fnFilter($(this).val());
+			});
+
+			// If a search filter was saved, put the value in the filter box so the user understands what has been filtered
+			var filterVal = _dataTable.fnSettings().oPreviousSearch.sSearch;
+			if (filterVal != null && filterVal.length > 0) {
+				listingFilter.val(filterVal);
+			}
+
+			$(".glyphicon-edit").on("click", function (e) {
+				var href = $(this).attr("data-href");
+				window.location.href = href;
+			});
+			_dataTable.fnAdjustColumnSizing();
+		});
+	</script>
+}
+
+<div id="campaign" class="cfww">
+	<div id="campaign-content-container">
+		<div class="campaign-generic-listing container-fluid collapsable-container whitebox">
+			<div class="listing-nav-container container-fluid">
+				<div class="row listing-nav nav">
+					<div class="col-sm-3 listing-nav-title title">Blueprints Listing</div>
+					<div class="col-sm-5 listing-nav-search-container">
+						<div class="input-group input-group-simple component-searchbox is-empty">
+							<div class="input-group-addon glyphicon glyphicon-search" onclick="$(this).next().select();">
+								<img src="/content/img/icons/clear-circle.png" class="clear-search">
+							</div>
+							<input type="text" id="listing-filter" class="form-control" placeholder="Search Blueprints..." data-target="listing">
+							<span class="input-group-btn">
+								<button class="btn btn-default creatives-filter-clear" type="button" onclick="utility.textbox.clear('#listing-filter'); $(this).parent().prev().select();">X</button>
+							</span>
+						</div>
+					</div>
+					<div class="col-sm-4 listing-nav-actions-container">
+						<a data-nw="blueprint-create" href="../blueprints/create" title="Add a new @title" role="button" class="btn btn-success">New @title</a>
+					</div>
+				</div>
+			</div>
+			<div class="listing-items-container">
+				<div class='widget widget-table'>
+					<div class='widget-content' style='display: none;' id='listing-widget'>
+						<table id='listing' class='table table-striped'>
+							<colgroup>
+								<col style="width: 100px" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="previewImage">&nbsp;</th>
+									<th class="name">Blueprint Name</th>
+									<th class="featureGroup">Feature Group</th>
+									<th class="featureType">Feature Type</th>
+									<th class="repository">Repository</th>
+									<th class="dateUpdated">Date Updated</th>
+									<th >&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var m in Model)
+								{
+									<tr data-id="@m.Id" title="@m.Name (@m.Id)">
+									
+										<td class="previewImage">
+											@if (m.Preview != null && m.PreviewDownloadUrl != null)
+											{
+												<input type="hidden" value="@m.Preview.Id" name="Preview" />
+												<img class="form-Preview" width="100" height="100" src="@m.PreviewDownloadUrl" alt="@m.Preview.Name" />
+
+											}
+											else
+											{
+												<input type="hidden" value="0" name="Preview" />
+											}
+										</td>
+										<td  class="name">
+											<div class="nameText">
+												@m.Name
+											</div>
+										</td>
+										<td  class="featureGroup" >
+											@m.FeatureTypeGroupDisplay
+										</td>
+										<td  class="featureType">
+											@m.FeatureTypeDisplay
+										</td>
+										<td  class="repository">
+											@m.ManifestName
+										</td>
+										<td  class="dateUpdated">
+											@m.DateUpdated
+										</td>
+
+										<td class="glyphicon-action" style="white-space: nowrap">
+											<div class="glyphicon glyphicon-edit" data-href="../blueprints/edit/@m.Id" title="Edit @m.Name"></div>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

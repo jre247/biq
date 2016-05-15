@@ -1,0 +1,57 @@
+﻿@using BrightLine.Common.Utility.Authentication;
+
+
+@model List<BrightLine.Common.Models.Campaign>
+@{
+    ViewBag.Title = "CMS";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+    var isDeveloper = Auth.Service.IsDeveloper();
+    var canEdit = Auth.Service.IsUserInAnyRole(AuthConstants.Roles.Admin, AuthConstants.Roles.Developer, AuthConstants.Roles.CMSAdmin, AuthConstants.Roles.CMSEditor);
+    var canPublish = Auth.Service.IsUserInAnyRole(AuthConstants.Roles.Admin, AuthConstants.Roles.Developer, AuthConstants.Roles.CMSAdmin);
+
+}
+@section scripts {
+
+}
+
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container">
+        <div class="campaign-generic-listing container-fluid collapsable-container whitebox" style="margin-top: 20px">
+            <div class="listing-nav-container container-fluid">
+                <div class="row listing-nav nav">
+                    <div class="col-sm-3 listing-nav-title title">Campaigns</div>
+                    <div class="col-sm-5 listing-nav-search-container">
+
+                    </div>
+                    <div class="col-sm-4 listing-nav-actions-container">
+                    </div>
+                </div>
+            </div>
+            <div class="listing-items-container">
+                <div class='widget widget-table'>
+
+                    <div class="widget-content" id='resourceDocs-widget'>
+                        <table id="cmsApps" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var campaign in Model)
+                                {
+                                    <tr id="entity_record_@campaign.Id">
+                                        <td><a href="/cms/schemas/@campaign.Id">@campaign.Name</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- .widget-content -->
+                </div>
+                <!-- /widget -->
+            </div>
+            <!--.col-md-12 -->
+        </div>
+    </div>
+</div>

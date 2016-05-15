@@ -1,0 +1,35 @@
+﻿@using BrightLine.Common.Framework
+@using BrightLine.Common.Utility.Authentication
+@using BrightLine.Web
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BrightLine iQ - @ViewBag.Title</title>
+    <link rel="shortcut icon" href="/Content/img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Content/app/stylesheets/vendor.css" rel="stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/css/bootstrap.css" rel="stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/css/bootstrap-base-admin-3.css" rel="stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/msgGrowl/css/msgGrowl.css" rel=" stylesheet">
+    <link href="/Content/lib/bootstrap-3.1.1/css/custom.css" rel="stylesheet">
+    <link href="/assets/stylesheets/base.css" rel="stylesheet">
+    <link href="/assets/stylesheets/base_old.css" rel="stylesheet">
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="container-fluid">
+        @RenderBody()
+        <div id="push"></div>
+    </div>
+    <script src='@Url.Content(string.Format("/content/app/javascripts/vendor.js{0}", Env.IsDev ? string.Empty : string.Format("?c={0}", MvcApplication.AppIdentifier)))' type="text/javascript"></script>
+
+    <script type="text/javascript" src="/Content/temp/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="/Content/temp/native.extensions.js"></script>
+    <script type="text/javascript" src="/Content/temp/brightline/brightline.js"></script>
+    <script type="text/javascript" src="/Content/temp/brightline/knockout.extensions.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@using BrightLine.Web
+@using BrightLine.Common.Utility.Authentication;
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using System.Runtime.Serialization.Formatters;
+@using BrightLine.Service;
+@{
+	Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+	var lookups = SpaService.GetLookups();
+	var assetSuffix = AssetHelper.GetAssetSuffix();
+
+	
+}
+@section scripts {
+    <script>
+	window.isSpa = true;
+	window.lookups = @Html.Raw(JObject.FromObject(lookups));
+	</script>
+
+   @if (Env.IsLocal)
+   {
+	<script src='@Url.Content(string.Format("http://localhost:3002/content/app/javascripts/app.{0}js{1}", assetSuffix, string.Format("?c={0}", MvcApplication.AppIdentifier)))'></script>
+   }
+   else
+   {
+	<script src='@Url.Content(string.Format("/content/app/javascripts/vendor_spa.{0}js{1}", assetSuffix, string.Format("?c={0}", MvcApplication.AppIdentifier)))'></script>
+	<script src='@Url.Content(string.Format("/content/app/javascripts/app.{0}js{1}", assetSuffix, string.Format("?c={0}", MvcApplication.AppIdentifier)))'></script>
+   }
+}
+
+<div id="app-wrapper"></div>

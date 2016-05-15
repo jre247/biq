@@ -1,0 +1,254 @@
+﻿@using BrightLine.Common.Utility.Authentication
+@using BL = BrightLine.Web.Helpers.BrightlineHtmlHelper;
+@model IEnumerable<ResourceType>
+@using BrightLine.Common.Models
+@{
+    var title = ViewBag.Title = "Resource Types";
+    Layout = "~/Views/Shared/_Layout-bs3.cshtml";
+
+    var emptyArray = MvcHtmlString.Create("[]");
+    var resourceTypes = BL.JsonSerializeToString(Model, emptyArray);
+    ViewBag.ShowLoader = true;
+}
+@section styles{
+    <style type="text/css">
+        .view, .error-view {
+            display: none;
+        }
+        .glyphicon-action{
+            text-align: right;
+        }
+    </style>
+}
+
+<div id="campaign" class="cfww">
+    <div id="campaign-content-container">
+        <div class="campaign-generic-listing container-fluid collapsable-container whitebox" style="margin-top: 20px">
+            <div class="listing-nav-container container-fluid">
+                <div class="row listing-nav nav">
+                    <div class="col-sm-3 listing-nav-title title">@title Listing</div>
+                    <div class="col-sm-5 listing-nav-search-container">
+                        <div class="input-group input-group-simple component-searchbox is-empty">
+                            <div class="input-group-addon glyphicon glyphicon-search" data-bind="click: ResourceTypes.Search.clear()">
+                                <img src="/content/img/icons/clear-circle.png" class="clear-search">
+                            </div>
+                            <input type="text" id="search-text" class="form-control" placeholder="Search @(title)..." data-bind="value: ResourceTypes.Search, valueUpdate: 'input'">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default creatives-filter-clear" type="button" onclick="utility.textbox.clear('#listing-filter'); $(this).parent().prev().select();">X</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 listing-nav-actions-container">
+                        @Html.RestrictedAspect(new[] { AuthConstants.Roles.Admin, AuthConstants.Roles.Developer }, @<text>
+                            <a role="button" class="btn btn-success" data-bind="click: EditResourceType.bind(null, null), tooltip: { title: 'New resource type' }" data-toggle="modal" data-target="#modal-edit-resourcetype">New Resource Type</a>
+                        </text>)
+                    </div>
+                </div>
+            </div>
+            <div class="listing-items-container">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+                        <table class="table table-bordered table-striped sortable">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Date Updated</td>
+                                    <td class="no-sort" style="width: 75px;">&nbsp;</td>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: { data: ResourceTypes, as: 'rt' }">
+                                <tr data-bind="visible: ko.utils.filterTable(rt, $parent.ResourceTypes.Search)">
+                                    <td data-bind="text: rt.Name"></td>
+                                    <td data-bind="date: rt.LastUpdated"></td>
+                                    <td class="glyphicon-action">
+                                        <div class="glyphicon glyphicon-edit" data-bind="edit: rt.Name, click: $parent.EditResourceType.bind(rt)"></div>
+                                        @*<div class="glyphicon glyphicon-remove" data-bind="archive: rt.Name"></div>*@
+                                        @*<div class="glyphicon glyphicon-repeat" data-bind="restore: rt.Name"></div>*@
+                                        @*<div class="glyphicon glyphicon-remove" data-bind="delete: rt.Name"></div>*@
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tr data-bind="visible: ResourceTypes().length == 0">
+                                <td colspan="3">No resource types</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-edit-resourcetype" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-edit-resourcetype" aria-hidden="true">
+    <!-- ko if: ResourceType -->
+    <!-- ko with: ResourceType -->
+    <div class="modal-dialog modal-fluid">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 data-bind="text: Display"></h5>
+            </div>
+            <form data-bind="submit: Save" role="form">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-push-1">
+                            <div class="form-group has-feedback" data-bind="css: NameCss">
+                                <label class="control-label" for="Name">Name</label>
+                                <input type="text" class="form-control" id="Name" data-bind="value: Name, valueUpdate: 'input'">
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default" data-dismiss="modal" data-bind="click: reset">Close</button>
+                    <button type="submit" class="btn btn-success" data-bind="disable: HasErrors() || Processing()">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+</div>
+
+
+@section scripts {
+    <script type="text/javascript" src="/Content/temp/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="/Content/lib/bootstrap-3.1.1/msgbox/jquery.msgbox.js"></script>
+    <script type="text/javascript" src="/Content/temp/dropzone/dropzone.js"></script>
+    <script type="text/javascript" src="/Content/temp/sorttable.js"></script>
+    <script type="text/javascript" src="/Content/temp/native.extensions.js"></script>
+    <script type="text/javascript" src="/Content/temp/brightline/brightline.js"></script>
+    <script type="text/javascript" src="/Content/temp/brightline/knockout.extensions.js"></script>
+
+    <script type="text/javascript">
+        var ResourceTypesViewModel = function(resourceTypes) {
+            var self = this;
+            var rts = [];
+            ko.utils.arrayForEach(resourceTypes || [], function(rt) {
+                var rtvm = ResourceTypeViewModel.map(self, rt);
+                rts.push(rtvm);
+            });
+            self.ResourceTypes = ko.observableArray(rts).extend({ searchable: true });
+            self.ResourceType = ko.observable();
+
+            self.EditResourceType = function(rt) {
+                var rvm = rt || new ResourceTypeViewModel(self);
+                self.ResourceType(rvm);
+                $("#modal-edit-resourcetype").modal("show");
+            };
+        };
+        var ResourceTypeViewModel = function(parent) {
+            var self = this;
+            self.Id = ko.observable(0);
+            self.Parent = parent;
+            self.Name = ko.observable().extend({ trackChange: true });
+            self.LastUpdated = ko.observable();
+            self.IsDeleted = ko.observable();
+            self.Processing = ko.observable(false);
+            self.IsNewEntity = ko.entities.isNew(self);
+
+            self.Display = ko.deferred(self, function() {
+                var name = ko.u(self.Name);
+                if (!name)
+                    return "New resource type";
+
+                return name;
+            });
+            self.HasErrors = ko.deferred(function() {
+                var p = ko.u(this.Platform);
+                return (!p || ko.u(p.Id) <= 0);
+            });
+
+            self.NameCss = ko.observableCss.text(self, "Name");
+
+            self.Archive = function (rt) {
+                var id = ko.u(rt.Id);
+                var display = ko.u(rt.Display);
+                $.entitiesApi.archive("resourcetype", id, function () {
+                    rt.IsDeleted(true);
+                    $.msgGrowl.success(display + " archived.");
+                }).fail(function () {
+                    $.msgGrowl.error("Error archiving " + display + ".");
+                });
+            };
+            //self.Delete = function (rt) {
+            //	var id = ko.u(rt.Id);
+            //	var display = ko.u(rt.Display);
+            //	$.entitiesApi.destroy("resourcetype", id, function () {
+            //		rt.IsDeleted(true);
+            //		parent.ResourceTypes.remove(rt);
+            //		$.msgGrowl.success(display + " deleted.");
+            //	}).fail(function () {
+            //		$.msgGrowl.error("Error deleting " + display + ".");
+            //	});
+            //};
+            self.Restore = function (rt) {
+                var id = ko.u(rt.Id);
+                var display = ko.u(rt.Display);
+                $.entitiesApi.restore("resourcetype", id, function () {
+                    rt.IsDeleted(false);
+                    $.msgGrowl.success(display + " restored.");
+                }).fail(function () {
+                    $.msgGrowl.error("Error restoring " + display + ".");
+                });
+            };
+            self.Save = function() {
+                var rt = this;
+                rt.Processing(true);
+                var id = ko.u(rt.Id);
+                var isNew = ko.u(rt.IsNewEntity);
+                var display = ko.u(rt.Display);
+
+                var json = rt.stringify();
+                $.entitiesApi.save("resourcetype", id, json, function(rtId) {
+                    $("#modal-edit-resourcetype").modal("hide");
+                    $.msgGrowl.success(display + " saved.");
+                    if (isNew) {
+                        rt.Id(rtId);
+                        parent.ResourceTypes.unshift(rt);
+                    }
+
+                    rt.clean();
+                }).fail(function() {
+                    $.msgGrowl.error("Error saving " + display + ".");
+                }).always(function() {
+                    rt.Processing(false);
+                });
+            };
+
+            self.reset = function() {
+                self.Name.reset();
+            };
+            self.clean = function() {
+                self.Name.clean();
+            };
+            self.stringify = function() {
+                var rt = ko.entities.jsonId(this);
+                rt.Name = ko.u(this.Name);
+                var json = JSON.stringify(rt);
+                return json;
+            };
+
+        };
+        ResourceTypeViewModel.map = function(parent, resource) {
+            var rtvm = new ResourceTypeViewModel(parent);
+            rtvm.Id(resource.Id);
+            rtvm.Name(resource.Name);
+            rtvm.LastUpdated(resource.DateUpdated || resource.DateCreated);
+            return rtvm;
+        };
+        $(document).ready(function() {
+            var resourceTypes = @resourceTypes;
+            var rtsvm = new ResourceTypesViewModel(resourceTypes);
+            ko.applyBindings(rtsvm, function(hasError) {
+                $(".loading").fadeOut();
+                if (hasError)
+                    $(".error-view").fadeIn();
+                else {
+                    $(".view").removeClass("view");
+                    $("[title]").tooltip({ container: "body", placement: "bottom" });
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D72890E-6DB9-41F2-96CB-9AD07D762D65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrightLine.Common</RootNamespace>
+    <AssemblyName>BrightLine.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>cdaf850b</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LOG_DATA_ACCESS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CI|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LOG_DATA_ACCESS</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PRO|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LOG_DATA_ACCESS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dev|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LOG_DATA_ACCESS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\lib\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="BCrypt.Net">
+      <HintPath>..\packages\BCrypt-Official.0.1.107\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.3.3.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET-Q16-AnyCPU">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.0.0104\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvcPaging">
+      <HintPath>..\packages\MvcPaging.2.0.3\lib\net40\MvcPaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.4.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Octokit">
+      <HintPath>..\packages\Octokit.0.16.0\lib\net45\Octokit.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=2.2.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SimpleInjector.2.2.1\lib\net40-client\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity.Design">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Attributes\RequiredLookupAttribute.cs" />
+    <Compile Include="Core\Attributes\NotApplicableAttribute.cs" />
+    <Compile Include="Core\Dynamic.cs" />
+    <Compile Include="Core\ILookup.cs" />
+    <Compile Include="Core\EntityLookup.cs" />
+    <Compile Include="Framework\Exceptions\BlueprintImportException.cs" />
+    <Compile Include="Framework\Exceptions\ModelNotFoundException.cs" />
+    <Compile Include="Framework\Exceptions\ModelImageNotFoundException.cs" />
+    <Compile Include="Framework\Exceptions\BrightlineSftpException.cs" />
+    <Compile Include="Framework\Exceptions\ResourceUploadException.cs" />
+    <Compile Include="Framework\Exceptions\ResourceValidationException.cs" />
+    <Compile Include="Models\CmsPublish.cs" />
+    <Compile Include="Models\Lookups\BlueprintImportLookups.cs" />
+    <Compile Include="Models\AdTrackingEvent.cs" />
+    <Compile Include="Models\Lookups\TrackingEvent.cs" />
+    <Compile Include="Models\Lookups\ModelInstanceLookups.cs" />
+    <Compile Include="Models\Lookups\SettingInstanceLookups.cs" />
+    <Compile Include="Services\IAdTagService.cs" />
+    <Compile Include="Services\IAdTrackingEventService.cs" />
+    <Compile Include="Services\ICampaignLookupsService.cs" />
+    <Compile Include="Services\ICampaignPermissionsService.cs" />
+    <Compile Include="Services\ICampaignsListingService.cs" />
+    <Compile Include="Services\ICampaignSummaryService.cs" />
+    <Compile Include="Utility\Constants\AdTagUrlConstants.cs" />
+    <Compile Include="Utility\Constants\CmsPublishConstants.cs" />
+    <Compile Include="Utility\Constants\PlacementConstants.cs" />
+    <Compile Include="Utility\Constants\RedisPubSubConstants.cs" />
+    <Compile Include="Utility\Constants\TrackingEventConstants.cs" />
+    <Compile Include="Utility\Enums\AdResponseType.cs" />
+    <Compile Include="Utility\Enums\ResourceTypeEnum.cs" />
+    <Compile Include="Utility\Enums\MediaResourceType.cs" />
+    <Compile Include="ViewModels\Ads\AdEditRepoNameViewModel.cs" />
+    <Compile Include="ViewModels\Ads\AdViewModel.cs" />
+    <Compile Include="ViewModels\AdTrackingUrl\AdServer\AdServerAdTrackingUrlViewModel.cs" />
+    <Compile Include="ViewModels\AdTrackingUrl\AdServer\QuartileEventAdTrackingUrlViewModel.cs" />
+    <Compile Include="ViewModels\AdTrackingUrl\AdServer\StartEventAdTrackingUrlViewModel.cs" />
+    <Compile Include="ViewModels\AdTrackingUrl\AdTrackingUrlViewModel.cs" />
+    <Compile Include="ViewModels\AdTrackingUrl\IQ\IQAdTrackingUrlViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\AdTrackingEventViewModel.cs" />
+    <Compile Include="Models\RateCard.cs" />
+    <Compile Include="Models\Lookups\RateType.cs" />
+    <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\Lookups\CmsPublishStatus.cs" />
+    <Compile Include="Models\NightwatchTransaction.cs" />
+    <Compile Include="Models\Agency.cs" />
+    <Compile Include="Models\BlueprintImportModel.cs" />
+    <Compile Include="Models\BlueprintImportModelDefinition.cs" />
+    <Compile Include="Models\BlueprintImportPage.cs" />
+    <Compile Include="Models\CampaignContentModelPropertyValue.cs" />
+    <Compile Include="Models\CmsSettingInstance.cs" />
+    <Compile Include="Models\CmsSetting.cs" />
+    <Compile Include="Models\CmsModelInstance.cs" />
+    <Compile Include="Models\CmsModelInstanceField.cs" />
+    <Compile Include="Models\DeliveryGroup.cs" />
+    <Compile Include="Models\Enums\AnalyticsInterval.cs" />
+    <Compile Include="Models\Enums\CampaignStatus.cs" />
+    <Compile Include="Models\Enums\CompletionStatus.cs" />
+    <Compile Include="Models\Enums\MetricFormattingTypes.cs" />
+    <Compile Include="Models\Enums\CampaignTypes.cs" />
+    <Compile Include="Models\FileItem.cs" />
+    <Compile Include="Models\FileTypeValidation.cs" />
+    <Compile Include="Models\LookupDictionary.cs" />
+    <Compile Include="Models\Lookups\Expose.cs" />
+    <Compile Include="Models\Lookups\FileType.cs" />
+    <Compile Include="Models\CmsField.cs" />
+    <Compile Include="Models\Lookups\FieldType.cs" />
+    <Compile Include="Models\Lookups\CmsRefType.cs" />
+    <Compile Include="Models\CmsModel.cs" />
+    <Compile Include="Models\CmsModelDefinition.cs" />
+    <Compile Include="Models\CmsRef.cs" />
+    <Compile Include="Models\LookupItem.cs" />
+    <Compile Include="Models\Lookups\StorageSource.cs" />
+    <Compile Include="Models\MediaPartner.cs" />
+    <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\Lookups\PageDefinition.cs" />
+    <Compile Include="Models\CmsSettingDefinition.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Models\SettingValue.cs" />
+    <Compile Include="Models\Validation.cs" />
+    <Compile Include="Models\Lookups\ValidationType.cs" />
+    <Compile Include="Resources\CommonResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Cms\IModelInstanceRetrievalService.cs" />
+    <Compile Include="Services\Cms\ISettingInstanceRetrievalService.cs" />
+    <Compile Include="Services\Cms\ISettingInstanceSaveService.cs" />
+    <Compile Include="Services\Cms\IModelInstanceSaveService.cs" />
+    <Compile Include="Services\Cms\IModelInstanceService.cs" />
+    <Compile Include="Services\Cms\IModelInstanceValidationService.cs" />
+    <Compile Include="Services\Cms\ISettingInstanceValidationService.cs" />
+    <Compile Include="Services\IAdTagsExportService.cs" />
+    <Compile Include="Services\Cms\IModelInstanceSaveServerPropertiesService.cs" />
+    <Compile Include="Services\Cms\ISettingService.cs" />
+    <Compile Include="Services\Cms\IModelService.cs" />
+    <Compile Include="Services\Cms\ISettingInstanceService.cs" />
+    <Compile Include="Services\Cms\IValidatorService.cs" />
+    <Compile Include="Services\GitHubClient.cs" />
+    <Compile Include="Services\IAdService.cs" />
+    <Compile Include="Services\IAdValidationService.cs" />
+    <Compile Include="Services\IAgencyService.cs" />
+    <Compile Include="Services\IBlueprintHelper.cs" />
+    <Compile Include="Services\IBlueprintImportLookupsService.cs" />
+    <Compile Include="Services\ICampaignAnalyticsService.cs" />
+    <Compile Include="Services\IAppService.cs" />
+    <Compile Include="Services\IBlueprintImportFieldsService.cs" />
+    <Compile Include="Services\IBlueprintImportModelsService.cs" />
+    <Compile Include="Services\IBlueprintImportPagesService.cs" />
+    <Compile Include="Services\IBlueprintImportSettingsService.cs" />
+    <Compile Include="Services\IBlueprintImportValidationService.cs" />
+    <Compile Include="Services\ICmsFieldHelper.cs" />
+    <Compile Include="Services\ICmsFieldService.cs" />
+    <Compile Include="Services\ICmsModelInstanceService.cs" />
+    <Compile Include="Services\ICmsPublishService.cs" />
+    <Compile Include="Services\IEnvironmentHelper.cs" />
+    <Compile Include="Services\IFieldTypeService.cs" />
+    <Compile Include="Services\IFileHelper.cs" />
+    <Compile Include="Services\IFlashMessageExtensions.cs" />
+    <Compile Include="Services\Cms\ISettingInstancePublishedJsonService.cs" />
+    <Compile Include="Services\Cms\IModelInstancePublishedJsonService.cs" />
+    <Compile Include="Services\IHttpContextHelper.cs" />
+    <Compile Include="Services\ISettingInstanceLookupsService.cs" />
+    <Compile Include="Services\IModelInstanceLookupsService.cs" />
+    <Compile Include="Services\IPublishPropertyService.cs" />
+    <Compile Include="Utility\Constants\AdConstants.cs" />
+    <Compile Include="Utility\Constants\AdTypeGroupConstants.cs" />
+    <Compile Include="Utility\Constants\AdvertiserConstants.cs" />
+    <Compile Include="Utility\Constants\VerticalConstants.cs" />
+    <Compile Include="Utility\Constants\BrandConstants.cs" />
+    <Compile Include="Utility\Constants\MediaAgencyConstants.cs" />
+    <Compile Include="Utility\Constants\RoleConstants.cs" />
+    <Compile Include="Utility\Constants\BlueprintImportConstants.cs" />
+    <Compile Include="Utility\Constants\ProductConstants.cs" />
+    <Compile Include="Utility\Constants\AgencyConstants.cs" />
+    <Compile Include="Utility\Constants\ValidationTypeConstants.cs" />
+    <Compile Include="Utility\Constants\StorageSourceConstants.cs" />
+    <Compile Include="Utility\Constants\ResourceTypeConstants.cs" />
+    <Compile Include="Utility\Constants\PlatformConstants.cs" />
+    <Compile Include="Utility\Constants\FileTypeConstants.cs" />
+    <Compile Include="Utility\Constants\FieldTypeConstants.cs" />
+    <Compile Include="Utility\Constants\ExposeConstants.cs" />
+    <Compile Include="Utility\Constants\AdTagExportConstants.cs" />
+    <Compile Include="Utility\Constants\AdFunctionConstants.cs" />
+    <Compile Include="Utility\Constants\CmsRefTypeConstants.cs" />
+    <Compile Include="Utility\Constants\AdTypeConstants.cs" />
+    <Compile Include="Utility\Constants\InstanceConstants.cs" />
+    <Compile Include="Utility\Constants\SettingInstanceConstants.cs" />
+    <Compile Include="Utility\Constants\ModelInstanceConstants.cs" />
+    <Compile Include="Utility\Enums\InstanceTypeEnum.cs" />
+    <Compile Include="Utility\Helpers\AssetHelper.cs" />
+    <Compile Include="Utility\Constants\BlueprintsConstants.cs" />
+    <Compile Include="Utility\Helpers\BlueprintHelper.cs" />
+    <Compile Include="Utility\Helpers\BlueprintImportHelper.cs" />
+    <Compile Include="Utility\Helpers\CmsFieldHelper.cs" />
+    <Compile Include="Utility\Helpers\CmsInstanceFieldValueHelper.cs" />
+    <Compile Include="Utility\Helpers\EnvironmentHelper.cs" />
+    <Compile Include="Utility\Constants\CampaignConstants.cs" />
+    <Compile Include="Utility\Helpers\HttpContextHelper.cs" />
+    <Compile Include="Utility\Intefaces\ILogHelper.cs" />
+    <Compile Include="Services\IPageDefinitionService.cs" />
+    <Compile Include="Services\IResourceHelper.cs" />
+    <Compile Include="Services\IValidationService.cs" />
+    <Compile Include="Services\IFileTypeValidationService.cs" />
+    <Compile Include="Services\IValidationTypeService.cs" />
+    <Compile Include="Services\ICmsModelDefinitionService.cs" />
+    <Compile Include="Services\IBlueprintImportService.cs" />
+    <Compile Include="Services\IMediaPartnerService.cs" />
+    <Compile Include="Services\IDateHelperService.cs" />
+    <Compile Include="Services\IFileItemService.cs" />
+    <Compile Include="Services\IPlacementService.cs" />
+    <Compile Include="Services\ISftpService.cs" />
+    <Compile Include="Services\IStorageService.cs" />
+    <Compile Include="Services\IResourceService.cs" />
+    <Compile Include="Services\ICreativeService.cs" />
+    <Compile Include="Services\ISecurableService.cs" />
+    <Compile Include="Core\Attributes\CascadeSoftDeleteAttribute.cs" />
+    <Compile Include="Core\Attributes\EntityAttribute.cs" />
+    <Compile Include="Core\Attributes\EntityEditorAttribute.cs" />
+    <Compile Include="Core\EntityManager.cs" />
+    <Compile Include="Core\EntityLookups.cs" />
+    <Compile Include="Core\CrudService.cs" />
+    <Compile Include="Core\Entity.cs" />
+    <Compile Include="Core\ICrudService.cs" />
+    <Compile Include="Core\IEntity.cs" />
+    <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Framework\Extensions.cs" />
+    <Compile Include="Framework\IoC.cs" />
+    <Compile Include="Models\AccountInvitation.cs" />
+    <Compile Include="Models\Lookups\AdFormat.cs" />
+    <Compile Include="Models\Lookups\AdFunction.cs" />
+    <Compile Include="Models\AdTag.cs" />
+    <Compile Include="Models\Lookups\AdTypeGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\AppPlatform.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Blueprint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\CampaignContentModel.cs" />
+    <Compile Include="Models\CampaignContentModelInstance.cs" />
+    <Compile Include="Models\CampaignContentModelProperty.cs" />
+    <Compile Include="Models\Lookups\CampaignContentModelPropertyType.cs" />
+    <Compile Include="Models\CmsModelInstanceFieldValue.cs" />
+    <Compile Include="Models\Lookups\CampaignContentModelType.cs" />
+    <Compile Include="Models\CampaignContentSettings.cs" />
+    <Compile Include="Models\Lookups\Category.cs" />
+    <Compile Include="Models\Lookups\CampaignContentModelBaseType.cs" />
+    <Compile Include="Models\BlueprintPlatform.cs" />
+    <Compile Include="Models\Resource.cs" />
+    <Compile Include="Models\Lookups\FeatureCategory.cs" />
+    <Compile Include="Models\Feature.cs" />
+    <Compile Include="Models\Creative.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Lookups\FeatureTypeGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Lookups\Metric.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Placement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IBlueprintService.cs" />
+    <Compile Include="Models\AccountRetrievalRequest.cs" />
+    <Compile Include="Models\Ad.cs" />
+    <Compile Include="Models\Lookups\AdType.cs" />
+    <Compile Include="Models\App.cs" />
+    <Compile Include="Models\CampaignContentSchema.cs" />
+    <Compile Include="Models\AuditEvent.cs" />
+    <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Models\Lookups\FeatureType.cs" />
+    <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\PasswordHashHistory.cs" />
+    <Compile Include="Models\Lookups\Platform.cs" />
+    <Compile Include="Models\Lookups\PlatformGroup.cs" />
+    <Compile Include="Models\Lookups\Product.cs" />
+    <Compile Include="Models\Campaign.cs" />
+    <Compile Include="Models\Lookups\ResourceType.cs" />
+    <Compile Include="Models\Lookups\Vertical.cs" />
+    <Compile Include="Models\Lookups\Advertiser.cs" />
+    <Compile Include="Models\Lookups\Brand.cs" />
+    <Compile Include="Models\Lookups\Role.cs" />
+    <Compile Include="Models\Lookups\Segment.cs" />
+    <Compile Include="Models\Lookups\SubSegment.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Utility\Authentication\AuthExtensions.cs" />
+    <Compile Include="Utility\Helpers\AuthWebAdminHelper.cs" />
+    <Compile Include="Utility\Authentication\UserPrincipalWithOverride.cs" />
+    <Compile Include="Utility\Helpers\CampaignHelper.cs" />
+    <Compile Include="Utility\DataAccess\DataAccess.cs" />
+    <Compile Include="Utility\DataAccess\DataReader.cs" />
+    <Compile Include="Utility\Enums\FlashMessageExtensions.cs" />
+    <Compile Include="Utility\Enums\SettingOrigin.cs" />
+    <Compile Include="Utility\Helpers\FileHelper.cs" />
+    <Compile Include="Utility\FlashMessageExtensions.cs" />
+    <Compile Include="Utility\FlashMessageExtensionMethods.cs" />
+    <Compile Include="Utility\Helpers\LogHelper.cs" />
+    <Compile Include="Utility\Lookups.cs" />
+    <Compile Include="Utility\Constants\NightwatchConstants.cs" />
+    <Compile Include="Utility\Constants\ResourceConstants.cs" />
+    <Compile Include="Utility\Helpers\ResourceHelper.cs" />
+    <Compile Include="Utility\Constants\LookupsConstants.cs" />
+    <Compile Include="Utility\Spreadsheets\AsposeRegister.cs" />
+    <Compile Include="Utility\Spreadsheets\CellPosition.cs" />
+    <Compile Include="Utility\Spreadsheets\CellPositions.cs" />
+    <Compile Include="Utility\Spreadsheets\EntityField.cs" />
+    <Compile Include="Utility\Spreadsheets\EntityMapper.cs" />
+    <Compile Include="Utility\Spreadsheets\IEntityMapper.cs" />
+    <Compile Include="Utility\Spreadsheets\ISpreadsheetReader.cs" />
+    <Compile Include="Utility\Spreadsheets\SpreadsheetExtensions.cs" />
+    <Compile Include="Utility\Spreadsheets\SpreadsheetHelper.cs" />
+    <Compile Include="Utility\Spreadsheets\SpreadsheetReader.cs" />
+    <Compile Include="Utility\Spreadsheets\Writer\ISpreadSheetWriter.cs" />
+    <Compile Include="Utility\Spreadsheets\Writer\SpreadsheetWriter.cs" />
+    <Compile Include="Utility\SqlServer\DataAccess.cs" />
+    <Compile Include="Utility\SqlServer\DataAccessConstants.cs" />
+    <Compile Include="Utility\Helpers\WebAuthenticationHelper.cs" />
+    <Compile Include="Utility\Helpers\XmlSerializerHelper.cs" />
+    <Compile Include="ViewModels\Account\UserViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ICampaignService.cs" />
+    <Compile Include="Services\ICookieService.cs" />
+    <Compile Include="Services\External\ICloudFileService.cs" />
+    <Compile Include="Services\IAccountService.cs" />
+    <Compile Include="Services\IAuditEventService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\IRoleService.cs" />
+    <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Utility\Helpers\AttributeHelper.cs" />
+    <Compile Include="Utility\Authentication\Auth.cs" />
+    <Compile Include="Utility\Authentication\AuthBase.cs" />
+    <Compile Include="Utility\Constants\AuthConstants.cs" />
+    <Compile Include="Utility\Authentication\AuthWeb.cs" />
+    <Compile Include="Utility\Authentication\IAuth.cs" />
+    <Compile Include="Utility\Authentication\UserIdentity.cs" />
+    <Compile Include="Utility\Authentication\UserPrincipal.cs" />
+    <Compile Include="Utility\Converter.cs" />
+    <Compile Include="Utility\Helpers\DatabaseHelper.cs" />
+    <Compile Include="Utility\Helpers\DateHelper.cs" />
+    <Compile Include="Utility\Enums\EnvironmentType.cs" />
+    <Compile Include="Utility\Env.cs" />
+    <Compile Include="Utility\Helpers\ReflectionHelper.cs" />
+    <Compile Include="Utility\Helpers\HttpHelper.cs" />
+    <Compile Include="ViewModels\Account\ActivateViewModel.cs" />
+    <Compile Include="ViewModels\Account\BaseAccountViewModel.cs" />
+    <Compile Include="ViewModels\Account\UpdatePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\ResetViewModel.cs" />
+    <Compile Include="ViewModels\Account\RetrieveViewModel.cs" />
+    <Compile Include="ViewModels\Account\SignInViewModel.cs" />
+    <Compile Include="ViewModels\Analytics\AnalyticsViewModels.cs" />
+    <Compile Include="ViewModels\Blueprints\BlueprintViewModel.cs" />
+    <Compile Include="ViewModels\Blueprints\ImportedBlueprintViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\DestinationCreativeSaveViewModel.cs" />
+    <Compile Include="ViewModels\Cms\BLViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignDeliveryGroupViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CreativeFeaturesViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignSettingViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignCreativeViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\DestinationCreativeViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CmsPublishViewModel.cs" />
+    <Compile Include="ViewModels\Cms\AdTagExportViewModel.cs" />
+    <Compile Include="ViewModels\Cms\FieldSaveViewModel.cs" />
+    <Compile Include="ViewModels\Cms\SettingInstancePublishedJsonViewModel.cs" />
+    <Compile Include="ViewModels\Cms\ModelInstancePublishedJsonViewModel.cs" />
+    <Compile Include="ViewModels\Cms\PublishedFieldViewModel.cs" />
+    <Compile Include="ViewModels\Cms\FieldViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignsListingViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignAdViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignFeatureViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignPlacementViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignPlatformViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\CampaignSummaryViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\PromotionalCreativeViewModel.cs" />
+    <Compile Include="ViewModels\Campaigns\ManifestViewModel.cs" />
+    <Compile Include="ViewModels\Developer\NightwatchTestsViewModel.cs" />
+    <Compile Include="ViewModels\Entity\AgencyViewModel.cs" />
+    <Compile Include="ViewModels\Entity\LookupViewModel.cs" />
+    <Compile Include="ViewModels\Entity\AppViewModel.cs" />
+    <Compile Include="ViewModels\Entity\PlacementViewModel.cs" />
+    <Compile Include="ViewModels\Entity\MediaPartnerViewModel.cs" />
+    <Compile Include="ViewModels\Entity\MetadataViewModel.cs" />
+    <Compile Include="ViewModels\Cms\ModelInstanceJsonViewModel.cs" />
+    <Compile Include="ViewModels\Cms\ModelInstanceListViewModel.cs" />
+    <Compile Include="ViewModels\Cms\SettingInstanceSaveViewModel.cs" />
+    <Compile Include="ViewModels\Cms\ModelInstanceSaveViewModel.cs" />
+    <Compile Include="ViewModels\Cms\PageRefFieldValue.cs" />
+    <Compile Include="ViewModels\Cms\ModelRefFieldValue.cs" />
+    <Compile Include="ViewModels\Cms\RefViewModel.cs" />
+    <Compile Include="ViewModels\Cms\ModelDefinitionViewModel.cs" />
+    <Compile Include="ViewModels\Cms\SettingDefinitionViewModel.cs" />
+    <Compile Include="ViewModels\Cms\ValidationViewModel.cs" />
+    <Compile Include="ViewModels\RedisPubSub\BrsFileViewModel.cs" />
+    <Compile Include="ViewModels\RedisPubSub\RefreshBrsMessageViewModel.cs" />
+    <Compile Include="ViewModels\Resources\ImageResizeViewModel.cs" />
+    <Compile Include="ViewModels\Resources\ImageResizeOptions.cs" />
+    <Compile Include="ViewModels\Resources\ResourceViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Users\SaveUserViewModel.cs" />
+    <Compile Include="ViewModels\Users\UsersViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Web\Security\CustomIdentity.cs" />
+    <Compile Include="Web\Security\Principal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CommonResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Aspose.Cells.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Publishing\" />
+    <Folder Include="ViewModels\Lookups\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrightLine.Utility\BrightLine.Utility.csproj">
+      <Project>{5f3580d0-efae-49f5-b800-a26c48b480a0}</Project>
+      <Name>BrightLine.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>C:\Code\BrightLine\lib\transform_all $(SolutionDir) $(OutDir)</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\MSBuild\MSBuild.ExtensionPack.tasks" />
+  <Import Project="$(SolutionDir)\MSBuild\MSBuild.ExtensionPack.VersionNumber.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+</Project>
